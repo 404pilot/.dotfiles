@@ -1,0 +1,24 @@
+
+alias grepi='grep --color=auto -i'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+## maven
+alias mcc='mvn clean compile'
+alias mct='mvn clean test'
+alias mcit='mvn clean integration-test'
+alias mld='mvn clean process-resources liquibase:dropAll'
+alias mlu='mvn clean process-resources liquibase:update'
+alias mcj='mvn clean jetty:run'
+
+## git
+alias gbye='git add . ; git reset --hard HEAD'
+alias gs='git status'
+alias gb='git branch -a'
+alias gma='git commit -am'
+alias gmm='git commit -m'
+alias gc='git checkout'
+alias gcm='git checkout master'
+alias ga='git add'
+alias gp='git pull'
