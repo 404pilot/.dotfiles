@@ -22,3 +22,26 @@ alias gc='git checkout'
 alias gcm='git checkout master'
 alias ga='git add'
 alias gp='git pull'
+
+# determine operating system
+myos=`uname -s`
+
+case "$myos" in
+	# Mac OS X specific aliases
+	Darwin)
+		# TODO alias 
+		;;
+	# Linux
+	Linux)
+		alias click='nautilus .'
+		alias findnote='find ~/pNote -type f -name "*.md" | xargs grep -i'
+		alias gstory="git branch -a --no-merged master | sed 's/remotes\/origin\//remotes\/origin\/    /g' | grep 'B-\|D-'"
+		# directory
+		alias usgroot='cd ~/usage/Usage-Standardization'
+		alias solroot='cd ~/usage/sol42Generator'
+		alias pnoteroot='cd ~/pNote/notes'
+		# command 
+		alias amq='/opt/apache-activemq-5.8.0/bin/activemq'
+		;;
+	*) ;;
+esac
