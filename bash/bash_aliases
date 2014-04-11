@@ -1,5 +1,5 @@
 
-alias grepi='grep --color=auto -i'
+alias grep='grep --color=auto -i'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -29,12 +29,17 @@ myos=`uname -s`
 case "$myos" in
 	# Mac OS X specific aliases
 	Darwin)
-		# TODO alias 
+		alias fnote='find ~/pHome/pNote -type f -name "*.md" | xargs grep -i'
+		alias sublime='open -a "Sublime Text 2"'
+		alias mou='open -a Mou'
+		# virtual box 
+		alias pvm='ssh pvm@192.168.56.190'
+		alias startpvm='VBoxHeadless -startvm Ubuntu_Server -vrdp=off'
 		;;
 	# Linux
 	Linux)
 		alias click='nautilus .'
-		alias findnote='find ~/pNote -type f -name "*.md" | xargs grep -i'
+		alias fnote='find ~/pNote -type f -name "*.md" | xargs grep -i'
 		alias gstory="git branch -a --no-merged master | sed 's/remotes\/origin\//remotes\/origin\/    /g' | grep 'B-\|D-'"
 		# directory
 		alias usgroot='cd ~/usage/Usage-Standardization'
@@ -45,3 +50,4 @@ case "$myos" in
 		;;
 	*) ;;
 esac
+

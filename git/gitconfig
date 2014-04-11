@@ -1,0 +1,19 @@
+[user]
+    name = neatpilot
+    email = neatpilot@users.noreply.github.com
+
+[color]
+    ui = true
+
+[alias]
+    co = checkout
+    st = status
+    br = branch -a
+    cmm = commit -m
+    lol = log --oneline -a
+    bye = reset --hard HEAD
+    wormhole = reset --hard HEAD~1
+    sh = stash
+
+[push]
+    default = simple
