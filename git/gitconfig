@@ -10,10 +10,12 @@
     st = status
     br = branch -a
     cmm = commit -m
-    lol = log --oneline -a
+    lol = log --oneline -n 10
     bye = reset --hard HEAD
     wormhole = reset --hard HEAD~1
     sh = stash
+    mg = merge --no-ff
 
 [push]
-    default = simple
+    # default = simple
+    default = current

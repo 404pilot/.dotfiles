@@ -13,14 +13,14 @@ alias mlu='mvn clean process-resources liquibase:update'
 alias mcj='mvn clean jetty:run'
 
 ## git
-alias gbye='git add . ; git reset --hard HEAD'
+alias gbye='git add -u . ; git reset --hard HEAD'
 alias gs='git status'
 alias gb='git branch -a'
 alias gma='git commit -am'
 alias gmm='git commit -m'
 alias gc='git checkout'
 alias gcm='git checkout master'
-alias ga='git add'
+alias ga='git add -u'
 alias gp='git pull'
 
 # determine operating system
