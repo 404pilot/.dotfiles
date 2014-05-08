@@ -36,6 +36,7 @@ case "$myos" in
 		# virtual box 
 		alias pvm='ssh pvm@192.168.56.190'
 		alias startpvm='VBoxHeadless -startvm Ubuntu_Server -vrdp=off'
+		alias soundsup='sudo kextunload /System/Library/Extensions/AppleHDA.kext;sudo kextload /System/Library/Extensions/AppleHDA.kext'
 		;;
 	# Linux
 	Linux)
