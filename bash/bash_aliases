@@ -33,6 +33,7 @@ case "$myos" in
 		alias fnote='find ~/pHome/pNote -type f -name "*.md" | xargs grep -i'
 		alias sublime='open -a "Sublime Text 2"'
 		alias mou='open -a Mou'
+		alias click='open .'
 		# virtual box 
 		alias pvm='ssh pvm@192.168.56.190'
 		alias startpvm='VBoxHeadless -startvm Ubuntu_Server -vrdp=off'
