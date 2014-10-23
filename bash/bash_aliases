@@ -15,7 +15,7 @@ alias mcj='mvn clean jetty:run'
 ## git
 alias gbye='git add --all; git reset --hard HEAD'
 alias gs='git status'
-alias gb='git branch -a'
+alias gb='git branch'
 alias gma='git commit -am'
 alias gmm='git commit -m'
 alias gc='git checkout'
@@ -43,14 +43,13 @@ case "$myos" in
 	Linux)
 		alias click='nautilus .'
 		alias fnote='find ~/pNote -type f -name "*.md" | xargs grep -i'
-		alias gstory="git branch -a --no-merged master | sed 's/remotes\/origin\//remotes\/origin\/    /g' | grep 'B-\|D-'"
+		alias gstory="git branch --remote --no-merged master | sed 's/origin\//origin\/    /g' | grep 'B-\|D-'"
 		# directory
 		alias usgroot='cd ~/usage/Usage-Standardization'
 		alias solroot='cd ~/usage/sol42Generator'
 		alias pnoteroot='cd ~/pNote/notes'
 		# command 
-		alias amq='/opt/apache-activemq-5.8.0/bin/activemq'
+		alias amq='/opt/apache-activemq-5.9.0/bin/activemq'
 		;;
 	*) ;;
 esac
-
