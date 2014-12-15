@@ -12,3 +12,8 @@
 `Back` alt + a
 
 `Forward` alt + d
+
+# Editor tab
+
+#### Show all tabs
+`Editor`>`General`>`Editor Tabs` : uncheck `Show tabs in single row`
