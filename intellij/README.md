@@ -4,6 +4,8 @@
 
 `close` : alt + w
 
+`close all` : alt + x
+
 
 ####`Main menu`>`Navigate`
 
