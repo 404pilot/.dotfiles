@@ -64,7 +64,7 @@ case "$myos" in
 	# Mac OS X specific aliases
 	Darwin)
 		alias fnote='find ~/pHome/pNote -type f -name "*.md" | xargs grep -i'
-		alias sublime='open -a "Sublime Text 2"'
+		alias sublime='open -a "Sublime Text"'
 		alias mou='open -a Mou'
 		alias click='open .'
 		# virtual box 
