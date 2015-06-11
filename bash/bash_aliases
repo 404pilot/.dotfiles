@@ -63,24 +63,19 @@ myos=`uname -s`
 case "$myos" in
 	# Mac OS X specific aliases
 	Darwin)
-		alias fnote='find ~/pHome/pNote -type f -name "*.md" | xargs grep -i'
+		# alias fnote='find ~/pHome/pNote -type f -name "*.md" | xargs grep -i'
 		alias sublime='open -a "Sublime Text"'
-		alias mou='open -a Mou'
 		alias click='open .'
-		# virtual box 
-		alias pvm='ssh pvm@192.168.56.190'
-		alias startpvm='VBoxHeadless -startvm Ubuntu_Server -vrdp=off'
 		alias soundsgood='sudo kextunload /System/Library/Extensions/AppleHDA.kext;sudo kextload /System/Library/Extensions/AppleHDA.kext'
 		;;
 	# Linux
 	Linux)
 		alias click='nautilus .'
-		alias fnote='find ~/pNote -type f -name "*.md" | xargs grep -i'
+		# alias fnote='find ~/pNote -type f -name "*.md" | xargs grep -i'
 		alias gstory="git branch --remote --no-merged master | sed 's/origin\//origin\/    /g' | grep 'B-\|D-'"
 		# directory
 		alias usgroot='cd ~/usage/Usage-Standardization'
 		alias solroot='cd ~/usage/sol42Generator'
-		alias pnoteroot='cd ~/pNote/notes'
 		# command 
 		alias amq='/opt/apache-activemq-5.9.0/bin/activemq'
 		;;
