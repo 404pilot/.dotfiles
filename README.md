@@ -44,3 +44,12 @@ Manually type `~/.dotfiles/iTerm2`
 * GitGutter
 * JSONLint
 * Pretty JSON
+
+## Jenv
+	
+	# set shell jdk to run maven
+	jenv shell openjdk64-1.7.0.79
+	
+	# list all JAVA_HOMEs
+	ls -alF ~/.jenv/versions
+	
