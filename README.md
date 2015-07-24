@@ -46,10 +46,21 @@ Manually type `~/.dotfiles/iTerm2`
 * Pretty JSON
 
 ## Jenv
+	brew install jenv 
+	echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bashrc
+	echo 'eval "$(jenv init -)"' >> ~/.bashrc
 	
-	# set shell jdk to run maven
+	# switch "shell jdk" to run maven
 	jenv shell openjdk64-1.7.0.79
+	jenv shell 1.8
 	
 	# list all JAVA_HOMEs
 	ls -alF ~/.jenv/versions
 	
+	
+#### java locations	
+	
+* brew install location: `/Library/Java/JavaVirtualMachines/`
+	* `/usr/bin/java` -> `/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java` -> one of `/Library/Java/JavaVirtualMachines/`
+* system default location: `/System/Library/Frameworks/JavaVM.framework/Versions/`
+* java in System Perferences location: `/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/`
