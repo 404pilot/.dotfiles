@@ -3,6 +3,7 @@ alias grep='grep --color=auto -i'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias cat=ccat
 
 ## maven
 alias mcc='mvn clean compile'
