@@ -44,3 +44,64 @@ Manually type `~/.dotfiles/iTerm2`
 * GitGutter
 * JSONLint
 * Pretty JSON
+
+## Jenv
+```
+brew install jenv 
+echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(jenv init -)"' >> ~/.bashrc
+```
+
+#### more
+```
+# switch "shell jdk" to run maven
+jenv shell openjdk64-1.7.0.79
+jenv shell 1.8
+
+# list all JAVA_HOMEs
+ls -alF ~/.jenv/versions
+```
+	
+##### java locations	
+	
+* brew install location: `/Library/Java/JavaVirtualMachines/`
+	* `/usr/bin/java` -> `/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java` -> one of `/Library/Java/JavaVirtualMachines/`
+* system default location: `/System/Library/Frameworks/JavaVM.framework/Versions/`
+* java in System Perferences location: `/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/`
+
+## Homebrew
+
+```
+# install brew
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
+
+brew install tmux git jenv maven tree
+```
+
+#### more
+
+1. homebrew install apps @ `/usr/local/Cellar/`
+2. create corresponding link @ `/usr/local/bin/`
+
+Thus, set `/etc/paths` to
+
+	/usr/local/bin
+	/usr/bin
+	/bin
+	/usr/sbin
+	/sbin
+
+Put `/usr/local/bin` at the first line.
+
+Or go to shell configuration and add `/usr/local/bin` to `$PATH`.
+
+Restart terminal and test it
+
+	$ which git
+	/usr/local/bin/git
+
+In this way, I may not need to explicitly specify command home location for `JAVA_HOME` or `MAVEN_HOME` in `.bashrc`. It will automatically use the default one, i,e, the first line in `/etc/paths`.
+
+Use `brew info zsh` to see those dependecies 
