@@ -7,21 +7,23 @@ dotfiles
 ## Bash
 
 	echo "source ~/.bash_aliases" >> ~/.bashrc
-	
+
 	ln -s ~/.dotfiles/bash/bash_aliases ~/.bash_aliases
-	
+
 	source ~/.bashrc
-	
+
 ## Git
 
-	rm ~/.gitconfig
-	
-	ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
-	
+	rm ~/.gitconfig | ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
+
 	# for office laptop
 	git config --global user.name "xx"
 	git config --global user.email "me@here.com"
-	
+
+## EditorConfig
+
+	rm ~/.editorConfig | ln -s ~/.dotfiles/editorConfig/editorConfig ~/.editorConfig
+
 ## iTerm2
 
 `General` -> `Preferences`
@@ -47,7 +49,7 @@ Manually type `~/.dotfiles/iTerm2`
 
 ## Jenv
 ```
-brew install jenv 
+brew install jenv
 echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(jenv init -)"' >> ~/.bashrc
 ```
@@ -61,9 +63,9 @@ jenv shell 1.8
 # list all JAVA_HOMEs
 ls -alF ~/.jenv/versions
 ```
-	
-##### java locations	
-	
+
+##### java locations
+
 * brew install location: `/Library/Java/JavaVirtualMachines/`
 	* `/usr/bin/java` -> `/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java` -> one of `/Library/Java/JavaVirtualMachines/`
 * system default location: `/System/Library/Frameworks/JavaVM.framework/Versions/`
@@ -104,4 +106,4 @@ Restart terminal and test it
 
 In this way, I may not need to explicitly specify command home location for `JAVA_HOME` or `MAVEN_HOME` in `.bashrc`. It will automatically use the default one, i,e, the first line in `/etc/paths`.
 
-Use `brew info zsh` to see those dependecies 
+Use `brew info zsh` to see those dependecies

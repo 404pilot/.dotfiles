@@ -28,16 +28,41 @@
 		<autogen> __KeyToKey__ KeyCode::W, ModifierFlag::COMMAND_R, KeyCode::CURSOR_UP </autogen>
 		<autogen> __KeyToKey__ KeyCode::A, ModifierFlag::COMMAND_R, KeyCode::CURSOR_LEFT </autogen>
 		<autogen> __KeyToKey__ KeyCode::S, ModifierFlag::COMMAND_R, KeyCode::CURSOR_DOWN </autogen>
-		<autogen> __KeyToKey__ KeyCode::D, ModifierFlag::COMMAND_R, KeyCode::CURSOR_RIGHT </autogen>
-	</item>
+        <autogen> __KeyToKey__ KeyCode::D, ModifierFlag::COMMAND_R, KeyCode::CURSOR_RIGHT </autogen>
+    </item>
 
-	<item>
-		<name>POKER Switch win and alt</name>
-		<identifier>private.poker.win_alt</identifier>
-		<device_only>DeviceVendor::POKER_VENDOR, DeviceProduct::POKER_PRODUCT</device_only>
+    <item>
+        <name>MAC right command + z -> forward delete</name>
+        <identifier>private.applekeyboard.forwardDelete</identifier>
+        <device_only>DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD</device_only>
 
-		<autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::OPTION_L</autogen>
-		<autogen>__KeyToKey__ KeyCode::OPTION_L, KeyCode::COMMAND_L</autogen>
-	</item>
+        <autogen> __KeyToKey__ KeyCode::Z, ModifierFlag::COMMAND_R, KeyCode::FORWARD_DELETE </autogen>
+    </item>
+
+    <item>
+        <name>POKER Map Left Ctrl to BackQuote</name>
+        <identifier>private.poker.leftCtrl2Escape</identifier>
+        <device_only>DeviceVendor::POKER_VENDOR, DeviceProduct::POKER_PRODUCT</device_only>
+
+        <autogen> __KeyToKey__ KeyCode::CONTROL_R, KeyCode::BACKQUOTE </autogen>
+    </item>
+
+    <item>
+      <name>POKER Switch win and alt</name>
+      <identifier>private.poker.win_alt</identifier>
+      <device_only>DeviceVendor::POKER_VENDOR, DeviceProduct::POKER_PRODUCT</device_only>
+
+      <autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::OPTION_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::OPTION_L, KeyCode::COMMAND_L</autogen>
+    </item>
+
+    <item>
+      <name>POKER Home and End</name>
+      <identifier>private.poker.home_and_end</identifier>
+      <device_only>DeviceVendor::POKER_VENDOR, DeviceProduct::POKER_PRODUCT</device_only>
+
+      <autogen>__KeyToKey__ KeyCode::HOME, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::END, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L</autogen>
+    </item>
 
 </root>
