@@ -56,10 +56,9 @@ echo 'eval "$(jenv init -)"' >> ~/.bashrc
 
 #### more
 ```
-# switch "shell jdk" to run maven
+# run maven with a specific jdk
+jenv local 1.7
 jenv enable-plugin maven
-jenv shell openjdk64-1.7.0.79
-jenv shell 1.8
 
 # double-check to see which java version maven is using
 mvn -version
