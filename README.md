@@ -109,4 +109,4 @@ Restart terminal and test it
 
 In this way, I may not need to explicitly specify command home location for `JAVA_HOME` or `MAVEN_HOME` in `.bashrc`. It will automatically use the default one, i,e, the first line in `/etc/paths`.
 
-Use `brew info zsh` to see those dependecies
+Use `brew info zsh` to see those dependencies
