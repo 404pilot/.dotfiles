@@ -33,6 +33,7 @@ vmrails() {
             "start") (cd $dir; vagrant up; vagrant ssh) ;;
             "stop") (cd $dir; vagrant suspend) ;;
             "dir") cd $dir ;;
+            *) echo "Supported Command: start or stop or dir" ;;
         esac
     else
         echo "Need one parameter: start or stop or dir"
