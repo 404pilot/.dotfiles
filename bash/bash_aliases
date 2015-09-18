@@ -3,7 +3,6 @@ alias grep='grep --color=auto -i'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias cat=ccat
 
 ## maven
 alias mcc='mvn clean compile'
@@ -24,6 +23,14 @@ alias gcm='git checkout master'
 alias ga='git add'
 alias gall='git add --all'
 alias gp='git pull'
+
+cat() {
+    if [ "$(type -t ccat)" = file ]; then
+        ccat $@ ;
+    else
+        cat $@ ;
+    fi
+}
 
 ## vm
 vmrails() {
