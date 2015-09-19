@@ -85,6 +85,18 @@ echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
 brew install tmux git jenv maven tree
 ```
 
+#### update all packages
+```
+# update brew itself
+brew update 
+
+# run diagnosis
+brew doctor
+
+# upgrade packages
+brew upgrade
+
+```
 #### more
 
 1. homebrew install apps @ `/usr/local/Cellar/`
