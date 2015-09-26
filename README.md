@@ -87,8 +87,28 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
 
 brew install tmux git jenv maven tree
+
+brew install bash-completion
+
+echo "
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+" >> ~/.bashrc
 ```
 
+#### update all packages
+```
+# update brew itself
+brew update 
+
+# run diagnosis
+brew doctor
+
+# upgrade packages
+brew upgrade
+
+```
 #### more
 
 1. homebrew install apps @ `/usr/local/Cellar/`
