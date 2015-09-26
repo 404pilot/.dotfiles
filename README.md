@@ -24,6 +24,10 @@ dotfiles
 
 	rm ~/.editorConfig | ln -s ~/.dotfiles/editorConfig/editorConfig ~/.editorConfig
 
+## tmux
+
+	rm ~/.tmux.conf | ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+
 ## iTerm2
 
 `General` -> `Preferences`
