@@ -47,14 +47,14 @@
         <autogen> __KeyToKey__ KeyCode::CONTROL_R, KeyCode::BACKQUOTE </autogen>
     </item>
 
-    <item>
+    <!-- <item>
       <name>POKER Switch win and alt</name>
       <identifier>private.poker.win_alt</identifier>
       <device_only>DeviceVendor::POKER_VENDOR, DeviceProduct::POKER_PRODUCT</device_only>
 
       <autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::OPTION_L</autogen>
       <autogen>__KeyToKey__ KeyCode::OPTION_L, KeyCode::COMMAND_L</autogen>
-    </item>
+    </item> -->
 
     <item>
       <name>POKER Home and End</name>
