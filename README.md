@@ -25,7 +25,7 @@ dotfiles
 	rm ~/.editorConfig | ln -s ~/.dotfiles/editorConfig/editorConfig ~/.editorConfig
 
 ## tmux
-
+        # make sure terminal: $TERM=xterm-256color
 	rm ~/.tmux.conf | ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 ## iTerm2
