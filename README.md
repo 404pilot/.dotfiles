@@ -41,16 +41,6 @@ Manually type `~/.dotfiles/iTerm2`
 	rm ~/Library/Application\ Support/Karabiner/private.xml
 	ln -s ~/.dotfiles/Karabiner/private.xml ~/Library/Application\ Support/Karabiner/private.xml
 
-## Sublime Text 3
-
-    ln -s ~/.dotfiles/sublime-text3/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
-
-#### Installed Package
-
-* GitGutter
-* JSONLint
-* Pretty JSON
-
 ## Jenv
 ```
 brew install jenv
@@ -100,7 +90,7 @@ fi
 #### update all packages
 ```
 # update brew itself
-brew update 
+brew update
 
 # run diagnosis
 brew doctor
