@@ -23,3 +23,8 @@ cmd w | close
 ^ shift x | split vertically
 ^ q | close active tab
 ^ u | select in
+
+## Vagrant Integration
+
+1. install `vagrant` plugin
+2. make sure **vagrant executable** under `Tools/Vagrant` is working. (give a full path `/usr/local/bin/vagrant`)
