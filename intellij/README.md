@@ -24,10 +24,5 @@ cmd w | close
 ^ q | close active tab
 ^ u | select in
 
-## Vagrant Integration
-
-intellij cannot find executable under `/usr/local/bin/`
-
-1. install `vagrant` plugin
-2. make sure **vagrant executable** under `Tools/Vagrant` is working. (give a full path `/usr/local/bin/vagrant`)
-3. run `sudo ln -s /usr/local/bin/VBoxManage /usr/bin/VBoxManage`
+## Ruby Developement
+Make sure ide and terminal are using same gemset.
