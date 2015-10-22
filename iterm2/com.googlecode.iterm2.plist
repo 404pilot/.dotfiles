@@ -482,17 +482,17 @@
 	<key>HighlightTabLabels</key>
 	<true/>
 	<key>HotKeyBookmark</key>
-	<string>EF34AC6E-F140-4FB6-B5D3-13302B357B6C</string>
+	<string>2ECD9A75-7C3E-43DC-8BB5-39636A12F98A</string>
 	<key>HotKeyTogglesWindow</key>
 	<false/>
 	<key>Hotkey</key>
-	<false/>
+	<true/>
 	<key>HotkeyChar</key>
-	<integer>0</integer>
+	<integer>101</integer>
 	<key>HotkeyCode</key>
-	<integer>0</integer>
+	<integer>14</integer>
 	<key>HotkeyModifiers</key>
-	<integer>0</integer>
+	<integer>524576</integer>
 	<key>IRMemory</key>
 	<integer>4</integer>
 	<key>JobName</key>
@@ -504,7 +504,7 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>MaxVertically</key>
-	<false/>
+	<true/>
 	<key>NSNavLastRootDirectory</key>
 	<string>~</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -532,14 +532,29 @@
 	<array/>
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
+	<key>NSToolbar Configuration Terminal Toolbar</key>
+	<dict>
+		<key>TB Display Mode</key>
+		<integer>1</integer>
+		<key>TB Icon Size Mode</key>
+		<integer>1</integer>
+		<key>TB Is Shown</key>
+		<integer>0</integer>
+		<key>TB Size Mode</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>577 613 924 485 0 0 1920 1177 </string>
+	<string>2322 631 924 485 1920 401 1680 1027 </string>
+	<key>NSWindow Frame SUStatusFrame</key>
+	<string>2382 828 384 129 1920 401 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>72 177 1075 706 0 0 1920 1177 </string>
+	<string>104 453 1075 706 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>515 55 1075 706 0 0 1920 1177 </string>
+	<string>2479 466 1075 706 1920 401 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>296 100 1075 706 0 0 1920 1177 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>317 77 1075 706 0 0 1920 1177 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1252,7 +1267,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.0</real>
+			<real>0.89999997615814209</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
@@ -1984,7 +1999,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.19435790181159973</real>
+			<real>0.1830829381942749</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
@@ -2010,7 +2025,7 @@
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>453496159.36616999</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>464904184.69887102</real>
+	<real>466130843.06502098</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -2077,7 +2092,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-09-26T03:12:52Z</date>
+	<date>2015-10-13T14:43:31Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -2111,7 +2126,7 @@
 	<key>WebKitDefaultFontSize</key>
 	<integer>11</integer>
 	<key>WebKitStandardFont</key>
-	<string>.Helvetica Neue DeskInterface</string>
+	<string>.AppleSystemUIFont</string>
 	<key>WindowNumber</key>
 	<true/>
 	<key>WindowStyle</key>
@@ -2123,6 +2138,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.1.1</string>
+	<string>2.1.3</string>
 </dict>
 </plist>

@@ -24,6 +24,9 @@ alias ga='git add'
 alias gall='git add --all'
 alias gp='git pull'
 
+## ruby
+alias be='bundle exec'
+
 cat() {
     if [ "$(type -t ccat)" = file ]; then
         ccat $@ ;
@@ -32,18 +35,21 @@ cat() {
     fi
 }
 
-## vm
-vmrails() {
-    dir="/Users/T800/Tutorials/Rails_Development(teamtreehouse)/vm-treehouse"
+## vm docker
+dvm(){
+    dir='/Users/T800/pdev/boxes/abox'
+
     if [ $# -eq 1 ]; then
         case $1 in
-            "start") (cd $dir; vagrant up; vagrant ssh) ;;
+            "start") (cd $dir; vagrant up) ;;
+            # "start") (cd $dir; vagrant up; vagrant ssh) ;;
+            "ssh") (cd $dir; vagrant ssh) ;;
             "stop") (cd $dir; vagrant suspend) ;;
             "dir") cd $dir ;;
-            *) echo "Supported Command: start or stop or dir" ;;
+            *) echo "Supported Command: [start, stop, ssh, dir]" ;;
         esac
     else
-        echo "Need one parameter: start or stop or dir"
+        echo "Need one parameter: [start, stop, ssh, dir]"
     fi
 }
 
