@@ -23,3 +23,6 @@ cmd w | close
 ^ shift x | split vertically
 ^ q | close active tab
 ^ u | select in
+
+## Ruby Developement
+Make sure ide and terminal are using same gemset.
