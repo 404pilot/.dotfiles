@@ -41,15 +41,11 @@ dvm(){
 
     if [ $# -eq 1 ]; then
         case $1 in
-            "start") (cd $dir; vagrant up) ;;
-            # "start") (cd $dir; vagrant up; vagrant ssh) ;;
-            "ssh") (cd $dir; vagrant ssh) ;;
-            "stop") (cd $dir; vagrant suspend) ;;
-            "dir") cd $dir ;;
-            *) echo "Supported Command: [start, stop, ssh, dir]" ;;
+            "go") cd $dir ;;
+            *) (cd $dir; vagrant $1) ;;
         esac
     else
-        echo "Need one parameter: [start, stop, ssh, dir]"
+        echo "box directory: $dir"
     fi
 }
 
