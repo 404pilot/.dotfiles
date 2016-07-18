@@ -1,34 +1,44 @@
 <?xml version="1.0"?>
 <root>
-	<devicevendordef>
-		<vendorname>APPLE</vendorname>
-		<vendorid>0x05ac</vendorid>
-	</devicevendordef>
+    <devicevendordef>
+        <vendorname>APPLE</vendorname>
+        <vendorid>0x05ac</vendorid>
+    </devicevendordef>
 
-	<deviceproductdef>
-		<productname>INTERNAL_KEYBOARD</productname>
-		<productid>0x0262</productid>
-	</deviceproductdef>
+    <deviceproductdef>
+        <productname>INTERNAL_KEYBOARD</productname>
+        <productid>0x0262</productid>
+    </deviceproductdef>
 
-	<devicevendordef>
-		<vendorname>POKER_VENDOR</vendorname>
-		<vendorid>0x04d9</vendorid>
-	</devicevendordef>
+    <devicevendordef>
+        <vendorname>POKER_VENDOR</vendorname>
+        <vendorid>0x04d9</vendorid>
+    </devicevendordef>
 
-	<deviceproductdef>
-		<productname>POKER_PRODUCT</productname>
-		<productid>0x3113</productid>
-	</deviceproductdef>
+    <deviceproductdef>
+        <productname>POKER_PRODUCT</productname>
+        <productid>0x3113</productid>
+    </deviceproductdef>
 
-	<item>
-		<name>[R_Command + WASD] => [UP, LEFT, DOWN, RIGHT]</name>
-		<identifier>private.applekeyboard.arrowkeys</identifier>
-		<device_only>DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD</device_only>
+    <devicevendordef>
+        <vendorname>WHITEFOX_VENDOR</vendorname>
+        <vendorid>0x1c11</vendorid>
+    </devicevendordef>
 
-		<autogen> __KeyToKey__ KeyCode::W, ModifierFlag::COMMAND_R, KeyCode::CURSOR_UP </autogen>
-		<autogen> __KeyToKey__ KeyCode::A, ModifierFlag::COMMAND_R, KeyCode::CURSOR_LEFT </autogen>
-		<autogen> __KeyToKey__ KeyCode::S, ModifierFlag::COMMAND_R, KeyCode::CURSOR_DOWN </autogen>
-        <autogen> __KeyToKey__ KeyCode::D, ModifierFlag::COMMAND_R, KeyCode::CURSOR_RIGHT </autogen>
+    <deviceproductdef>
+        <productname>WHITEFOX_PRODUCT</productname>
+        <productid>0xb04d</productid>
+    </deviceproductdef>
+
+    <item>
+        <name>[R_Command + WASD] => [UP, LEFT, DOWN, RIGHT]</name>
+        <identifier>private.applekeyboard.arrowkeys</identifier>
+        <device_only>DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD</device_only>
+
+        <autogen>__KeyToKey__ KeyCode::W, ModifierFlag::COMMAND_R, KeyCode::CURSOR_UP</autogen>
+        <autogen>__KeyToKey__ KeyCode::A, ModifierFlag::COMMAND_R, KeyCode::CURSOR_LEFT</autogen>
+        <autogen>__KeyToKey__ KeyCode::S, ModifierFlag::COMMAND_R, KeyCode::CURSOR_DOWN</autogen>
+        <autogen>__KeyToKey__ KeyCode::D, ModifierFlag::COMMAND_R, KeyCode::CURSOR_RIGHT</autogen>
     </item>
 
     <item>
@@ -36,7 +46,7 @@
         <identifier>private.applekeyboard.forwardDelete</identifier>
         <device_only>DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD</device_only>
 
-        <autogen> __KeyToKey__ KeyCode::Z, ModifierFlag::COMMAND_R, KeyCode::FORWARD_DELETE </autogen>
+        <autogen>__KeyToKey__ KeyCode::Z, ModifierFlag::COMMAND_R, KeyCode::FORWARD_DELETE</autogen>
     </item>
 
     <item>
@@ -44,7 +54,7 @@
         <identifier>private.poker.leftCtrl2Escape</identifier>
         <device_only>DeviceVendor::POKER_VENDOR, DeviceProduct::POKER_PRODUCT</device_only>
 
-        <autogen> __KeyToKey__ KeyCode::CONTROL_R, KeyCode::BACKQUOTE </autogen>
+        <autogen>__KeyToKey__ KeyCode::CONTROL_R, KeyCode::BACKQUOTE</autogen>
     </item>
 
     <!-- <item>
@@ -57,12 +67,24 @@
     </item> -->
 
     <item>
-      <name>POKER Home and End</name>
-      <identifier>private.poker.home_and_end</identifier>
-      <device_only>DeviceVendor::POKER_VENDOR, DeviceProduct::POKER_PRODUCT</device_only>
+        <name>POKER Home and End</name>
+        <identifier>private.poker.home_and_end</identifier>
+        <device_only>DeviceVendor::POKER_VENDOR, DeviceProduct::POKER_PRODUCT</device_only>
 
-      <autogen>__KeyToKey__ KeyCode::HOME, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L</autogen>
-      <autogen>__KeyToKey__ KeyCode::END, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L</autogen>
+        <autogen>__KeyToKey__ KeyCode::HOME, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L</autogen>
+        <autogen>__KeyToKey__ KeyCode::END, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L</autogen>
+    </item>
+
+    <item>
+        <name>Whitefox command + esc = command + ~</name>
+        <identifier>private.whitefox.app_switch</identifier>
+        <device_only>DeviceVendor::WHITEFOX_VENDOR, DeviceProduct::WHITEFOX_PRODUCT</device_only>
+
+        <autogen>
+            __KeyToKey__
+            KeyCode::ESCAPE, ModifierFlag::COMMAND_L,
+            KeyCode::BACKQUOTE, ModifierFlag::COMMAND_L
+        </autogen>
     </item>
 
 </root>
