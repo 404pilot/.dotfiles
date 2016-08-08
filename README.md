@@ -25,7 +25,7 @@ dotfiles
 	rm ~/.editorConfig | ln -s ~/.dotfiles/editorConfig/editorConfig ~/.editorConfig
 
 ## tmux
-        # make sure terminal: $TERM=xterm-256color
+    # make sure terminal: $TERM=xterm-256color
 	rm ~/.tmux.conf | ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 ## iTerm2
@@ -40,6 +40,11 @@ Manually type `~/.dotfiles/iTerm2`
 
 	rm ~/Library/Application\ Support/Karabiner/private.xml
 	ln -s ~/.dotfiles/Karabiner/private.xml ~/Library/Application\ Support/Karabiner/private.xml
+
+## Hammerspoon
+```
+rm ~/.hammerspoon/init.lua | mkdir ~/.hammerspoon | ln -s ~/.dotfiles/hammerspoon/init.lua ~/.hammerspoon/init.lua
+```
 
 ## Jenv
 ```

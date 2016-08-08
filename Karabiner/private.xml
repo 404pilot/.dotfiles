@@ -87,4 +87,16 @@
         </autogen>
     </item>
 
+    <item>
+        <name>Whitefox option + esc = option + ~</name>
+        <identifier>private.whitefox.finder</identifier>
+        <device_only>DeviceVendor::WHITEFOX_VENDOR, DeviceProduct::WHITEFOX_PRODUCT</device_only>
+
+        <autogen>
+            __KeyToKey__
+            KeyCode::ESCAPE, ModifierFlag::OPTION_L,
+            KeyCode::BACKQUOTE, ModifierFlag::OPTION_L
+        </autogen>
+    </item>
+
 </root>
