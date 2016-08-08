@@ -30,8 +30,11 @@
         <productid>0xb04d</productid>
     </deviceproductdef>
 
+    <!-- *********************************************************************************** -->
+    <!-- ************************          mac                                               -->
+    <!-- *********************************************************************************** -->
     <item>
-        <name>[R_Command + WASD] => [UP, LEFT, DOWN, RIGHT]</name>
+        <name>[mac](wasd -> arrow keys)</name>
         <identifier>private.applekeyboard.arrowkeys</identifier>
         <device_only>DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD</device_only>
 
@@ -42,15 +45,19 @@
     </item>
 
     <item>
-        <name>MAC right command + z -> forward delete</name>
+        <name>[mac](Command_R + z -> forward delete)</name>
         <identifier>private.applekeyboard.forwardDelete</identifier>
         <device_only>DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD</device_only>
 
         <autogen>__KeyToKey__ KeyCode::Z, ModifierFlag::COMMAND_R, KeyCode::FORWARD_DELETE</autogen>
     </item>
 
+    <!-- *********************************************************************************** -->
+    <!-- ************************          poker                                             -->
+    <!-- *********************************************************************************** -->
+
     <item>
-        <name>POKER Map Left Ctrl to BackQuote</name>
+        <name>[poker](Ctrl_R -> BackQuote)</name>
         <identifier>private.poker.leftCtrl2Escape</identifier>
         <device_only>DeviceVendor::POKER_VENDOR, DeviceProduct::POKER_PRODUCT</device_only>
 
@@ -67,7 +74,7 @@
     </item> -->
 
     <item>
-        <name>POKER Home and End</name>
+        <name>[poker](home,end)</name>
         <identifier>private.poker.home_and_end</identifier>
         <device_only>DeviceVendor::POKER_VENDOR, DeviceProduct::POKER_PRODUCT</device_only>
 
@@ -75,8 +82,12 @@
         <autogen>__KeyToKey__ KeyCode::END, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L</autogen>
     </item>
 
+    <!-- *********************************************************************************** -->
+    <!-- ************************          whitefox                                          -->
+    <!-- *********************************************************************************** -->
+
     <item>
-        <name>Whitefox command + esc = command + ~</name>
+        <name>[whitefox](Command_L + ESC -> command + ~)</name>
         <identifier>private.whitefox.app_switch</identifier>
         <device_only>DeviceVendor::WHITEFOX_VENDOR, DeviceProduct::WHITEFOX_PRODUCT</device_only>
 
@@ -88,7 +99,7 @@
     </item>
 
     <item>
-        <name>Whitefox option + esc = option + ~</name>
+        <name>[whitefox](Option_L + ESCAPTE -> option + ~)</name>
         <identifier>private.whitefox.finder</identifier>
         <device_only>DeviceVendor::WHITEFOX_VENDOR, DeviceProduct::WHITEFOX_PRODUCT</device_only>
 
@@ -98,5 +109,4 @@
             KeyCode::BACKQUOTE, ModifierFlag::OPTION_L
         </autogen>
     </item>
-
 </root>
