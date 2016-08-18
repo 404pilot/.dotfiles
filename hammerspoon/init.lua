@@ -1,3 +1,7 @@
+-- ************************************************************
+-- Windows Management
+-- ************************************************************
+
 hs.window.animationDuration = 0
 
 local function adjustFrame(x, y, w, h)
@@ -46,3 +50,23 @@ hs.hotkey.bind({"alt"}, "k", toBottomHalf)
 
 hs.hotkey.bind({"alt"}, "l", toRightScreen)
 hs.hotkey.bind({"alt"}, "j", toLeftScreen)
+
+-- ************************************************************
+-- Application Shortcuts
+-- ************************************************************
+
+shortcuts = {
+  c       =   "Google Chrome",
+  a       =   "IntelliJ IDEA",
+  v       =   "Postman",
+  e       =   "iTerm",
+  ["`"]   =   "Finder",
+  ["1"]   =   "Atom",
+  ["2"]   =   "Typora",
+  ["3"]   =   "Safari",
+  ['4']   =   "Slack"
+}
+
+for shortcut, app in pairs(shortcuts) do
+  hs.hotkey.bind({"alt"}, shortcut, function() hs.application.launchOrFocus(app) end)
+end
