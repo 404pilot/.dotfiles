@@ -11,19 +11,6 @@ local bottomHalfCoordinate =  {x = 0,   y = 0.5,  w = 1,    h = 0.5}
 
 local function adjustFrame(coordinate)
   hs.window.focusedWindow():moveToUnit(coordinate)
-  -- local win = hs.window.focusedWindow()
-  -- local f = win:frame()
-  -- local screen = win:screen()
-  -- local max = screen:frame()
-  --
-  -- win:moveToUnit(coordinate)
-
-  -- f.x = max.x + max.w * coordinate.x
-  -- f.y = max.y + max.h * coordinate.y
-  -- f.w = max.w * coordinate.w
-  -- f.h = max.h * coordinate.h
-
-  -- win:setFrame(f)
 end
 
 local function toRightScreen()
@@ -70,36 +57,7 @@ local macScreenName    = "Color LCD"
 local middleScreenName = "DELL P2210"
 local eastScreenName   = "DELL G2210"
 
--- local function findScreenFrame(screenName)
---   for index, screen in pairs(hs.screen.allScreens()) do
---     if screen:name() == screenName then
---       print(screen:name())
---       return screen:frame()
---     end
---   end
--- end
-
--- local function geometryRect(screenFrame, coordinate)
---   local x = screenFrame.x + screenFrame.w * coordinate.x
---   local y = screenFrame.y + screenFrame.h * coordinate.y
---   local w = screenFrame.w * coordinate.w
---   local h = screenFrame.h * coordinate.h
---
---   -- why does hammerspoon use offset here??? http://www.hammerspoon.org/docs/hs.layout.html#apply
---   if x < 0 then
---     x = (screenFrame.w + x) * (-1)
---   end
---
---   if y < 0 then
---     y = (screenFrame.h + y) * (-1)
---   end
---
---   return hs.geometry.rect(x, y, w, h)
--- end
---
--- only mac monitor is activated
 local defautLayout = {
-  -- get all active windows
   {"iTerm2",        nil,  macScreenName,   centerCoordinate,    nil, nil},
   {"Google Chrome", nil,  macScreenName,   maximizedCoordinate, nil, nil},
   {"Safari",        nil,  macScreenName,   centerCoordinate,    nil, nil},
@@ -124,27 +82,61 @@ local function applyLayoutWhenTwoExternelMonitorsAreUsed()
   hs.layout.apply(threeMonitorsLayout)
 end
 
-hs.hotkey.bind({"alt"}, "9", applyLayoutWhenNoExternelMonitorsAreUsed)
-hs.hotkey.bind({"alt"}, "0", applyLayoutWhenTwoExternelMonitorsAreUsed)
+local function reformatLayout()
+  currentNumberOfScreens = #hs.screen.allScreens()
 
+  if currentNumberOfScreens == 1 then
+    applyLayoutWhenNoExternelMonitorsAreUsed()
+  elseif currentNumberOfScreens == 3 then
+    applyLayoutWhenTwoExternelMonitorsAreUsed()
+  end
+end
 
--- local lastNumberOfScreens = #hs.screen.allScreens()
--- function screenWatcher()
---     print(table.show(hs.screen.allScreens(), "allScreens"))
---     newNumberOfScreens = #hs.screen.allScreens()
---
---     -- FIXME: This is awful if we swap primary screen to the external display. all the windows swap around, pointlessly.
---     -- if lastNumberOfScreens ~= newNumberOfScreens then
---         if newNumberOfScreens == 1 then
---             notify("Screens changed to Internal Display")
---             hs.layout.apply(internal_display)
---         elseif newNumberOfScreens == 2 then
---             notify("Screens changed to Desk Display")
---             hs.layout.apply(desk_display)
---         end
---     -- end
---
---     lastNumberOfScreens = newNumberOfScreens
--- end
--- hs.screen.watcher.new(screenWatcher):start()
--- hs.hotkey.bind(ctrlaltcmd, 'S', screenWatcher)
+hs.hotkey.bind({"alt"}, "0", reformatLayout)
+
+-- ************************************************************
+-- screen watcher to set layouts automatically
+-- ************************************************************
+local lastNumberOfScreens = #hs.screen.allScreens()
+
+function screenChangedCallback()
+    currentNumberOfScreens = #hs.screen.allScreens()
+
+    if currentNumberOfScreens ~= lastNumberOfScreens then
+      if currentNumberOfScreens == 1 then
+        -- all external screen are unpluged
+        applyLayoutWhenNoExternelMonitorsAreUsed()
+      elseif currentNumberOfScreens == 3 then
+        -- either 1 screen or 3 screens in my life
+        applyLayoutWhenTwoExternelMonitorsAreUsed()
+      end
+
+      lastNumberOfScreens = currentNumberOfScreens
+    end
+end
+
+hs.screen.watcher.new(screenChangedCallback):start()
+
+-- ************************************************************
+-- wifi watcher to set audio automatically
+-- ************************************************************
+local homeSSID = "NEXUS2016_5G"
+local lastSSID = hs.wifi.currentNetwork()
+
+function ssidChangedCallback()
+    newSSID = hs.wifi.currentNetwork()
+
+    if newSSID ~= lastSSID then
+      if newSSID == homeSSID then
+        hs.audiodevice.defaultOutputDevice():setVolume(25)
+      else
+        hs.notify.new({title="Hammerspoon", informativeText="Laptop is muted since this is not a home wifi"}):send()
+
+        hs.audiodevice.defaultOutputDevice():setVolume(0)
+      end
+
+      lastSSID = newSSID
+    end
+end
+
+hs.wifi.watcher.new(ssidChangedCallback):start()
