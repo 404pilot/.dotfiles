@@ -62,16 +62,20 @@ local defautLayout = {
   {"Google Chrome", nil,  macScreenName,   maximizedCoordinate, nil, nil},
   {"Safari",        nil,  macScreenName,   centerCoordinate,    nil, nil},
   {"Slack",         nil,  macScreenName,   centerCoordinate,    nil, nil},
-  {"IntelliJ IDEA", nil,  macScreenName,   maximizedCoordinate, nil, nil}
+  {"IntelliJ IDEA", nil,  macScreenName,   maximizedCoordinate, nil, nil},
+  {"Atom",          nil,  macScreenName,   centerCoordinate,    nil, nil},
+  {"Postman",       nil,  macScreenName,   centerCoordinate,    nil, nil}
 }
 
 local threeMonitorsLayout = {
+  {"Atom",          nil,  macScreenName,    centerCoordinate,      nil, nil},
   {"iTerm2",        nil,  macScreenName,    centerCoordinate,      nil, nil},
 
   {"Google Chrome", nil,  middleScreenName, maximizedCoordinate,   nil, nil},
 
   {"Safari",        nil,  eastScreenName,   topHalfCoordinate,     nil, nil},
-  {"Slack",         nil,  eastScreenName,   bottomHalfCoordinate,  nil, nil}
+  {"Slack",         nil,  eastScreenName,   bottomHalfCoordinate,  nil, nil},
+  {"Postman",       nil,  eastScreenName,   maximizedCoordinate,   nil, nil}
 }
 
 local function applyLayoutWhenNoExternelMonitorsAreUsed()
@@ -126,8 +130,16 @@ local lastSSID = hs.wifi.currentNetwork()
 function ssidChangedCallback()
     newSSID = hs.wifi.currentNetwork()
 
+    print("network chagned!")
+    print("    last:")
+    print(lastSSID)
+    print("    new:")
+    print(newSSID)
+
     if newSSID ~= lastSSID then
+      print("different")
       if newSSID == homeSSID then
+        print("home")
         hs.audiodevice.defaultOutputDevice():setVolume(25)
       else
         hs.notify.new({title="Hammerspoon", informativeText="Laptop is muted since this is not a home wifi"}):send()
