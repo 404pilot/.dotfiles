@@ -27,6 +27,9 @@ alias gp='git pull'
 ## ruby
 alias be='bundle exec'
 
+## application Shortcuts
+alias typora="open -a typora"
+
 cat() {
     if [ "$(type -t ccat)" = file ]; then
         ccat $@ ;
