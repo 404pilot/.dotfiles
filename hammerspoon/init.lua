@@ -13,12 +13,16 @@ local function adjustFrame(coordinate)
   hs.window.focusedWindow():moveToUnit(coordinate)
 end
 
-local function toRightScreen()
-  hs.window.focusedWindow():moveOneScreenEast(true, true)
+local function toNextScreen()
+  local win = hs.window.focusedWindow()
+  local nextScreen = win:screen():next()
+  win:moveToScreen(nextScreen)
 end
 
-local function toLeftScreen()
-  hs.window.focusedWindow():moveOneScreenWest(true, true)
+local function toPreviousScreen()
+  local win = hs.window.focusedWindow()
+  local nextScreen = win:screen():previous()
+  win:moveToScreen(nextScreen)
 end
 
 hs.hotkey.bind({"alt"}, "u", function() adjustFrame(centerCoordinate) end)
@@ -27,8 +31,8 @@ hs.hotkey.bind({"alt"}, "o", function() adjustFrame(maximizedCoordinate) end)
 hs.hotkey.bind({"alt"}, "i", function() adjustFrame(topHalfCoordinate) end)
 hs.hotkey.bind({"alt"}, "k", function() adjustFrame(bottomHalfCoordinate) end)
 
-hs.hotkey.bind({"alt"}, "l", toRightScreen)
-hs.hotkey.bind({"alt"}, "j", toLeftScreen)
+hs.hotkey.bind({"alt"}, "l", toNextScreen)
+hs.hotkey.bind({"alt"}, "j", toPreviousScreen)
 
 -- ************************************************************
 -- Application Shortcuts
