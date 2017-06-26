@@ -41,13 +41,15 @@ hs.hotkey.bind({"alt"}, "j", toPreviousScreen)
 shortcuts = {
   c       =   "Google Chrome",
   a       =   "IntelliJ IDEA",
+  s       =   "RubyMine",
   v       =   "Postman",
   e       =   "iTerm",
   ["`"]   =   "Finder",
   ["1"]   =   "Atom",
   ["2"]   =   "Typora",
   ["3"]   =   "Safari",
-  ['4']   =   "Slack"
+  ['4']   =   "Slack",
+  ['5']   =   "Postico"
 }
 
 for shortcut, app in pairs(shortcuts) do
@@ -67,15 +69,20 @@ local defautLayout = {
   {"Safari",        nil,  macScreenName,   centerCoordinate,    nil, nil},
   {"Slack",         nil,  macScreenName,   centerCoordinate,    nil, nil},
   {"IntelliJ IDEA", nil,  macScreenName,   maximizedCoordinate, nil, nil},
+  {"RubyMine",      nil,  macScreenName,   maximizedCoordinate, nil, nil},
   {"Atom",          nil,  macScreenName,   centerCoordinate,    nil, nil},
-  {"Postman",       nil,  macScreenName,   centerCoordinate,    nil, nil}
+  {"Postman",       nil,  macScreenName,   centerCoordinate,    nil, nil},
+  {"Typora",        nil,  macScreenName,   centerCoordinate,    nil, nil}
 }
 
 local threeMonitorsLayout = {
   {"Atom",          nil,  macScreenName,    centerCoordinate,      nil, nil},
   {"iTerm2",        nil,  macScreenName,    centerCoordinate,      nil, nil},
+  {"Typora",        nil,  macScreenName,    centerCoordinate,      nil, nil},
 
   {"Google Chrome", nil,  middleScreenName, maximizedCoordinate,   nil, nil},
+  {"RubyMine",      nil,  middleScreenName, maximizedCoordinate,   nil, nil},
+  {"IntelliJ IDEA", nil,  middleScreenName, maximizedCoordinate,   nil, nil},
 
   {"Safari",        nil,  eastScreenName,   topHalfCoordinate,     nil, nil},
   {"Slack",         nil,  eastScreenName,   bottomHalfCoordinate,  nil, nil},

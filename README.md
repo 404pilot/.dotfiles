@@ -1,3 +1,4 @@
+
 dotfiles
 ========
 
@@ -26,7 +27,7 @@ dotfiles
 
 ## tmux
     # make sure terminal: $TERM=xterm-256color
-	rm ~/.tmux.conf | ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+    rm ~/.tmux.conf | ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 ## iTerm2
 
@@ -69,7 +70,7 @@ ls -alF ~/.jenv/versions
 ##### java locations
 
 * brew install location: `/Library/Java/JavaVirtualMachines/`
-	* `/usr/bin/java` -> `/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java` -> one of `/Library/Java/JavaVirtualMachines/`
+  * `/usr/bin/java` -> `/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java` -> one of `/Library/Java/JavaVirtualMachines/`
 * system default location: `/System/Library/Frameworks/JavaVM.framework/Versions/`
 * java in System Perferences location: `/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/`
 
@@ -81,8 +82,6 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 
 echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
 
-brew install tmux git jenv maven tree
-
 brew install bash-completion
 
 echo "
@@ -92,19 +91,40 @@ fi
 " >> ~/.bashrc
 ```
 
-#### update all packages
+#### usages
+[FAQ](http://docs.brew.sh/FAQ.html)
+
 ```
-# update brew itself
+# update homebrew itself
 brew update
 
-# run diagnosis
-brew doctor
-
-# upgrade packages
+# upgrade everything
 brew upgrade
 
+# version
+brew outdated
+brew pin activemq
+brew unpin activemq
+brew list --pinned
+
+# cleanup & uninstall
+brew cleanup git
+brew uninstall git
+brew uninstall --force git
+## list what would be cleaned up
+brew cleanup -n
+brew cleanup
+
+# figure out who is using a specific formula
+brew uses --installed stranger_formula
+
+# list all dependencies
+brew deps --installed
 ```
-#### more
+
+
+
+#### details
 
 1. homebrew install apps @ `/usr/local/Cellar/`
 2. create corresponding link @ `/usr/local/bin/`
@@ -127,5 +147,3 @@ Restart terminal and test it
 	/usr/local/bin/git
 
 In this way, I may not need to explicitly specify command home location for `JAVA_HOME` or `MAVEN_HOME` in `.bashrc`. It will automatically use the default one, i,e, the first line in `/etc/paths`.
-
-Use `brew info zsh` to see those dependencies

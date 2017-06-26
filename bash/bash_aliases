@@ -3,6 +3,8 @@ alias grep='grep --color=auto -i'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias kill9='kill -9'
+alias pgrep='ps aux | grep --color=auto -i'
 
 ## maven
 alias mcc='mvn clean compile'
