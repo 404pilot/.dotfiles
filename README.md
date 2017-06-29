@@ -29,6 +29,12 @@ dotfiles
     # make sure terminal: $TERM=xterm-256color
     rm ~/.tmux.conf | ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 
+## shuttle
+
+```shell
+rm ~/.shuttle.json | ln -s ~/.dotfiles/shuttle/shuttle.json ~/.shuttle.json
+```
+
 ## iTerm2
 
 `General` -> `Preferences`

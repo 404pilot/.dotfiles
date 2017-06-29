@@ -1,0 +1,60 @@
+{
+    "_comments": [
+        "Valid terminals include: 'Terminal.app' or 'iTerm'",
+        "In the editor value change 'default' to 'nano', 'vi', or another terminal based editor.",
+        "Hosts will also be read from your ~/.ssh/config or /etc/ssh_config file, if available",
+        "For more information on how to configure, please see http://fitztrev.github.io/shuttle/"
+    ],
+    "editor": "default",
+    "launch_at_login": false,
+    "terminal": "iTerm",
+    "iTerm_version": "stable",
+    "default_theme": "pilot",
+    "open_in": "tab",
+    "show_ssh_config_hosts": false,
+    "ssh_config_ignore_hosts": [],
+    "ssh_config_ignore_keywords": [],
+    "hosts": [
+        {
+            "ssh": [
+                {
+                    "cmd": "ssh ning1273@q-act-api1.gscs.rackspace.com",
+                    "name": "act-qa1"
+                },
+                {
+                    "cmd": "ssh ning1273@q-act-api2.gscs.rackspace.com",
+                    "name": "act-qa2"
+                },
+                {
+                    "cmd": "ssh ning1273@q-act-api3.gscs.rackspace.com",
+                    "name": "act-qa3"
+                },
+                {
+                    "cmd": "ssh ning1273@act-jenkins.gscs.rackspace.com",
+                    "name": "act-jenkins"
+                },
+                {
+                    "cmd": "ssh ning1273@app-n01.invoice.test.ord1.corp.rackspace.com",
+                    "name": "invoiceloader-cit1"
+                },
+                {
+                    "cmd": "ssh ning1273@app-n02.invoice.test.ord1.corp.rackspace.com",
+                    "name": "invoiceloader-cit2"
+                },
+                {
+                    "cmd": "ssh ning1273@t-runway3.ord1.rackspace.com",
+                    "name": "ums-tr3"
+                },
+                {
+                    "cmd": "ssh ning1273@10.23.81.27",
+                    "name": "auditservice-tr1(docker)"
+                }
+            ]
+        },
+        {
+            "cmd": "ps aux | grep defaults",
+            "name": "Grep - Opens in Default-window-theme-title",
+            "inTerminal": "current"
+        }
+    ]
+}
