@@ -133,29 +133,37 @@ end
 hs.screen.watcher.new(screenChangedCallback):start()
 
 -- ************************************************************
--- wifi watcher to set audio automatically
+-- wifi watcher to mute audio when it is not a home environment
 -- ************************************************************
-local homeSSID = "NEXUS2016_5G"
+local homeSSIDs = {"NEXUS2016", "NEXUS2016_5G"}
 local lastSSID = hs.wifi.currentNetwork()
+
+function inTable(tbl, item)
+    for key, value in pairs(tbl) do
+        if value == item then
+          return true
+        end
+    end
+
+    return false
+end
 
 function ssidChangedCallback()
     newSSID = hs.wifi.currentNetwork()
 
-    print("network chagned!")
-    print("    last:")
-    print(lastSSID)
-    print("    new:")
-    print(newSSID)
-
     if newSSID ~= lastSSID then
-      print("different")
-      if newSSID == homeSSID then
-        print("home")
-        hs.audiodevice.defaultOutputDevice():setVolume(25)
+      if inTable(homeSSIDs, newSSID) then
+        if hs.audiodevice.defaultOutputDevice():muted() then
+          hs.audiodevice.defaultOutputDevice():setMuted(false)
+        end
+
+        if hs.audiodevice.defaultOutputDevice():volume() == 0 then
+          hs.audiodevice.defaultOutputDevice():setVolume(25)
+        end
       else
         hs.notify.new({title="Hammerspoon", informativeText="Laptop is muted since this is not a home wifi"}):send()
 
-        hs.audiodevice.defaultOutputDevice():setVolume(0)
+        hs.audiodevice.defaultOutputDevice():setMuted(true)
       end
 
       lastSSID = newSSID
