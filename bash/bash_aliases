@@ -93,7 +93,7 @@ case "$myos" in
 	# Mac OS X specific aliases
 	Darwin)
 		# alias fnote='find ~/pHome/pNote -type f -name "*.md" | xargs grep -i'
-		alias sublime='open -a "Sublime Text"'
+		# alias sublime='open -a "Sublime Text"'
 		alias click='open .'
 		alias soundsgood='sudo kextunload /System/Library/Extensions/AppleHDA.kext;sudo kextload /System/Library/Extensions/AppleHDA.kext'
 		;;
@@ -102,11 +102,8 @@ case "$myos" in
 		alias click='nautilus .'
 		# alias fnote='find ~/pNote -type f -name "*.md" | xargs grep -i'
 		alias gstory="git branch --remote --no-merged master | sed 's/origin\//origin\/    /g' | grep 'B-\|D-'"
-		# directory
-		alias usgroot='cd ~/usage/Usage-Standardization'
-		alias solroot='cd ~/usage/sol42Generator'
 		# command
-		alias amq='/opt/apache-activemq-5.9.0/bin/activemq'
+		# alias amq='/opt/apache-activemq-5.9.0/bin/activemq'
 		;;
 	*) ;;
 esac

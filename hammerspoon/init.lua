@@ -1,4 +1,4 @@
--- ************************************************************
+************************************************************
 -- Windows Management
 -- ************************************************************
 
@@ -39,7 +39,7 @@ hs.hotkey.bind({"alt"}, "j", toPreviousScreen)
 -- ************************************************************
 
 shortcuts = {
-  c       =   "Google Chrome",
+  c       =   "Google Chrome Canary",
   a       =   "IntelliJ IDEA",
   s       =   "RubyMine",
   v       =   "Postman",
@@ -65,7 +65,7 @@ local eastScreenName   = "DELL G2210"
 
 local defautLayout = {
   {"iTerm2",        nil,  macScreenName,   centerCoordinate,    nil, nil},
-  {"Google Chrome", nil,  macScreenName,   maximizedCoordinate, nil, nil},
+  {"Google Chrome Canary", nil,  macScreenName,   maximizedCoordinate, nil, nil},
   {"Safari",        nil,  macScreenName,   centerCoordinate,    nil, nil},
   {"Slack",         nil,  macScreenName,   centerCoordinate,    nil, nil},
   {"IntelliJ IDEA", nil,  macScreenName,   maximizedCoordinate, nil, nil},
@@ -80,7 +80,7 @@ local threeMonitorsLayout = {
   {"iTerm2",        nil,  macScreenName,    centerCoordinate,      nil, nil},
   {"Typora",        nil,  macScreenName,    centerCoordinate,      nil, nil},
 
-  {"Google Chrome", nil,  middleScreenName, maximizedCoordinate,   nil, nil},
+  {"Google Chrome Canary", nil,  middleScreenName, maximizedCoordinate,   nil, nil},
   {"RubyMine",      nil,  middleScreenName, maximizedCoordinate,   nil, nil},
   {"IntelliJ IDEA", nil,  middleScreenName, maximizedCoordinate,   nil, nil},
 

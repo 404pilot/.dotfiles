@@ -2,38 +2,26 @@
 dotfiles
 ========
 
-	// put .dotfiles under home folder
-	cd && git clone .dotfiles
 
-## Bash
 
-	echo "source ~/.bash_aliases" >> ~/.bashrc
-
-	ln -s ~/.dotfiles/bash/bash_aliases ~/.bash_aliases
-
-	source ~/.bashrc
+1. `iTerm2`
+   * load preferences
+2. install `homebrew`
+3. `brew install git jenv bash-completion ccat`
+4. install `shuttle`, `karabiner`, `hammerspoon`
+5. `cd && git clone git@github.com:404pilot/.dotfiles.git`
+6. run script to install config for
+   * `bash`
+   * `git`
+   * `editorConfig`
+   * `tmux`
+   * `shuttle`
 
 ## Git
-
-	rm ~/.gitconfig | ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
-
 	# for office laptop
 	git config --global user.name "xx"
 	git config --global user.email "me@here.com"
 
-## EditorConfig
-
-	rm ~/.editorConfig | ln -s ~/.dotfiles/editorConfig/editorConfig ~/.editorConfig
-
-## tmux
-    # make sure terminal: $TERM=xterm-256color
-    rm ~/.tmux.conf | ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
-
-## shuttle
-
-```shell
-rm ~/.shuttle.json | ln -s ~/.dotfiles/shuttle/shuttle.json ~/.shuttle.json
-```
 
 ## iTerm2
 
@@ -43,15 +31,6 @@ Check `Load preferences from a custom folder or URL:`
 
 Manually type `~/.dotfiles/iTerm2`
 
-## Karabiner
-
-	rm ~/Library/Application\ Support/Karabiner/private.xml
-	ln -s ~/.dotfiles/Karabiner/private.xml ~/Library/Application\ Support/Karabiner/private.xml
-
-## Hammerspoon
-```
-rm ~/.hammerspoon/init.lua | mkdir ~/.hammerspoon | ln -s ~/.dotfiles/hammerspoon/init.lua ~/.hammerspoon/init.lua
-```
 
 ## Jenv
 ```
@@ -60,7 +39,7 @@ echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(jenv init -)"' >> ~/.bashrc
 ```
 
-#### more
+### usage
 ```
 # run maven with a specific jdk
 jenv local 1.7
@@ -73,7 +52,7 @@ mvn -version
 ls -alF ~/.jenv/versions
 ```
 
-##### java locations
+### java locations
 
 * brew install location: `/Library/Java/JavaVirtualMachines/`
   * `/usr/bin/java` -> `/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java` -> one of `/Library/Java/JavaVirtualMachines/`
@@ -97,7 +76,7 @@ fi
 " >> ~/.bashrc
 ```
 
-#### usages
+### usages
 [FAQ](http://docs.brew.sh/FAQ.html)
 
 ```
@@ -128,9 +107,7 @@ brew uses --installed stranger_formula
 brew deps --installed
 ```
 
-
-
-#### details
+### details
 
 1. homebrew install apps @ `/usr/local/Cellar/`
 2. create corresponding link @ `/usr/local/bin/`
@@ -153,3 +130,33 @@ Restart terminal and test it
 	/usr/local/bin/git
 
 In this way, I may not need to explicitly specify command home location for `JAVA_HOME` or `MAVEN_HOME` in `.bashrc`. It will automatically use the default one, i,e, the first line in `/etc/paths`.
+
+## Homebrew Cask
+
+applications are installed at `/usr/local/Caskroom`, each application could have multiple versions
+
+```
+# find out outdated installed versions
+brew cask outdated
+```
+
+Probably need to manually delete old versions.
+
+### brew cask install java
+
+[https://github.com/caskroom/homebrew-cask/blob/master/Casks/java.rb](https://github.com/caskroom/homebrew-cask/blob/master/Casks/java.rb)
+
+it will create links under `/Library/Java/JavaVirtualMachines/`.
+
+```
+$ ls -alF ~/.jenv/versions
+total 48
+drwxr-xr-x   8 T800  staff  272 Jul 24  2015 ./
+drwxr-xr-x  12 T800  staff  408 Jul 24  2015 ../
+lrwxr-xr-x   1 T800  staff   63 Jul 23  2015 1.7@ -> /Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
+lrwxr-xr-x   1 T800  staff   63 Jul 23  2015 1.7.0.45@ -> /Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
+lrwxr-xr-x   1 T800  staff   63 Jul 24  2015 1.8@ -> /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
+lrwxr-xr-x   1 T800  staff   63 Jul 24  2015 1.8.0.45@ -> /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
+lrwxr-xr-x   1 T800  staff   63 Jul 23  2015 oracle64-1.7.0.45@ -> /Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
+lrwxr-xr-x   1 T800  staff   63 Jul 24  2015 oracle64-1.8.0.45@ -> /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
+```

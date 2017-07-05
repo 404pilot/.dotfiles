@@ -1,0 +1,11 @@
+
+## add alias
+source ~/.dotfiles/bash/bash_aliases
+
+## config jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+if [ -f /usr/local/etc/bash_completion ]; then
+  . /usr/local/etc/bash_completion
+fi
