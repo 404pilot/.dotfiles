@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!-- https://pqrs.org/osx/karabiner/xml.html.en -->
 <root>
     <devicevendordef>
         <vendorname>APPLE</vendorname>
@@ -8,6 +9,11 @@
     <deviceproductdef>
         <productname>INTERNAL_KEYBOARD</productname>
         <productid>0x0262</productid>
+    </deviceproductdef>
+
+    <deviceproductdef>
+        <productname>INTERNAL_KEYBOARD_OFFICE</productname>
+        <productid>0x0274</productid>
     </deviceproductdef>
 
     <devicevendordef>
@@ -36,7 +42,11 @@
     <item>
         <name>[mac](wasd -> arrow keys)</name>
         <identifier>private.applekeyboard.arrowkeys</identifier>
-        <device_only>DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD</device_only>
+        <!-- <device_only>DeviceVendor::APPLE, DeviceProduct::ANY</device_only> -->
+        <device_only>
+          DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD,
+          DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD_OFFICE
+        </device_only>
 
         <autogen>__KeyToKey__ KeyCode::W, ModifierFlag::COMMAND_R, KeyCode::CURSOR_UP</autogen>
         <autogen>__KeyToKey__ KeyCode::A, ModifierFlag::COMMAND_R, KeyCode::CURSOR_LEFT</autogen>
@@ -47,7 +57,10 @@
     <item>
         <name>[mac](Command_R + z -> forward delete)</name>
         <identifier>private.applekeyboard.forwardDelete</identifier>
-        <device_only>DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD</device_only>
+        <device_only>
+          DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD,
+          DeviceVendor::APPLE, DeviceProduct::INTERNAL_KEYBOARD_OFFICE
+        </device_only>
 
         <autogen>__KeyToKey__ KeyCode::Z, ModifierFlag::COMMAND_R, KeyCode::FORWARD_DELETE</autogen>
     </item>

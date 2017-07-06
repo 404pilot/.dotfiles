@@ -6,16 +6,27 @@ dotfiles
 
 1. `iTerm2`
    * load preferences
+
 2. install `homebrew`
+
+   `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+
 3. `brew install git jenv bash-completion ccat`
+
 4. install `shuttle`, `karabiner`, `hammerspoon`
-5. `cd && git clone git@github.com:404pilot/.dotfiles.git`
-6. run script to install config for
+
+5. run script to install **config** for
+
    * `bash`
-   * `git`
    * `editorConfig`
-   * `tmux`
+   * `git`
+   * `hammerspoon`
+   * `karabiner`
    * `shuttle`
+   * `tmux`
+   * other configurations included in bash_bridge file
+     * `bash-completion`
+     * `jenv`
 
 ## Git
 	# for office laptop
@@ -35,6 +46,7 @@ Manually type `~/.dotfiles/iTerm2`
 ## Jenv
 ```
 brew install jenv
+# included in the script
 echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(jenv init -)"' >> ~/.bashrc
 ```
@@ -60,21 +72,6 @@ ls -alF ~/.jenv/versions
 * java in System Perferences location: `/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/`
 
 ## Homebrew
-
-```
-# install brew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
-
-brew install bash-completion
-
-echo "
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-" >> ~/.bashrc
-```
 
 ### usages
 [FAQ](http://docs.brew.sh/FAQ.html)
@@ -112,7 +109,7 @@ brew deps --installed
 1. homebrew install apps @ `/usr/local/Cellar/`
 2. create corresponding link @ `/usr/local/bin/`
 
-Thus, set `/etc/paths` to
+Thus, homebrew will  set `/etc/paths` to
 
 	/usr/local/bin
 	/usr/bin
