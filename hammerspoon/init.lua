@@ -35,7 +35,7 @@ hs.hotkey.bind({"alt"}, "l", toNextScreen)
 hs.hotkey.bind({"alt"}, "j", toPreviousScreen)
 
 -- ************************************************************
--- Application Shortcuts
+-- Application Shortcuts (use name in applications folder)
 -- ************************************************************
 
 shortcuts = {
@@ -47,9 +47,10 @@ shortcuts = {
   ["`"]   =   "Finder",
   ["1"]   =   "Atom",
   ["2"]   =   "Typora",
-  ["3"]   =   "Safari",
+  ["3"]   =   "Bear",
   ['4']   =   "Slack",
-  ['5']   =   "Postico"
+  ['5']   =   "Postico",
+  ['6']   =   "Microsoft Outlook"
 }
 
 for shortcut, app in pairs(shortcuts) do
@@ -63,47 +64,54 @@ local macScreenName    = "Color LCD"
 local middleScreenName = "DELL P2210"
 local eastScreenName   = "DELL G2210"
 
-local defautLayout = {
-  {"iTerm2",        nil,  macScreenName,   centerCoordinate,    nil, nil},
-  {"Google Chrome", nil,  macScreenName,   maximizedCoordinate, nil, nil},
-  {"Safari",        nil,  macScreenName,   centerCoordinate,    nil, nil},
-  {"Slack",         nil,  macScreenName,   centerCoordinate,    nil, nil},
-  {"IntelliJ IDEA", nil,  macScreenName,   maximizedCoordinate, nil, nil},
-  {"RubyMine",      nil,  macScreenName,   maximizedCoordinate, nil, nil},
-  {"Atom",          nil,  macScreenName,   centerCoordinate,    nil, nil},
-  {"Postman",       nil,  macScreenName,   centerCoordinate,    nil, nil},
-  {"Typora",        nil,  macScreenName,   centerCoordinate,    nil, nil}
+-- get application name by
+--      for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
+
+local defaultLayout = {
+  {"iTerm2",            macScreenName,   centerCoordinate},
+  {"Google Chrome",     macScreenName,   maximizedCoordinate},
+  {"Microsoft Outlook", macScreenName,   maximizedCoordinate},
+  {"Bear",              macScreenName,   centerCoordinate},
+  {"Slack",             macScreenName,   centerCoordinate},
+  {"IntelliJ IDEA",     macScreenName,   maximizedCoordinate},
+  {"RubyMine",          macScreenName,   maximizedCoordinate},
+  {"Atom",              macScreenName,   centerCoordinate},
+  {"Postman",           macScreenName,   centerCoordinate},
+  {"Typora",            macScreenName,   centerCoordinate}
 }
 
 local threeMonitorsLayout = {
-  {"Atom",          nil,  macScreenName,    centerCoordinate,      nil, nil},
-  {"iTerm2",        nil,  macScreenName,    centerCoordinate,      nil, nil},
-  {"Typora",        nil,  macScreenName,    centerCoordinate,      nil, nil},
+  {"Atom",              macScreenName,    centerCoordinate},
+  {"iTerm2",            macScreenName,    centerCoordinate},
+  {"Bear",              macScreenName,    centerCoordinate},
+  {"Typora",            macScreenName,    centerCoordinate},
 
-  {"Google Chrome", nil,  middleScreenName, maximizedCoordinate,   nil, nil},
-  {"RubyMine",      nil,  middleScreenName, maximizedCoordinate,   nil, nil},
-  {"IntelliJ IDEA", nil,  middleScreenName, maximizedCoordinate,   nil, nil},
+  {"Google Chrome",     middleScreenName, maximizedCoordinate},
+  {"RubyMine",          middleScreenName, maximizedCoordinate},
+  {"IntelliJ IDEA",     middleScreenName, maximizedCoordinate},
 
-  {"Safari",        nil,  eastScreenName,   topHalfCoordinate,     nil, nil},
-  {"Slack",         nil,  eastScreenName,   bottomHalfCoordinate,  nil, nil},
-  {"Postman",       nil,  eastScreenName,   maximizedCoordinate,   nil, nil}
+  {"Microsoft Outlook", eastScreenName,   topHalfCoordinate},
+  {"Slack",             eastScreenName,   bottomHalfCoordinate},
+  {"Postman",           eastScreenName,   maximizedCoordinate}
 }
 
-local function applyLayoutWhenNoExternelMonitorsAreUsed()
-  hs.layout.apply(defautLayout)
-end
+local function applyLayout(layout)
+  transformedLayout = {}
 
-local function applyLayoutWhenTwoExternelMonitorsAreUsed()
-  hs.layout.apply(threeMonitorsLayout)
+  for key,value in pairs(layout) do
+    table.insert(transformedLayout, {value[1], nil, value[2], value[3], nil, nil})
+  end
+
+  hs.layout.apply(transformedLayout)
 end
 
 local function reformatLayout()
   currentNumberOfScreens = #hs.screen.allScreens()
 
-  if currentNumberOfScreens == 1 then
-    applyLayoutWhenNoExternelMonitorsAreUsed()
-  elseif currentNumberOfScreens == 3 then
-    applyLayoutWhenTwoExternelMonitorsAreUsed()
+  if currentNumberOfScreens == 3 then
+    applyLayout(threeMonitorsLayout)
+  else
+    applyLayout(defaultLayout)
   end
 end
 

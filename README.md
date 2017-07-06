@@ -2,8 +2,6 @@
 dotfiles
 ========
 
-
-
 1. `iTerm2`
    * load preferences
 
@@ -28,11 +26,17 @@ dotfiles
      * `bash-completion`
      * `jenv`
 
+## hammerspoon
+
+```
+# list all running applications
+for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
+```
+
 ## Git
 	# for office laptop
 	git config --global user.name "xx"
 	git config --global user.email "me@here.com"
-
 
 ## iTerm2
 
