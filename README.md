@@ -9,7 +9,7 @@ dotfiles
 
    `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-3. `brew install git jenv bash-completion ccat`
+3. `brew install git jenv bash-completion ccat rbenv`
 
 4. install `shuttle`, `karabiner`, `hammerspoon`
 
@@ -25,10 +25,10 @@ dotfiles
    * other configurations included in bash_bridge file
      * `bash-completion`
      * `jenv`
-     
+
 6. install `atom`
 
-   Sync settings by using `https://github.com/atom-community/sync-settings
+   Sync settings by using `https://github.com/atom-community/sync-settings`
 
 ## hammerspoon
 
@@ -50,16 +50,24 @@ Check `Load preferences from a custom folder or URL:`
 
 Manually type `~/.dotfiles/iTerm2`
 
-
 ## Jenv
 ```
 brew install jenv
-# included in the script
-echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(jenv init -)"' >> ~/.bashrc
+
+# not need to do the following, since brew install jenv under /usr/local/bin
+# echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bashrc
+```
+```
+# java8
+brew cask install java
+# add java8 to jenv
+jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/
+# configure
+jenv global 1.8
 ```
 
-### usage
+### enable jenv for maven
 ```
 # run maven with a specific jdk
 jenv local 1.7
@@ -78,6 +86,17 @@ ls -alF ~/.jenv/versions
   * `/usr/bin/java` -> `/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java` -> one of `/Library/Java/JavaVirtualMachines/`
 * system default location: `/System/Library/Frameworks/JavaVM.framework/Versions/`
 * java in System Perferences location: `/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/`
+
+
+
+## rbenv
+
+```
+rbenv versions
+rbenv global 2.2.3
+# shell has be specified
+rbenv shell 2.2.3
+```
 
 ## Homebrew
 

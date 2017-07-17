@@ -10,12 +10,13 @@ if [ -f ~/.dotfiles ]; then
 fi
 
 ######################################################
-## bash & jenv & bash_completion
-echo "#### Config bash & jenv"
+## bash & bash_completion & jenv & rbenv
+echo "#### Config bash and other configs (bash_completion, jenv, rbenv)"
 
 cp ~/.dotfiles/bash/bash_profile ~/.bash_profile
 
 echo "source ~/.dotfiles/bash/bash_bridge" > ~/.bashrc
+echo "source ~/.dotfiles/bash/bash_other_app_configs" >> ~/.bashrc
 
 ######################################################
 ## git
