@@ -25,6 +25,10 @@ dotfiles
    * other configurations included in bash_bridge file
      * `bash-completion`
      * `jenv`
+     
+6. install `atom`
+
+   Sync settings by using `https://github.com/atom-community/sync-settings
 
 ## hammerspoon
 
