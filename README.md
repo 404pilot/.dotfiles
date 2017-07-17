@@ -94,7 +94,7 @@ ls -alF ~/.jenv/versions
 ```
 rbenv versions
 rbenv global 2.2.3
-# shell has be specified
+# shell has be specified for each new session, otherwise it will use a default one
 rbenv shell 2.2.3
 ```
 
