@@ -72,6 +72,8 @@ jenv global 1.8
 # run maven with a specific jdk
 jenv local 1.7
 jenv enable-plugin maven
+# re-enable maven plugin if maven is using Java with a wrong version
+jenv disable-plugin maven
 
 # double-check to see which java version maven is using
 mvn -version
