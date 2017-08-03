@@ -126,13 +126,7 @@ function screenChangedCallback()
     currentNumberOfScreens = #hs.screen.allScreens()
 
     if currentNumberOfScreens ~= lastNumberOfScreens then
-      if currentNumberOfScreens == 1 then
-        -- all external screen are unpluged
-        applyLayoutWhenNoExternelMonitorsAreUsed()
-      elseif currentNumberOfScreens == 3 then
-        -- either 1 screen or 3 screens in my life
-        applyLayoutWhenTwoExternelMonitorsAreUsed()
-      end
+      reformatLayout()
 
       lastNumberOfScreens = currentNumberOfScreens
     end

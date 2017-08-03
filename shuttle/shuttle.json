@@ -63,6 +63,17 @@
       ]
     },
     {
+      "directories": [{
+          "cmd": "cd ~/work/ACT_API/",
+          "name": "ACT",
+        },
+        {
+          "cmd": "cd ~/work/invoice-loader/",
+          "name": "invoice-loader",
+        },
+      ]
+    },
+    {
       "cmd": "ps aux | grep defaults",
       "name": "Grep - Opens in Default-window-theme-title",
       "inTerminal": "current"
