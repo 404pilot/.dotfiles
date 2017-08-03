@@ -155,17 +155,16 @@ function ssidChangedCallback()
 
     if newSSID ~= lastSSID then
       if inTable(homeSSIDs, newSSID) then
-        if hs.audiodevice.defaultOutputDevice():muted() then
-          hs.audiodevice.defaultOutputDevice():setMuted(false)
-        end
+        hs.audiodevice.defaultOutputDevice():setMuted(false)
 
         if hs.audiodevice.defaultOutputDevice():volume() == 0 then
           hs.audiodevice.defaultOutputDevice():setVolume(25)
         end
       else
-        hs.notify.new({title="Hammerspoon", informativeText="Laptop is muted since this is not a home wifi"}):send()
+        hs.notify.new({title="Hammerspoon", informativeText="Mute audio since this is not a home wifi"}):send()
 
-        hs.audiodevice.defaultOutputDevice():setMuted(true)
+        hs.audiodevice.defaultOutputDevice():setMuted(false)
+        hs.audiodevice.defaultOutputDevice():setVolume(0)
       end
 
       lastSSID = newSSID
