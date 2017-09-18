@@ -40,6 +40,7 @@ hs.hotkey.bind({"alt"}, "j", toPreviousScreen)
 
 shortcuts = {
   c       =   "Google Chrome Canary",
+  -- c       =   "Google Chrome",
   a       =   "IntelliJ IDEA",
   s       =   "RubyMine",
   v       =   "Postman",
@@ -123,7 +124,7 @@ hs.hotkey.bind({"alt"}, "0", reformatLayout)
 local lastNumberOfScreens = hs.screen.allScreens()
 
 function screenChangedCallback()
-    currentNumberOfScreens = #hs.screen.allScreens()
+    currentNumberOfScreens = hs.screen.allScreens()
 
     if currentNumberOfScreens ~= lastNumberOfScreens then
       reformatLayout()
@@ -152,19 +153,28 @@ end
 
 function ssidChangedCallback()
     newSSID = hs.wifi.currentNetwork()
+    device = hs.audiodevice.defaultOutputDevice()
 
     if newSSID ~= lastSSID then
-      if inTable(homeSSIDs, newSSID) then
-        hs.audiodevice.defaultOutputDevice():setMuted(false)
 
-        if hs.audiodevice.defaultOutputDevice():volume() == 0 then
-          hs.audiodevice.defaultOutputDevice():setVolume(25)
+      if inTable(homeSSIDs, newSSID) then
+        if device:muted() then
+          device:setMuted(false)
+        end
+        -- hs.audiodevice.defaultOutputDevice():setMuted(false)
+
+        if device:volume() == 0 then
+          device:setVolume(25)
         end
       else
-        hs.notify.new({title="Hammerspoon", informativeText="Mute audio since this is not a home wifi"}):send()
+        -- hs.notify.new({title="Hammerspoon", informativeText="Mute audio since this is not a home wifi"}):send()
 
-        hs.audiodevice.defaultOutputDevice():setMuted(false)
-        hs.audiodevice.defaultOutputDevice():setVolume(0)
+        if device:muted() then
+          device:setMuted(false)
+        end
+        device:setVolume(0)
+        -- hs.audiodevice.defaultOutputDevice():setMuted(false)
+        -- hs.audiodevice.defaultOutputDevice():setVolume(0)
       end
 
       lastSSID = newSSID
