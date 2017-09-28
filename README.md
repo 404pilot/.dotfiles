@@ -11,7 +11,7 @@ dotfiles
 
 3. `brew install git jenv bash-completion ccat rbenv`
 
-4. install `shuttle`, `karabiner`, `hammerspoon`
+4. install `shuttle`, `karabiner-elements`, `hammerspoon`
 
 5. run script to install **config** for
 
@@ -19,7 +19,7 @@ dotfiles
    * `editorConfig`
    * `git`
    * `hammerspoon`
-   * `karabiner`
+   * `karabiner-elements`
    * `shuttle`
    * `tmux`
    * other configurations included in bash_bridge file
@@ -75,7 +75,7 @@ jenv enable-plugin maven
 # re-enable maven plugin if maven is using Java with a wrong version
 jenv disable-plugin maven
 # this could also affect maven
-jenv shell 1.8 
+jenv shell 1.8
 
 # double-check to see which java version maven is using
 mvn -version

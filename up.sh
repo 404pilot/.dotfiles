@@ -44,8 +44,10 @@ rm ~/.tmux.conf || true \
 ## Karabiner
 echo "#### Config karabiner"
 
-rm ~/Library/Application\ Support/Karabiner/private.xml || true \
-  && ln -s ~/.dotfiles/karabiner/private.xml ~/Library/Application\ Support/Karabiner/private.xml
+rm ~/.config/karabiner/karabiner.json || true \
+  && ln -s ~/.dotfiles/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
+# rm ~/Library/Application\ Support/Karabiner/private.xml || true \
+#   && ln -s ~/.dotfiles/karabiner/private.xml ~/Library/Application\ Support/Karabiner/private.xml
 
 ######################################################
 ## hammerspoon

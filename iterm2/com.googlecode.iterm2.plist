@@ -599,6 +599,8 @@
 	<integer>101</integer>
 	<key>HotkeyCode</key>
 	<integer>14</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>524576</integer>
 	<key>IRMemory</key>
@@ -636,7 +638,7 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>307</string>
+		<string>322</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
@@ -663,15 +665,15 @@
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>248 1048 400 129 0 0 1920 1177 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>677 588 620 392 0 0 1920 1177 </string>
+	<string>676 588 620 392 0 0 1920 1177 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>269 139 606 456 0 0 1920 1177 </string>
+	<string>269 82 606 456 0 0 1920 1177 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>269 254 796 473 0 0 1920 1177 </string>
+	<string>473 278 1018 447 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>248 11 1481 1166 0 0 1920 1177 </string>
+	<string>238 11 1494 1166 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>240 11 1488 1166 0 0 1920 1177 </string>
+	<string>148 460 1060 707 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>296 100 1075 706 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -2152,7 +2154,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>CD35CB58-1128-4050-9C8D-03749FBA4A05</string>
 	<key>NoSyncLastTipTime</key>
-	<real>499639812.94006598</real>
+	<real>527822508.07985198</real>
 	<key>NoSyncPermissionToShowTip</key>
 	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -2230,6 +2232,8 @@
 		<string>0063</string>
 		<string>0064</string>
 		<string>0065</string>
+		<string>0066</string>
+		<string>0067</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
@@ -2301,7 +2305,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-03-27T00:27:10Z</date>
+	<date>2017-09-20T07:34:12Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -2349,6 +2353,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.14</string>
+	<string>3.1.0</string>
 </dict>
 </plist>
