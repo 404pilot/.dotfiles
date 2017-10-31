@@ -46,9 +46,11 @@ shortcuts = {
   v       =   "Postman",
   e       =   "iTerm",
   ["`"]   =   "Finder",
-  ["1"]   =   "Atom",
+  -- ["1"]   =   "Atom",
+  ["1"]   =   "Visual Studio Code",
   ["2"]   =   "Typora",
-  ["3"]   =   "Bear",
+  -- ["3"]   =   "Bear",
+  ["3"]   =   "Notion",
   ['4']   =   "Slack",
   ['5']   =   "Postico",
   ['6']   =   "Microsoft Outlook"
@@ -69,31 +71,36 @@ local eastScreenName   = "DELL G2210"
 --      for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
 
 local defaultLayout = {
-  {"iTerm2",            macScreenName,   centerCoordinate},
-  {"Google Chrome",     macScreenName,   maximizedCoordinate},
-  {"Microsoft Outlook", macScreenName,   maximizedCoordinate},
-  {"Bear",              macScreenName,   centerCoordinate},
-  {"Slack",             macScreenName,   centerCoordinate},
-  {"IntelliJ IDEA",     macScreenName,   maximizedCoordinate},
-  {"RubyMine",          macScreenName,   maximizedCoordinate},
   {"Atom",              macScreenName,   centerCoordinate},
+  {"Bear",              macScreenName,   centerCoordinate},
+  {"iTerm2",            macScreenName,   centerCoordinate},
+  {"Notion",            macScreenName,   centerCoordinate},
   {"Postman",           macScreenName,   centerCoordinate},
-  {"Typora",            macScreenName,   centerCoordinate}
+  {"Slack",             macScreenName,   centerCoordinate},
+  {"Trello",            macScreenName,   centerCoordinate},
+  {"Typora",            macScreenName,   centerCoordinate},
+  {"Visual Studio Code",macScreenName,   centerCoordinate},
+
+  {"Google Chrome",     macScreenName,   maximizedCoordinate},
+  {"IntelliJ IDEA",     macScreenName,   maximizedCoordinate},
+  {"Microsoft Outlook", macScreenName,   maximizedCoordinate},
+  {"RubyMine",          macScreenName,   maximizedCoordinate}
 }
 
 local threeMonitorsLayout = {
   {"Atom",              macScreenName,    centerCoordinate},
-  {"iTerm2",            macScreenName,    centerCoordinate},
   {"Bear",              macScreenName,    centerCoordinate},
+  {"iTerm2",            macScreenName,    centerCoordinate},
   {"Typora",            macScreenName,    centerCoordinate},
 
   {"Google Chrome",     middleScreenName, maximizedCoordinate},
-  {"RubyMine",          middleScreenName, maximizedCoordinate},
   {"IntelliJ IDEA",     middleScreenName, maximizedCoordinate},
+  {"RubyMine",          middleScreenName, maximizedCoordinate},
 
   {"Microsoft Outlook", eastScreenName,   topHalfCoordinate},
-  {"Slack",             eastScreenName,   bottomHalfCoordinate},
-  {"Postman",           eastScreenName,   maximizedCoordinate}
+  {"Notion",            eastScreenName,   maximizedCoordinate},
+  {"Postman",           eastScreenName,   maximizedCoordinate},
+  {"Slack",             eastScreenName,   bottomHalfCoordinate}
 }
 
 local function applyLayout(layout)
@@ -156,6 +163,7 @@ function ssidChangedCallback()
     device = hs.audiodevice.defaultOutputDevice()
 
     if newSSID ~= lastSSID then
+        hs.notify.new({title="Hammerspoon", informativeText="Debug:no the same SSID"}):send()
 
       if inTable(homeSSIDs, newSSID) then
         if device:muted() then
