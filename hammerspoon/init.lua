@@ -63,9 +63,13 @@ end
 -- ************************************************************
 -- auto layout
 -- ************************************************************
+-- office
 local macScreenName    = "Color LCD"
 local middleScreenName = "DELL P2210"
 local eastScreenName   = "DELL G2210"
+-- home
+local upperScreenName = "DELL U2412M"
+local lowerScreenName = "HP 2011"
 
 -- get application name by
 --      for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
@@ -87,7 +91,7 @@ local defaultLayout = {
   {"RubyMine",          macScreenName,   maximizedCoordinate}
 }
 
-local threeMonitorsLayout = {
+local officeLayout = {
   {"Atom",              macScreenName,    centerCoordinate},
   {"Bear",              macScreenName,    centerCoordinate},
   {"iTerm2",            macScreenName,    centerCoordinate},
@@ -101,6 +105,21 @@ local threeMonitorsLayout = {
   {"Notion",            eastScreenName,   maximizedCoordinate},
   {"Postman",           eastScreenName,   maximizedCoordinate},
   {"Slack",             eastScreenName,   bottomHalfCoordinate}
+}
+
+local homeLayout = {
+  {"Google Chrome",     upperScreenName,  maximizedCoordinate},
+  {"IntelliJ IDEA",     upperScreenName,  maximizedCoordinate},
+  {"RubyMine",          upperScreenName,  maximizedCoordinate},
+
+  {"Atom",              lowerScreenName,  maximizedCoordinate},
+  {"Bear",              lowerScreenName,  maximizedCoordinate},
+  {"iTerm2",            lowerScreenName,  maximizedCoordinate},
+  {"Microsoft Outlook", lowerScreenName,  maximizedCoordinate},
+  {"Notion",            lowerScreenName,  maximizedCoordinate},
+  {"Postman",           lowerScreenName,  maximizedCoordinate},
+  {"Slak",              lowerScreenName,  maximizedCoordinate},
+  {"Typora",            lowerScreenName,  maximizedCoordinate}
 }
 
 local function applyLayout(layout)
@@ -117,7 +136,9 @@ local function reformatLayout()
   currentNumberOfScreens = #hs.screen.allScreens()
 
   if currentNumberOfScreens == 3 then
-    applyLayout(threeMonitorsLayout)
+    applyLayout(officeLayout)
+  elseif currentNumberOfScreens == 2 then
+    applyLayout(homeLayout)
   else
     applyLayout(defaultLayout)
   end
