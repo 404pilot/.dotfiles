@@ -39,8 +39,8 @@ hs.hotkey.bind({"alt"}, "j", toPreviousScreen)
 -- ************************************************************
 
 shortcuts = {
-  c       =   "Google Chrome Canary",
-  -- c       =   "Google Chrome",
+  -- c       =   "Google Chrome Canary",
+  c       =   "Google Chrome",
   a       =   "IntelliJ IDEA",
   s       =   "RubyMine",
   v       =   "Postman",
@@ -77,13 +77,13 @@ local lowerScreenName = "HP 2011"
 local defaultLayout = {
   {"Atom",              macScreenName,   centerCoordinate},
   {"Bear",              macScreenName,   centerCoordinate},
+  {"Code",              macScreenName,   centerCoordinate},
   {"iTerm2",            macScreenName,   centerCoordinate},
   {"Notion",            macScreenName,   centerCoordinate},
   {"Postman",           macScreenName,   centerCoordinate},
   {"Slack",             macScreenName,   centerCoordinate},
   {"Trello",            macScreenName,   centerCoordinate},
   {"Typora",            macScreenName,   centerCoordinate},
-  {"Visual Studio Code",macScreenName,   centerCoordinate},
 
   {"Google Chrome",     macScreenName,   maximizedCoordinate},
   {"IntelliJ IDEA",     macScreenName,   maximizedCoordinate},
@@ -94,6 +94,7 @@ local defaultLayout = {
 local officeLayout = {
   {"Atom",              macScreenName,    centerCoordinate},
   {"Bear",              macScreenName,    centerCoordinate},
+  {"Code",              macScreenName,    centerCoordinate},
   {"iTerm2",            macScreenName,    centerCoordinate},
   {"Typora",            macScreenName,    centerCoordinate},
 
@@ -114,6 +115,7 @@ local homeLayout = {
 
   {"Atom",              lowerScreenName,  maximizedCoordinate},
   {"Bear",              lowerScreenName,  maximizedCoordinate},
+  {"Code",              lowerScreenName,  maximizedCoordinate},
   {"iTerm2",            lowerScreenName,  maximizedCoordinate},
   {"Microsoft Outlook", lowerScreenName,  maximizedCoordinate},
   {"Notion",            lowerScreenName,  maximizedCoordinate},
