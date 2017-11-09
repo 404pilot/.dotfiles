@@ -149,10 +149,10 @@ hs.hotkey.bind({"alt"}, "0", reformatLayout)
 -- ************************************************************
 -- screen watcher to set layouts automatically
 -- ************************************************************
-local lastNumberOfScreens = hs.screen.allScreens()
+local lastNumberOfScreens = #hs.screen.allScreens()
 
 function screenChangedCallback()
-    currentNumberOfScreens = hs.screen.allScreens()
+    currentNumberOfScreens = #hs.screen.allScreens()
 
     if currentNumberOfScreens ~= lastNumberOfScreens then
       reformatLayout()
