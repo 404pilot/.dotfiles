@@ -63,6 +63,9 @@ end
 -- ************************************************************
 -- auto layout
 -- ************************************************************
+-- get name by
+--   for index,value in pairs(hs.screen.allScreens()) do print(value) end
+
 -- office
 local macScreenName    = "Color LCD"
 local middleScreenName = "DELL P2210"
@@ -120,7 +123,7 @@ local homeLayout = {
   {"Microsoft Outlook", lowerScreenName,  maximizedCoordinate},
   {"Notion",            lowerScreenName,  maximizedCoordinate},
   {"Postman",           lowerScreenName,  maximizedCoordinate},
-  {"Slak",              lowerScreenName,  maximizedCoordinate},
+  {"Slack",             lowerScreenName,  maximizedCoordinate},
   {"Typora",            lowerScreenName,  maximizedCoordinate}
 }
 
