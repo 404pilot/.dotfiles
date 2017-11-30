@@ -166,7 +166,9 @@ function screenChangedCallback()
     end
 end
 
-hs.screen.watcher.new(screenChangedCallback):start()
+-- http://www.hammerspoon.org/go/#variablelife
+-- use a global variable to keep watchers out of being GCed
+screenWatcher = hs.screen.watcher.new(screenChangedCallback):start()
 
 -- ************************************************************
 -- wifi watcher to mute audio when it is not a home environment
@@ -189,7 +191,7 @@ function ssidChangedCallback()
     device = hs.audiodevice.defaultOutputDevice()
 
     if newSSID ~= lastSSID then
-        hs.notify.new({title="Hammerspoon", informativeText="Debug:no the same SSID"}):send()
+        -- hs.notify.new({title="Hammerspoon", informativeText="Debug:no the same SSID"}):send()
 
       if inTable(homeSSIDs, newSSID) then
         if device:muted() then
@@ -215,4 +217,4 @@ function ssidChangedCallback()
     end
 end
 
-hs.wifi.watcher.new(ssidChangedCallback):start()
+wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback):start()
