@@ -12,3 +12,12 @@ fi
 if which rbenv > /dev/null ; then
   eval "$(rbenv init -)"
 fi
+
+## configure sdkman
+if [ -d ~/.skdman ]; then
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
+
+## environmental variable
+export PC_PRIV_CONF="$HOME/work/pcops_priv"
+export JSON_DICTIONARY_REPO="$HOME/work/json-directory-repo"

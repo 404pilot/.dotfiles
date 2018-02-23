@@ -9,9 +9,13 @@ dotfiles
 
    `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-3. `brew install git jenv bash-completion ccat rbenv`
+3. `brew install git jenv bash-completion ccat rbenv vim`
 
 4. install `shuttle`, `karabiner-elements`, `hammerspoon`
+
+5. instal `sdkman`
+
+   `curl -s "https://get.sdkman.io" | bash`
 
 5. run script to install **config** for
 

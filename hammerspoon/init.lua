@@ -42,7 +42,7 @@ shortcuts = {
   -- c       =   "Google Chrome Canary",
   c       =   "Google Chrome",
   a       =   "IntelliJ IDEA",
-  s       =   "RubyMine",
+  -- s       =   "RubyMine",
   v       =   "Postman",
   e       =   "iTerm",
   ["`"]   =   "Finder",
@@ -99,6 +99,7 @@ local officeLayout = {
   {"Bear",              macScreenName,    centerCoordinate},
   {"Code",              macScreenName,    centerCoordinate},
   {"iTerm2",            macScreenName,    centerCoordinate},
+  {"Trello",            macScreenName,    centerCoordinate},
   {"Typora",            macScreenName,    centerCoordinate},
 
   {"Google Chrome",     middleScreenName, maximizedCoordinate},
