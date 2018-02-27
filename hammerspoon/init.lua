@@ -125,6 +125,7 @@ local homeLayout = {
   {"Notion",            lowerScreenName,  maximizedCoordinate},
   {"Postman",           lowerScreenName,  maximizedCoordinate},
   {"Slack",             lowerScreenName,  maximizedCoordinate},
+  {"Trello",            lowerScreenName,  maximizedCoordinate},
   {"Typora",            lowerScreenName,  maximizedCoordinate}
 }
 
