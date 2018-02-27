@@ -17,7 +17,7 @@ dotfiles
 
    `curl -s "https://get.sdkman.io" | bash`
 
-5. run script to install **config** for
+5. run script `./up.sh` to install **configs** for
 
    * `bash`
    * `editorConfig`
@@ -30,9 +30,11 @@ dotfiles
      * `bash-completion`
      * `jenv`
 
-6. install `atom`
+7. other usefull apps:
 
-   Sync settings by using `https://github.com/atom-community/sync-settings`
+   * `Visual Studio Code`
+   * `gradle`
+   * `maven`
 
 ## hammerspoon
 
@@ -65,6 +67,7 @@ echo 'eval "$(jenv init -)"' >> ~/.bashrc
 ```
 # add java8 to jenv
 jenv add ~/.sdkman/candidates/java/8u161-oracle/
+
 # configure
 jenv global 1.8
 jenv shell 1.8
@@ -91,7 +94,7 @@ mvn -version
 
 ### java locations
 
-* `sdkman` install `~/.sdkman/candidates/java/`
+* `sdkman` install java at: `~/.sdkman/candidates/java/`
 
   `jenv add ~/.sdkman/candidates/java/8u161-oracle/`
 
