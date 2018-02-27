@@ -63,12 +63,14 @@ echo 'eval "$(jenv init -)"' >> ~/.bashrc
 # echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bashrc
 ```
 ```
-# java8
-brew cask install java
 # add java8 to jenv
-jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/
+jenv add ~/.sdkman/candidates/java/8u161-oracle/
 # configure
 jenv global 1.8
+jenv shell 1.8
+
+# list all JAVA_HOMEs
+ls -alF ~/.jenv/versions
 ```
 
 ### enable jenv for maven
@@ -76,23 +78,25 @@ jenv global 1.8
 # run maven with a specific jdk
 jenv local 1.7
 jenv enable-plugin maven
+
 # re-enable maven plugin if maven is using Java with a wrong version
 jenv disable-plugin maven
+
 # this could also affect maven
 jenv shell 1.8
 
 # double-check to see which java version maven is using
 mvn -version
-
-# list all JAVA_HOMEs
-ls -alF ~/.jenv/versions
 ```
 
 ### java locations
 
-* brew install location: `/Library/Java/JavaVirtualMachines/`
-  * `/usr/bin/java` -> `/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java` -> one of `/Library/Java/JavaVirtualMachines/`
+* `sdkman` install `~/.sdkman/candidates/java/`
+
+  `jenv add ~/.sdkman/candidates/java/8u161-oracle/`
+
 * system default location: `/System/Library/Frameworks/JavaVM.framework/Versions/`
+
 * java in System Perferences location: `/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/`
 
 
@@ -173,22 +177,3 @@ brew cask outdated
 ```
 
 Probably need to manually delete old versions.
-
-### brew cask install java
-
-[https://github.com/caskroom/homebrew-cask/blob/master/Casks/java.rb](https://github.com/caskroom/homebrew-cask/blob/master/Casks/java.rb)
-
-it will create links under `/Library/Java/JavaVirtualMachines/`.
-
-```
-$ ls -alF ~/.jenv/versions
-total 48
-drwxr-xr-x   8 T800  staff  272 Jul 24  2015 ./
-drwxr-xr-x  12 T800  staff  408 Jul 24  2015 ../
-lrwxr-xr-x   1 T800  staff   63 Jul 23  2015 1.7@ -> /Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
-lrwxr-xr-x   1 T800  staff   63 Jul 23  2015 1.7.0.45@ -> /Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
-lrwxr-xr-x   1 T800  staff   63 Jul 24  2015 1.8@ -> /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
-lrwxr-xr-x   1 T800  staff   63 Jul 24  2015 1.8.0.45@ -> /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
-lrwxr-xr-x   1 T800  staff   63 Jul 23  2015 oracle64-1.7.0.45@ -> /Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
-lrwxr-xr-x   1 T800  staff   63 Jul 24  2015 oracle64-1.8.0.45@ -> /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
-```
