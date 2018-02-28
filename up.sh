@@ -1,11 +1,10 @@
 #!/bin/bash
-set -e
 # set -x
+set -euo pipefail
 
 ######################################################
-echo "#### pull .dotfiles"
-
-if [ -f ~/.dotfiles ]; then
+if [ ! -d ~/.dotfiles ]; then
+  echo "#### pull .dotfiles"
   (cd && git clone git@github.com:404pilot/.dotfiles.git)
 fi
 
@@ -15,6 +14,7 @@ echo "#### Config bash and other configs (bash_completion, jenv, rbenv)"
 
 cp ~/.dotfiles/bash/bash_profile ~/.bash_profile
 
+rm ~/.bashrc
 echo "source ~/.dotfiles/bash/bash_bridge" > ~/.bashrc
 echo "source ~/.dotfiles/bash/bash_other_app_configs" >> ~/.bashrc
 
@@ -24,6 +24,11 @@ echo "#### Config git"
 
 rm ~/.gitconfig || true \
   && ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
+
+if [ -d ~/work ] && [ ! -f ~/work/gitconfig-work ]; then
+  echo "######## Please modify ~/work/gitconfig-work"
+  cp ~/.dotfiles/git/gitconfig-work ~/work
+fi
 
 ######################################################
 ## editorConfig

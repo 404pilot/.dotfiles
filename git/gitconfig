@@ -2,6 +2,9 @@
     name = 404pilot
     email = 404pilot@users.noreply.github.com
 
+[includeIf "gitdir:~/work/"]
+    path = ~/work/gitconfig-work
+
 [color]
     ui = true
 
@@ -22,6 +25,7 @@
 
 [core]
     editor = vi
+
 [pull]
     default = current
 

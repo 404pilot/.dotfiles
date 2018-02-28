@@ -30,7 +30,9 @@ dotfiles
      * `bash-completion`
      * `jenv`
 
-7. other usefull apps:
+7. modify `~/work/gitconfig-work` file
+
+8. other usefull apps:
 
    * `Visual Studio Code`
    * `gradle`
@@ -44,9 +46,12 @@ for key,value in pairs(hs.application.runningApplications()) do print(key,value)
 ```
 
 ## Git
-	# for office laptop
-	git config --global user.name "xx"
-	git config --global user.email "me@here.com"
+
+```
+# root .gitconfig
+[includeIf "gitdir:~/work/"]
+    path = ~/work/gitconfig-work
+```
 
 ## iTerm2
 
