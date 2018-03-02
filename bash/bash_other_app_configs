@@ -14,7 +14,7 @@ if which rbenv > /dev/null ; then
 fi
 
 ## configure sdkman
-if [ -d ~/.skdman ]; then
+if [ -d ~/.sdkman ]; then
   source "$HOME/.sdkman/bin/sdkman-init.sh"
 fi
 
