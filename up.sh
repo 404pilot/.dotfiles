@@ -34,8 +34,8 @@ fi
 ## editorConfig
 echo "#### Config editorConfig"
 
-rm ~/.editorConfig || true\
-  && ln -s ~/.dotfiles/editorConfig/editorConfig ~/.editorConfig
+rm ~/.editorconfig || true \
+  && ln -s ~/.dotfiles/editorConfig/editorconfig ~/.editorconfig
 
 ######################################################
 ## tmux

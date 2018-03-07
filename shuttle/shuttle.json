@@ -65,12 +65,12 @@
     {
       "directories": [{
           "cmd": "cd ~/work/ACT_API/",
-          "name": "ACT",
+          "name": "ACT"
         },
         {
           "cmd": "cd ~/work/invoice-loader/",
-          "name": "invoice-loader",
-        },
+          "name": "invoice-loader"
+        }
       ]
     },
     {

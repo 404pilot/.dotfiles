@@ -35,6 +35,7 @@ dotfiles
 8. other usefull apps:
 
    * `Visual Studio Code`
+     * install `editorConfig` plugin
    * `gradle`
    * `maven`
 
