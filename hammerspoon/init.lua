@@ -64,76 +64,70 @@ end
 -- auto layout
 -- ************************************************************
 -- get name by
---   for index,value in pairs(hs.screen.allScreens()) do print(value) end
+--   for index,value in pairs(hs.screen.allScreens()) do print(value:name() .. " - " .. value:id()) end
 
 -- office
-local macScreenName    = "Color LCD"
-local middleScreenName = "DELL P2210"
-local eastScreenName   = "DELL G2210"
+local macScreenHint    = "Color LCD"
+local middleScreenHint = 722488782
+local eastScreenHint   = 722478799
 -- home
-local upperScreenName = "DELL U2412M"
-local lowerScreenName = "HP 2011"
+local upperScreenHint = "DELL U2412M"
+local lowerScreenHint = "HP 2011"
 
 -- get application name by
---      for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
+--   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
 
 local defaultLayout = {
-  {"Atom",              macScreenName,   centerCoordinate},
-  {"Bear",              macScreenName,   centerCoordinate},
-  {"Code",              macScreenName,   centerCoordinate},
-  {"iTerm2",            macScreenName,   centerCoordinate},
-  {"Notion",            macScreenName,   centerCoordinate},
-  {"Postman",           macScreenName,   centerCoordinate},
-  {"Slack",             macScreenName,   centerCoordinate},
-  {"Trello",            macScreenName,   centerCoordinate},
-  {"Typora",            macScreenName,   centerCoordinate},
+  {"Code",              macScreenHint,   centerCoordinate},
+  {"iTerm2",            macScreenHint,   centerCoordinate},
+  {"Notion",            macScreenHint,   centerCoordinate},
+  {"Postman",           macScreenHint,   centerCoordinate},
+  {"Slack",             macScreenHint,   centerCoordinate},
+  {"Trello",            macScreenHint,   centerCoordinate},
+  {"Typora",            macScreenHint,   centerCoordinate},
 
-  {"Google Chrome",     macScreenName,   maximizedCoordinate},
-  {"IntelliJ IDEA",     macScreenName,   maximizedCoordinate},
-  {"Microsoft Outlook", macScreenName,   maximizedCoordinate},
-  {"RubyMine",          macScreenName,   maximizedCoordinate}
+  {"Google Chrome",     macScreenHint,   maximizedCoordinate},
+  {"IntelliJ IDEA",     macScreenHint,   maximizedCoordinate},
+  {"Microsoft Outlook", macScreenHint,   maximizedCoordinate},
+  {"RubyMine",          macScreenHint,   maximizedCoordinate}
 }
 
 local officeLayout = {
-  {"Atom",              macScreenName,    centerCoordinate},
-  {"Bear",              macScreenName,    centerCoordinate},
-  {"Code",              macScreenName,    centerCoordinate},
-  {"iTerm2",            macScreenName,    centerCoordinate},
-  {"Trello",            macScreenName,    centerCoordinate},
-  {"Typora",            macScreenName,    centerCoordinate},
+  {"Code",              macScreenHint,    centerCoordinate},
+  {"iTerm2",            macScreenHint,    centerCoordinate},
+  {"Trello",            macScreenHint,    centerCoordinate},
+  {"Typora",            macScreenHint,    centerCoordinate},
 
-  {"Google Chrome",     middleScreenName, maximizedCoordinate},
-  {"IntelliJ IDEA",     middleScreenName, maximizedCoordinate},
-  {"RubyMine",          middleScreenName, maximizedCoordinate},
+  {"Google Chrome",     middleScreenHint, maximizedCoordinate},
+  {"IntelliJ IDEA",     middleScreenHint, maximizedCoordinate},
+  {"RubyMine",          middleScreenHint, maximizedCoordinate},
 
-  {"Microsoft Outlook", eastScreenName,   topHalfCoordinate},
-  {"Notion",            eastScreenName,   maximizedCoordinate},
-  {"Postman",           eastScreenName,   maximizedCoordinate},
-  {"Slack",             eastScreenName,   bottomHalfCoordinate}
+  {"Microsoft Outlook", eastScreenHint,   topHalfCoordinate},
+  {"Notion",            eastScreenHint,   maximizedCoordinate},
+  {"Postman",           eastScreenHint,   maximizedCoordinate},
+  {"Slack",             eastScreenHint,   bottomHalfCoordinate}
 }
 
 local homeLayout = {
-  {"Google Chrome",     upperScreenName,  maximizedCoordinate},
-  {"IntelliJ IDEA",     upperScreenName,  maximizedCoordinate},
-  {"RubyMine",          upperScreenName,  maximizedCoordinate},
+  {"Google Chrome",     upperScreenHint,  maximizedCoordinate},
+  {"IntelliJ IDEA",     upperScreenHint,  maximizedCoordinate},
+  {"RubyMine",          upperScreenHint,  maximizedCoordinate},
 
-  {"Atom",              lowerScreenName,  maximizedCoordinate},
-  {"Bear",              lowerScreenName,  maximizedCoordinate},
-  {"Code",              lowerScreenName,  maximizedCoordinate},
-  {"iTerm2",            lowerScreenName,  maximizedCoordinate},
-  {"Microsoft Outlook", lowerScreenName,  maximizedCoordinate},
-  {"Notion",            lowerScreenName,  maximizedCoordinate},
-  {"Postman",           lowerScreenName,  maximizedCoordinate},
-  {"Slack",             lowerScreenName,  maximizedCoordinate},
-  {"Trello",            lowerScreenName,  maximizedCoordinate},
-  {"Typora",            lowerScreenName,  maximizedCoordinate}
+  {"Code",              lowerScreenHint,  maximizedCoordinate},
+  {"iTerm2",            lowerScreenHint,  maximizedCoordinate},
+  {"Microsoft Outlook", lowerScreenHint,  maximizedCoordinate},
+  {"Notion",            lowerScreenHint,  maximizedCoordinate},
+  {"Postman",           lowerScreenHint,  maximizedCoordinate},
+  {"Slack",             lowerScreenHint,  maximizedCoordinate},
+  {"Trello",            lowerScreenHint,  maximizedCoordinate},
+  {"Typora",            lowerScreenHint,  maximizedCoordinate}
 }
 
 local function applyLayout(layout)
   transformedLayout = {}
 
   for key,value in pairs(layout) do
-    table.insert(transformedLayout, {value[1], nil, value[2], value[3], nil, nil})
+    table.insert(transformedLayout, {value[1], nil, hs.screen.find(value[2]), value[3], nil, nil})
   end
 
   hs.layout.apply(transformedLayout)
