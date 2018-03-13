@@ -32,6 +32,16 @@ alias be='bundle exec'
 ## application Shortcuts
 alias typora="open -a typora"
 
+gradle() {
+    if [ -f ./gradlew ]; then
+        echo ">>>>>> Using ./gradlew wrapper instead of system gradle <<<<<<"
+        ./gradlew $@ ;
+    else
+        echo "Using system gradle: $(which gradle)"
+        $(which gradle) $@ ;
+    fi
+}
+
 cat() {
     if [ "$(type -t ccat)" = file ]; then
         ccat $@ ;

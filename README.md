@@ -36,8 +36,8 @@ dotfiles
 
    * `Visual Studio Code`
      * install `editorConfig` plugin
-   * `gradle`
-   * `maven`
+   * `sdk install gradle`
+   * `sdk install maven`
 
 ## hammerspoon
 

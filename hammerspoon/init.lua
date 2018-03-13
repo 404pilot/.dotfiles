@@ -187,7 +187,8 @@ function ssidChangedCallback()
     device = hs.audiodevice.defaultOutputDevice()
 
     if newSSID ~= lastSSID then
-        -- hs.notify.new({title="Hammerspoon", informativeText="Debug:no the same SSID"}):send()
+      -- os.execute("sleep " .. tonumber(2))
+      -- hs.notify.new({title="Hammerspoon", informativeText="Debug:no the same SSID"}):send()
 
       if inTable(homeSSIDs, newSSID) then
         if device:muted() then

@@ -26,3 +26,11 @@ cmd w | close
 
 ## Ruby Developement
 Make sure ide and terminal are using same gemset.
+
+
+
+## Memo
+
+#### `/Editor/Code Style/Properties`
+
+* check `Keep blank lines`
