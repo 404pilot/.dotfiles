@@ -186,3 +186,12 @@ brew cask outdated
 ```
 
 Probably need to manually delete old versions.
+
+
+
+## MacOS
+
+```
+$ defaults write com.apple.screencapture location $HOME/documents
+$ killall SystemUIServer
+```
