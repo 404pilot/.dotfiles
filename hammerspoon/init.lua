@@ -45,6 +45,7 @@ shortcuts = {
   -- s       =   "RubyMine",
   v       =   "Postman",
   e       =   "iTerm",
+  r       =   "Royal TSX",
   ["`"]   =   "Finder",
   -- ["1"]   =   "Atom",
   ["1"]   =   "Visual Studio Code",

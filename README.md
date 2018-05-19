@@ -202,6 +202,6 @@ Probably need to manually delete old versions.
 ## MacOS
 
 ```
-defaults write .GlobalPreferences com.apple.mouse.scaling -1
+$ defaults write com.apple.screencapture location $HOME/documents
+$ killall SystemUIServer
 ```
-
