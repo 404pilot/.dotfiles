@@ -9,19 +9,23 @@ dotfiles
 
    `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-3. `brew install git jenv zsh zsh-completion ccat vim`
+3. `brew install git jenv ccat vim`
 
-4. install `shuttle`, `karabiner-elements`, `hammerspoon`
+4. `brew install zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting autojump`
 
-5. instal `sdkman`
+   1. maybe `rm -f ~/.zcompdump; compinit` is needed. [link](https://github.com/Homebrew/homebrew-core/blob/master/Formula/zsh-completions.rb#L20)
+
+5. install `shuttle`, `karabiner-elements`, `hammerspoon`
+
+6. instal `sdkman`
 
    `curl -s "https://get.sdkman.io" | bash`
 
-6. install `oh-my-zsh`
+7. install `oh-my-zsh`
 
    `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 
-7. run script `./up.sh` to install **configs** for
+8. run script `./up.sh` to install **configs** for
 
    * `bash`
    * `editorConfig`
@@ -34,9 +38,9 @@ dotfiles
      * `jenv`
      * `sdkman`
 
-8. modify `~/work/gitconfig-work` file
+9. modify `~/work/gitconfig-work` file
 
-9. other usefull apps:
+10. other usefull apps:
 
    * `Visual Studio Code`
      * install `editorConfig` plugin

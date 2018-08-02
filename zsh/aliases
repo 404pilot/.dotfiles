@@ -58,8 +58,8 @@ cls() { cd "$1"; ls;}
 
 backup() { cp "$1"{,.bak};}
 
-alias ..='cd ..'
-alias ...='cd ../..'
+# alias ..='cd ..'
+# alias ...='cd ../..'
 
 extract() {
     if [ -f $1 ] ; then

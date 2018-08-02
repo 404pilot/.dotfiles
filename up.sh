@@ -8,6 +8,8 @@ if [ ! -d ~/.dotfiles ]; then
   (cd && git clone git@github.com:404pilot/.dotfiles.git)
 fi
 
+# TODO check all apps are installed correctly
+
 ######################################################
 ## bash & bash_completion & jenv & rbenv
 echo "#### Config bash and other configs (bash_completion, jenv, rbenv)"
