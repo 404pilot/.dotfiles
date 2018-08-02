@@ -50,6 +50,7 @@ shortcuts = {
   -- ["1"]   =   "Atom",
   ["1"]   =   "Visual Studio Code",
   ["2"]   =   "Typora",
+  -- ["2"]   =   "Mark Text",
   -- ["3"]   =   "Bear",
   ["3"]   =   "Notion",
   ['4']   =   "Slack",

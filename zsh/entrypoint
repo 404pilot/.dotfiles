@@ -1,0 +1,11 @@
+
+## add alias
+source ~/.dotfiles/zsh/aliases
+
+# other app
+source ~/.dotfiles/zsh/app_configs
+
+## office
+export PC_PRIV_CONF="$HOME/work/pcops_priv"
+export JSON_DICTIONARY_REPO="$HOME/work/json-directory-repo"
+# source ~/.bash_ning1273

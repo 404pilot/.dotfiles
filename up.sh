@@ -19,6 +19,13 @@ echo "source ~/.dotfiles/bash/bash_bridge" > ~/.bashrc
 echo "source ~/.dotfiles/bash/bash_other_app_configs" >> ~/.bashrc
 
 ######################################################
+## zsh & jenv & sdkman
+echo "#### Config zsh and other configs (bash_completion, jenv, sdkman ...)"
+
+rm ~/.zshrc || true \
+  && ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
+
+######################################################
 ## git
 echo "#### Config git"
 

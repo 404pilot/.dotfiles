@@ -45,24 +45,10 @@ gradle() {
 }
 
 cat() {
-    if [ "$(type -t ccat)" = file ]; then
+    if [ type ccat >/dev/null 2>&1 ]; then
         ccat $@ ;
     else
         cat $@ ;
-    fi
-}
-
-## vm docker
-dvm(){
-    dir='/Users/T800/pdev/boxes/abox'
-
-    if [ $# -eq 1 ]; then
-        case $1 in
-            "go") cd $dir ;;
-            *) (cd $dir; vagrant $1) ;;
-        esac
-    else
-        echo "box directory: $dir"
     fi
 }
 

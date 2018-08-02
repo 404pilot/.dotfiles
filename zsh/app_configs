@@ -1,0 +1,9 @@
+## init jEnv if it is installed
+if which jenv > /dev/null ; then
+  eval "$(jenv init -)"
+fi
+
+## configure sdkman
+if [ -d ~/.sdkman ]; then
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi

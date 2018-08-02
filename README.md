@@ -9,7 +9,7 @@ dotfiles
 
    `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-3. `brew install git jenv bash-completion ccat rbenv vim`
+3. `brew install git jenv zsh zsh-completion ccat vim`
 
 4. install `shuttle`, `karabiner-elements`, `hammerspoon`
 
@@ -17,7 +17,11 @@ dotfiles
 
    `curl -s "https://get.sdkman.io" | bash`
 
-5. run script `./up.sh` to install **configs** for
+6. install `oh-my-zsh`
+
+   `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+
+7. run script `./up.sh` to install **configs** for
 
    * `bash`
    * `editorConfig`
@@ -26,13 +30,13 @@ dotfiles
    * `karabiner-elements`
    * `shuttle`
    * `tmux`
-   * other configurations included in bash_bridge file
-     * `bash-completion`
+   * other configurations included in `app_configs` file
      * `jenv`
+     * `sdkman`
 
-7. modify `~/work/gitconfig-work` file
+8. modify `~/work/gitconfig-work` file
 
-8. other usefull apps:
+9. other usefull apps:
 
    * `Visual Studio Code`
      * install `editorConfig` plugin
@@ -194,4 +198,9 @@ Probably need to manually delete old versions.
 ```
 $ defaults write com.apple.screencapture location $HOME/documents
 $ killall SystemUIServer
+
+$ defaults read .GlobalPreferences com.apple.mouse.scaling
+3
+$ defaults read .GlobalPreferences com.apple.trackpad.scaling
+1.5
 ```
