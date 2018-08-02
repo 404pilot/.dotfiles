@@ -66,8 +66,25 @@ Check `Load preferences from a custom folder or URL:`
 
 Manually type `~/.dotfiles/iTerm2`
 
-## Jenv
+## Jenv & sdkman
+
+```shell
+# 1. install
+$ sdk install java 9.0.7-zulu
+$ jenv add ~/.sdkman/candidates/java/9.0.7-zulu/
+
+# 2. configure
+$ jenv global 1.9
+$ jenv shell 1.9
+$ jenv local 1.9
+
+# 3. check
+$ jenv versions
 ```
+
+### Jenv
+
+```shell
 brew install jenv
 echo 'eval "$(jenv init -)"' >> ~/.bashrc
 
@@ -75,34 +92,27 @@ echo 'eval "$(jenv init -)"' >> ~/.bashrc
 # echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bashrc
 ```
 ```
-# add java8 to jenv
-jenv add ~/.sdkman/candidates/java/8u161-oracle/
-
-# configure
-jenv global 1.8
-jenv shell 1.8
-
-# list all JAVA_HOMEs
+# list all JAVA_HOMEs configured in jenv
 ls -alF ~/.jenv/versions
 ```
 
-### enable jenv for maven
-```
+#### enable jenv for maven
+```shell
 # run maven with a specific jdk
-jenv local 1.7
-jenv enable-plugin maven
+$ jenv local 1.7
+$ jenv enable-plugin maven
 
 # re-enable maven plugin if maven is using Java with a wrong version
-jenv disable-plugin maven
+$ jenv disable-plugin maven
 
-# this could also affect maven
-jenv shell 1.8
+# this could also affect maven since maven could be used in terminal
+$ jenv shell 1.8
 
 # double-check to see which java version maven is using
-mvn -version
+$ mvn -version
 ```
 
-### java locations
+#### java locations
 
 * `sdkman` install java at: `~/.sdkman/candidates/java/`
 
