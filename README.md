@@ -11,9 +11,7 @@ dotfiles
 
 3. `brew install git jenv ccat vim`
 
-4. `brew install zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting autojump`
-
-   1. maybe `rm -f ~/.zcompdump; compinit` is needed. [link](https://github.com/Homebrew/homebrew-core/blob/master/Formula/zsh-completions.rb#L20)
+4. `brew install zsh antigen autojump`
 
 5. install `shuttle`, `karabiner-elements`, `hammerspoon`
 
@@ -21,11 +19,7 @@ dotfiles
 
    `curl -s "https://get.sdkman.io" | bash`
 
-7. install `oh-my-zsh`
-
-   `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-
-8. run script `./up.sh` to install **configs** for
+7. run script `./up.sh` to install **configs** for
 
    * `bash`
    * `editorConfig`
@@ -38,9 +32,9 @@ dotfiles
      * `jenv`
      * `sdkman`
 
-9. modify `~/work/gitconfig-work` file
+8. modify `~/work/gitconfig-work` file
 
-10. other usefull apps:
+9. other usefull apps:
 
    * `Visual Studio Code`
      * install `editorConfig` plugin
@@ -69,6 +63,23 @@ for key,value in pairs(hs.application.runningApplications()) do print(key,value)
 Check `Load preferences from a custom folder or URL:`
 
 Manually type `~/.dotfiles/iTerm2`
+
+
+
+## Antigen & Zsh
+
+``` shell
+$ antigen list
+# cleanup unused repo (the one not specified in .zshrc)
+$ antigen cleanup
+
+$ antigen selfupdate
+# update all repos in $(antigen list)
+$ antigen update
+
+```
+
+
 
 ## Jenv & sdkman
 
