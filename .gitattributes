@@ -1,5 +1,4 @@
 bash/* linguist-language=Shell
 editorConfig/* linguist-language=properties
 git/* linguist-language=properties
-zsh/zshrc linguist-language=Shell
 zsh/* linguist-language=Shell
