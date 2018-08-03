@@ -28,9 +28,6 @@ alias ga='git add'
 alias gall='git add --all'
 alias gp='git pull'
 
-## ruby
-alias be='bundle exec'
-
 ## application Shortcuts
 alias typora="open -a typora"
 
@@ -45,7 +42,7 @@ gradle() {
 }
 
 cat() {
-    if [ type ccat >/dev/null 2>&1 ]; then
+    if type ccat >/dev/null 2>&1; then
         ccat $@ ;
     else
         cat $@ ;
