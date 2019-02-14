@@ -3,6 +3,7 @@ dotfiles
 ========
 
 1. `iTerm2`
+
    * load preferences
 
 2. install `homebrew`
@@ -90,10 +91,11 @@ $ antigen update
 $ sdk install java 9.0.7-zulu
 $ jenv add ~/.sdkman/candidates/java/9.0.7-zulu/
 
-# 2. configure
-$ jenv global 1.9
-$ jenv shell 1.9
-$ jenv local 1.9
+# 2. configure (jenv&sdkman doesn't work well)
+$ jenv global 9.0
+$ jenv shell 9.0
+$ jenv local 9.0
+$ sdk default java 8.0.181-zulu
 
 # 3. check
 $ jenv versions
@@ -140,15 +142,6 @@ $ mvn -version
 * java in System Perferences location: `/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/`
 
 
-
-## rbenv
-
-```
-rbenv versions
-rbenv global 2.2.3
-# shell has be specified for each new session, otherwise it will use a default one
-rbenv shell 2.2.3
-```
 
 ## Homebrew
 
