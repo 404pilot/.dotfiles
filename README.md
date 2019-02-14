@@ -9,17 +9,19 @@ dotfiles
 
    `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-3. `brew install git jenv ccat vim`
+3. `brew install git jenv ccat`
 
-4. `brew install zsh antigen autojump`
+4. `brew install vim --with-override-system-vi`
 
-5. install `shuttle`, `karabiner-elements`, `hammerspoon`
+5. `brew install zsh antigen autojump`
 
-6. instal `sdkman`
+6. install `shuttle`, `karabiner-elements`, `hammerspoon`
+
+7. instal `sdkman`
 
    `curl -s "https://get.sdkman.io" | bash`
 
-7. run script `./up.sh` to install **configs** for
+8. run script `./up.sh` to install **configs** for
 
    * `bash`
    * `editorConfig`
@@ -32,9 +34,9 @@ dotfiles
      * `jenv`
      * `sdkman`
 
-8. modify `~/work/gitconfig-work` file
+9. modify `~/work/gitconfig-work` file
 
-9. other usefull apps:
+10. other usefull apps:
 
    * `Visual Studio Code`
      * install `editorConfig` plugin

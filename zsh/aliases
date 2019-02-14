@@ -32,7 +32,7 @@ alias gp='git pull'
 alias typora="open -a typora"
 
 gradle() {
-    if [ -f ./gradlew ]; then
+    if [[ -f ./gradlew ]]; then
         echo ">>>>>> Using ./gradlew wrapper instead of system gradle <<<<<<"
         ./gradlew $@ ;
     else
