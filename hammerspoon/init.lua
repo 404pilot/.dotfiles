@@ -45,7 +45,8 @@ shortcuts = {
   -- s       =   "RubyMine",
   v       =   "Postman",
   e       =   "iTerm",
-  r       =   "Royal TSX",
+  -- r       =   "Royal TSX",
+  r       =   "Postico",
   ["`"]   =   "Finder",
   -- ["1"]   =   "Atom",
   ["1"]   =   "Visual Studio Code",
@@ -54,7 +55,7 @@ shortcuts = {
   -- ["3"]   =   "Bear",
   ["3"]   =   "Notion",
   ['4']   =   "Slack",
-  ['5']   =   "Postico",
+  -- ['5']   =   "Postico",
   ['6']   =   "Microsoft Outlook"
 }
 
