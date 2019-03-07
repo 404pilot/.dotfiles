@@ -74,6 +74,12 @@ jumpTo(){
     eval ${command}
 }
 
+fAppProcess(){
+    app_name=$1
+
+    jps -v | grep info.app.name=$app_name
+}
+
 cat() {
     if type ccat >/dev/null 2>&1; then
         ccat $@ ;
