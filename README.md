@@ -80,6 +80,8 @@ $ antigen selfupdate
 # update all repos in $(antigen list)
 $ antigen update
 
+# reload zsh config
+$ exec zsh
 ```
 
 

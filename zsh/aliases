@@ -50,6 +50,8 @@ localpr() {
     git checkout pr"${prNum}"
 }
 
+alias cbastIn='ssh ning1273@cbast.ord1.corp.rackspace.net'
+
 jumpTo(){
     target_address=$1
     target_port=$2
