@@ -1,0 +1,51 @@
+export PC_PRIV_CONF="$HOME/work/pcops_priv"
+export JSON_DICTIONARY_REPO="$HOME/work/json-directory-repo"
+# source ~/.bash_ning1273
+
+alias cbastIn='ssh ning1273@cbast.ord1.corp.rackspace.net'
+
+jumpTo(){
+    target_address=$1
+    target_port=$2
+    self_port=$3
+
+    self_address='127.0.0.1'
+    default_target_port='443'
+    default_self_port='8888'
+
+    target_port=${target_port:-$default_target_port}
+    self_port=${self_port:-$default_self_port}
+
+    command="ssh ning1273@cbast.ord1.corp.rackspace.net -L ${self_address}:${self_port}:${target_address}:${target_port}"
+
+    echo "========================================================================================"
+    echo "self:      ${self_address}:${self_port}"
+    echo "target:    ${target_address}:${target_port}"
+    echo "command:   ${command}"
+    echo "========================================================================================"
+    echo
+
+    eval ${command}
+}
+
+loadConfigStore(){
+    launchctl load ~/Library/LaunchAgents/environment.plist
+    launchctl load ~/Library/LaunchAgents/environment.plist
+}
+
+loadDocker(){
+   # docker start vdo-postgres vdo-rabbitmq vdo-redis lcm-postgres
+   docker start vdo-postgres vdo-rabbitmq vdo-redis
+}
+
+raxvpcDemo(){
+    cp ${JSON_DICTIONARY_REPO}/DemoSpec.groovy ~/work/raxVPC/src/test/groovy/com/rackspace/vdo
+}
+
+
+fAppProcess(){
+    # fAppProcess rvi-api virtapp raxvpc
+    app_name=$1
+
+    jps -v | grep info.app.name=$app_name
+}

@@ -50,38 +50,6 @@ localpr() {
     git checkout pr"${prNum}"
 }
 
-alias cbastIn='ssh ning1273@cbast.ord1.corp.rackspace.net'
-
-jumpTo(){
-    target_address=$1
-    target_port=$2
-    self_port=$3
-
-    self_address='127.0.0.1'
-    default_target_port='443'
-    default_self_port='8888'
-
-    target_port=${target_port:-$default_target_port}
-    self_port=${self_port:-$default_self_port}
-
-    command="ssh ning1273@cbast.ord1.corp.rackspace.net -L ${self_address}:${self_port}:${target_address}:${target_port}"
-
-    echo "========================================================================================"
-    echo "self:      ${self_address}:${self_port}"
-    echo "target:    ${target_address}:${target_port}"
-    echo "command:   ${command}"
-    echo "========================================================================================"
-    echo
-
-    eval ${command}
-}
-
-fAppProcess(){
-    app_name=$1
-
-    jps -v | grep info.app.name=$app_name
-}
-
 cat() {
     if type ccat >/dev/null 2>&1; then
         ccat $@ ;
