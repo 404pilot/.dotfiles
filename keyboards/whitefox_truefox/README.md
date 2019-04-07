@@ -22,15 +22,17 @@
 
       > You can also chain them, for example `LCTL(LALT(KC_DEL))` makes a key that sends Control+Alt+Delete with a single keypress.
 
+   3. use `KC_TRNS` to pass **all modifiers** through to enable combinations like`fn(1) + w + command`
+
 3. build firmware
 
    https://docs.qmk.fm/#/newbs_building_firmware
 
    ```shell
    $ cd qmk_firmware
-
+   
    $ util/qmk_install.sh
-
+   
    $ make whitefox:404pilot
    ```
 
@@ -38,14 +40,14 @@
 
    ```shell
    $ dfu-util --list
-
+   
    dfu-util 0.9
-
+   
    Copyright 2005-2009 Weston Schmidt, Harald Welte and OpenMoko Inc.
    Copyright 2010-2016 Tormod Volden and Stefan Schmidt
    This program is Free Software and has ABSOLUTELY NO WARRANTY
    Please report bugs to http://sourceforge.net/p/dfu-util/tickets/
-
+   
    Found Runtime: [05ac:8290] ver=0167, devnum=6, cfg=1, intf=5, path="20-8", alt=0, name="UNKNOWN", serial="UNKNOWN"
    Found DFU: [1c11:b007] ver=0000, devnum=22, cfg=1, intf=0, path="20-1.1", alt=0, name="Kiibohd DFU", serial="mk20dx256vlh7"
    ```
@@ -55,12 +57,12 @@
    ```shell
    $ dfu-util -D whitefox_404pilot.bin -d 1c11:b007
    dfu-util 0.9
-
+   
    Copyright 2005-2009 Weston Schmidt, Harald Welte and OpenMoko Inc.
    Copyright 2010-2016 Tormod Volden and Stefan Schmidt
    This program is Free Software and has ABSOLUTELY NO WARRANTY
    Please report bugs to http://sourceforge.net/p/dfu-util/tickets/
-
+   
    dfu-util: Invalid DFU suffix signature
    dfu-util: A valid DFU suffix will be required in a future dfu-util release!!!
    Opening DFU capable USB device...
