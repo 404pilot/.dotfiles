@@ -38,7 +38,38 @@ loadDocker(){
    docker start vdo-postgres vdo-rabbitmq vdo-redis
 }
 
+reloadVdoRabbitmq(){
+    docker rm -f vdo-rabbitmq
+
+    docker run \
+        -d \
+        --name vdo-rabbitmq \
+        -e RABBITMQ_DEFAULT_VHOST=v1.api.rvi.rackspace.com \
+        -p 15672:15672 \
+        -p 5672:5672 \
+        -p 4369:4369 \
+        -p 5671:5671 \
+        -p 15671:15671 \
+        -p 25672:25672 \
+        rabbitmq:3-management
+}
+reloadVdoPostgres(){
+    docker rm -f vdo-postgres
+
+    docker run \
+        -d \
+        --name vdo-postgres \
+        -e POSTGRES_PASSWORD=123456 \
+        -e POSTGRES_USER=postgres \
+        -e POSTGRES_DB=raxVPC \
+        -p 5432:5432 \
+        postgres
+}
+
 raxvpcDemo(){
+    echo "============================================================================"
+    echo "remember to reset raxVPC.json file"
+    echo "============================================================================"
     cp ${JSON_DICTIONARY_REPO}/DemoSpec.groovy ~/work/raxVPC/src/test/groovy/com/rackspace/vdo
 }
 
