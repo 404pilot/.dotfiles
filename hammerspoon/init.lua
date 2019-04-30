@@ -172,7 +172,7 @@ screenWatcher = hs.screen.watcher.new(screenChangedCallback):start()
 -- ************************************************************
 -- wifi watcher to mute audio when it is not a home environment
 -- ************************************************************
-local homeSSIDs = {"NEXUS2016", "NEXUS2016_5G"}
+local homeSSIDs = {"404fi", "404fi_5G"}
 local lastSSID = hs.wifi.currentNetwork()
 
 function inTable(tbl, item)

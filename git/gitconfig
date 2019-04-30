@@ -29,6 +29,9 @@
 [pull]
     default = current
 
+[pager]
+    branch = false
+
 [filter "lfs"]
     process = git-lfs filter-process
     required = true

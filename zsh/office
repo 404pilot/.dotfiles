@@ -34,8 +34,8 @@ loadConfigStore(){
 }
 
 loadDocker(){
-   # docker start vdo-postgres vdo-rabbitmq vdo-redis lcm-postgres
-   docker start vdo-postgres vdo-rabbitmq vdo-redis
+    # docker start vdo-postgres vdo-rabbitmq vdo-redis lcm-postgres
+    docker start vdo-postgres vdo-rabbitmq vdo-redis
 }
 
 reloadVdoRabbitmq(){
@@ -53,6 +53,7 @@ reloadVdoRabbitmq(){
         -p 25672:25672 \
         rabbitmq:3-management
 }
+
 reloadVdoPostgres(){
     docker rm -f vdo-postgres
 
@@ -64,6 +65,32 @@ reloadVdoPostgres(){
         -e POSTGRES_DB=raxVPC \
         -p 5432:5432 \
         postgres
+}
+
+reloadVdoRedis(){
+    docker rm -f vdo-redis
+
+    docker run -p 6379:6379 --name vdo-redis -d redis
+}
+
+#######################################
+# reload dev env after restarting OS
+#######################################
+reloadDevEnv(){
+    isHardReload=${1:-false}
+
+    echo "isHardReload: ${isHardReload}"
+
+    loadConfigStore
+
+    if [[ "${isHardReload}" == true ]]
+    then
+        reloadVdoRabbitmq
+        reloadVdoPostgres
+        reloadVdoRedis
+    else
+        loadDocker
+    fi
 }
 
 raxvpcDemo(){
