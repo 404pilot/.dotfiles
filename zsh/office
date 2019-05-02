@@ -2,7 +2,94 @@ export PC_PRIV_CONF="$HOME/work/pcops_priv"
 export JSON_DICTIONARY_REPO="$HOME/work/json-directory-repo"
 # source ~/.bash_ning1273
 
-localpr() {
+log(){
+    echo "-------------------------------------------------------"
+    echo "----- $1"
+    echo "-------------------------------------------------------"
+}
+gAnyChange(){
+    log 'any local changes???'
+
+    if [[ `git status --porcelain` ]]; then
+        echo ">>>>> Local changes exist!!! You can stash them all!!!"
+
+        return 1
+    fi
+}
+
+gsync(){
+    gAnyChange
+
+    # default
+    branch='development'
+
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            -b|--branch)
+                branch="$2"
+                shift
+            ;;
+            -*)
+                echo "unknown option: $1"
+                return 1
+            ;;
+        esac
+
+        shift
+    done
+
+    git fetch upstream
+    git checkout $branch
+
+    log "syncing"
+
+    git reset --hard upstream/$branch
+}
+
+gCleanUp(){
+    # default
+    hardCleanUp=false
+
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --hard_clean_up)
+                hardCleanUp="$2"
+                shift
+            ;;
+            -*)
+                echo "unknown option: $1"
+                return 1
+            ;;
+        esac
+
+        shift
+    done
+
+    log 'cleaning up local merged branches'
+
+    git branch --merged master \
+    | grep -v "\(master\|development\|staing\)" \
+    | xargs -n 1 git branch -d
+
+    log 'cleaning up local PR branches'
+
+    git branch \
+    | grep pr \
+    | xargs -n 1 git branch -D
+
+    if [[ "${hardCleanUp}" == true ]]
+    then
+        log 'cleaning up >>REMOTE<< merged branches'
+
+        git branch --remote --merged master \
+        | grep -v master | grep -v development | grep -v staging | grep -v upstream \
+        | sed 's/origin\//:/' | xargs -n 1 git push origin
+    fi
+}
+
+localpr(){
+    gAnyChange
+
     prNum=$1
 
     git checkout development
@@ -12,7 +99,7 @@ localpr() {
 }
 
 cbastIn(){
-   ssh ning1273@cbast.ord1.corp.rackspace.net
+    ssh ning1273@cbast.ord1.corp.rackspace.net
 }
 
 jumpTo(){
@@ -145,28 +232,28 @@ reloadDevEnv(){
 
     if [[ "${reloadConfigStore}" == true ]]
     then
-        echo ">>>>>> load config store"
+        log "loading config store"
+
         loadConfigStore
     fi
 
     if [[ "${resetData}" == true ]]
     then
-        echo ">>>>>> reset containers"
+        log 'resetting containers'
 
         reloadVdoRabbitmq
         reloadVdoPostgres
         reloadVdoRedis
     else
-        echo ">>>>>> restart containers"
+        log 'restarting containers'
 
         restartContainers
     fi
 }
 
 raxvpcDemo(){
-    echo "============================================================================"
-    echo "remember to reset raxVPC.json file"
-    echo "============================================================================"
+    log "remember to reset raxVPC.json file"
+
     cp ${JSON_DICTIONARY_REPO}/DemoSpec.groovy ~/work/raxVPC/src/test/groovy/com/rackspace/vdo
 }
 
@@ -178,5 +265,5 @@ fAppProcess(){
 }
 
 vdoHelper(){
-   grep -E '^[[:space:]]*([[:alnum:]_]+[[:space:]]*\(\)|function[[:space:]]+[[:alnum:]_]+)' ~/.dotfiles/zsh/office
+    grep -E '^[[:space:]]*([[:alnum:]_]+[[:space:]]*\(\)|function[[:space:]]+[[:alnum:]_]+)' ~/.dotfiles/zsh/office
 }
