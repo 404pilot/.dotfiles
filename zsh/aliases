@@ -41,15 +41,6 @@ gradle() {
     fi
 }
 
-localpr() {
-    prNum=$1
-
-    git checkout development
-    git branch -D pr"${prNum}"
-    git fetch upstream pull/"$prNum"/head:pr"$prNum"
-    git checkout pr"${prNum}"
-}
-
 cat() {
     if type ccat >/dev/null 2>&1; then
         ccat $@ ;

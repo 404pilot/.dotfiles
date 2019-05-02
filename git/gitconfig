@@ -31,6 +31,8 @@
 
 [pager]
     branch = false
+    stash = false
+    log = false
 
 [filter "lfs"]
     process = git-lfs filter-process
