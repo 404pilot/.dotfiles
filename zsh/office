@@ -7,6 +7,7 @@ log(){
     echo "----- $1"
     echo "-------------------------------------------------------"
 }
+
 gAnyChange(){
     log 'any local changes???'
 
@@ -18,7 +19,7 @@ gAnyChange(){
 }
 
 gsync(){
-    gAnyChange
+    gAnyChange; if [[ "$?" -ne 0 ]]; then return 1; fi
 
     # default
     branch='development'
@@ -46,14 +47,22 @@ gsync(){
     git reset --hard upstream/$branch
 }
 
+gCleanUpPr(){
+    log 'cleaning up local PR branches'
+
+    git branch \
+    | grep pr \
+    | xargs -n 1 git branch -D
+}
+
 gCleanUp(){
     # default
-    hardCleanUp=false
+    remoteCleanUp=false
 
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
-            --hard_clean_up)
-                hardCleanUp="$2"
+            --remote)
+                remoteCleanUp="$2"
                 shift
             ;;
             -*)
@@ -71,13 +80,9 @@ gCleanUp(){
     | grep -v "\(master\|development\|staing\)" \
     | xargs -n 1 git branch -d
 
-    log 'cleaning up local PR branches'
+    gCleanUpPr; if [[ "$?" -ne 0 ]]; then return 1; fi
 
-    git branch \
-    | grep pr \
-    | xargs -n 1 git branch -D
-
-    if [[ "${hardCleanUp}" == true ]]
+    if [[ "${remoteCleanUp}" == true ]]
     then
         log 'cleaning up >>REMOTE<< merged branches'
 
@@ -88,7 +93,7 @@ gCleanUp(){
 }
 
 localpr(){
-    gAnyChange
+    gAnyChange; if [[ "$?" -ne 0 ]]; then return 1; fi
 
     prNum=$1
 
