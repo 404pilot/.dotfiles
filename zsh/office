@@ -269,6 +269,15 @@ fAppProcess(){
     jps -v | grep info.app.name=$app_name
 }
 
+showVcfFiles(){
+    rvi_apis="${HOME}/work/RVI-Api/grails-app/resources/com/rackspace/vdo/api/VcfResource.groovy"
+    virtapp_controllers_folders="${HOME}/work/virtapp/grails-app/controllers/com/rackspace/virtapp/vcf"
+    virtapp_controllers="${HOME}/work/virtapp/grails-app/controllers/com/rackspace/virtapp/vcf/VcfController.groovy"
+    virtapp_apis="${HOME}/work/virtapp/src/main/groovy/com/rackspace/vdo/clients/vdo/rviapi/v1/ex/RviApiClient.groovy"
+
+    code $rvi_apis $virtapp_controllers $virtapp_apis $virtapp_controllers_folders
+}
+
 vdoHelper(){
     grep -E '^[[:space:]]*([[:alnum:]_]+[[:space:]]*\(\)|function[[:space:]]+[[:alnum:]_]+)' ~/.dotfiles/zsh/office
 }
