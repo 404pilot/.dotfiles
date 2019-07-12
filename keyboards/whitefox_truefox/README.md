@@ -1,3 +1,9 @@
+# Whitefox
+
+# Layout
+
+![truefox](truefox.png)
+
 # Keymap
 
 https://github.com/404pilot/qmk_firmware/tree/master/keyboards/whitefox/keymaps/404pilot
