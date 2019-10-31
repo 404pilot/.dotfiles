@@ -56,6 +56,7 @@ gCleanUpPr(){
 }
 
 gCleanUp(){
+    # might want try to gather all info first: git checkout master && git pull upstream master
     # default
     remoteCleanUp=false
 
@@ -270,12 +271,13 @@ fAppProcess(){
 }
 
 showVcfFiles(){
-    rvi_apis="${HOME}/work/RVI-Api/grails-app/resources/com/rackspace/vdo/api/VcfResource.groovy"
+    rvi_vcf_api="${HOME}/work/RVI-Api/grails-app/resources/com/rackspace/vdo/api/VcfResource.groovy"
+    rvi_hypervisor_api="${HOME}/work/RVI-Api/grails-app/resources/com/rackspace/vdo/api/HypervisorResource.groovy"
     virtapp_controllers_folders="${HOME}/work/virtapp/grails-app/controllers/com/rackspace/virtapp/vcf"
     virtapp_controllers="${HOME}/work/virtapp/grails-app/controllers/com/rackspace/virtapp/vcf/VcfController.groovy"
     virtapp_apis="${HOME}/work/virtapp/src/main/groovy/com/rackspace/vdo/clients/vdo/rviapi/v1/ex/RviApiClient.groovy"
 
-    code $rvi_apis $virtapp_controllers $virtapp_apis $virtapp_controllers_folders
+    code $rvi_vcf_api $rvi_hypervisor_api $virtapp_controllers $virtapp_apis $virtapp_controllers_folders
 }
 
 vdoHelper(){

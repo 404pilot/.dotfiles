@@ -16,6 +16,7 @@
     lol = log --oneline -n 10
     bye = reset --hard HEAD
     wormhole = reset --hard HEAD~1
+    wip = reset --soft HEAD~1
     sh = stash
     mg = merge --no-ff
 

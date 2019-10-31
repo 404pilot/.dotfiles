@@ -80,6 +80,11 @@ extract() {
 
 alias activeport='netstat -tulanp'
 
+soundsgood() {
+    sudo killall coreaudiod
+    # alias soundsgood='sudo kextunload /System/Library/Extensions/AppleHDA.kext;sudo kextload /System/Library/Extensions/AppleHDA.kext'
+}
+
 # determine operating system
 myos=`uname -s`
 
@@ -89,7 +94,6 @@ case "$myos" in
 		# alias fnote='find ~/pHome/pNote -type f -name "*.md" | xargs grep -i'
 		# alias sublime='open -a "Sublime Text"'
 		alias click='open .'
-		alias soundsgood='sudo kextunload /System/Library/Extensions/AppleHDA.kext;sudo kextload /System/Library/Extensions/AppleHDA.kext'
 		;;
 	# Linux
 	Linux)
