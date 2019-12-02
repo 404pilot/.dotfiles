@@ -180,6 +180,25 @@ brew deps --installed
 
 ### details
 
+Homebrew installs packages to their own directory and then symlinks their files into `/usr/local`.
+```
+$ cd /usr/local
+$ find Cellar
+Cellar/wget/1.16.1
+Cellar/wget/1.16.1/bin/wget
+Cellar/wget/1.16.1/share/man/man1/wget.1
+
+$ ls -l bin
+bin/wget -> ../Cellar/wget/1.16.1/bin/wget
+```
+
+```
+$ echo $(brew --prefix)
+/usr/local
+```
+
+
+
 1. homebrew install apps @ `/usr/local/Cellar/`
 2. create corresponding link @ `/usr/local/bin/`
 

@@ -7,3 +7,6 @@ fi
 if [ -d ~/.sdkman ]; then
   source "$HOME/.sdkman/bin/sdkman-init.sh"
 fi
+
+## homebrew
+export PATH="/usr/local/sbin:$PATH"
