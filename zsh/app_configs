@@ -3,6 +3,11 @@ if which jenv > /dev/null ; then
   eval "$(jenv init -)"
 fi
 
+## init pyenv if it is installed
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
 ## configure sdkman
 if [ -d ~/.sdkman ]; then
   source "$HOME/.sdkman/bin/sdkman-init.sh"

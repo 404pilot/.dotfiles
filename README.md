@@ -145,6 +145,67 @@ $ mvn -version
 
 
 
+## pyenv
+
+### installation
+
+```
+# and add eval "$(pyenv init -)" in zsh file
+$ brew install pyenv
+```
+
+### details
+
+```shell
+# system-installed python
+$ ls -al /usr/bin/python*
+
+# brew-installed python
+$ ls -al /usr/local/bin/python*
+
+# pyenv-installed python
+$ ls -alFh ~/.pyenv/versions/
+```
+
+* macos install python @`/System/Library/Frameworks/Python.framework` -> ` /usr/bin/`
+* brew install python @`/Cellar/python` -> `/usr/local/bin/`
+* `pyenv` install python @`~/.pyenv/versions/`
+
+### usage
+
+```
+➜  ~ pyenv versions
+  system
+* 3.6.9 (set by /Users/foo/.pyenv/version)
+  3.8.0
+➜  ~ pyenv global 3.8.0
+➜  ~ pyenv shell 3.8.0
+➜  ~ pyenv which python
+/Users/foo/.pyenv/versions/3.8.0/bin/python
+➜  ~ python --version
+Python 3.8.0
+➜  ~ which python
+/Users/foo/.pyenv/shims/python
+```
+
+
+
+```
+# disable specific shell version in order to activate the version specified in .python-version
+$ pyenv shell --unset
+```
+
+
+
+which python is used?
+
+1. pyenv shell
+2. pyenv local
+3. pyenv global
+4. python in the `$PATH` (system or brew-installed one)
+
+
+
 ## Homebrew
 
 ### usages

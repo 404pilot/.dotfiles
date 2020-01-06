@@ -34,9 +34,14 @@ echo "#### Config git"
 rm ~/.gitconfig || true \
   && ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
 
-if [ -d ~/work ] && [ ! -f ~/work/gitconfig-work ]; then
-  echo "######## Please modify ~/work/gitconfig-work"
-  cp ~/.dotfiles/git/gitconfig-work ~/work
+if [ -d ~/work/private ] && [ ! -f ~/work/private/gitconfig-work ]; then
+  echo "######## Please modify ~/work/private/gitconfig-work"
+  cp ~/.dotfiles/git/gitconfig-work ~/work/private
+fi
+
+if [ -d ~/work/public ] && [ ! -f ~/work/public/gitconfig-work ]; then
+  echo "######## Please modify ~/work/public/gitconfig-work"
+  cp ~/.dotfiles/git/gitconfig-work ~/work/public
 fi
 
 ######################################################
