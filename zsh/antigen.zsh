@@ -4,10 +4,24 @@ source /usr/local/share/antigen/antigen.zsh
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
 # antigen bundle git
 antigen bundle autojump # have to run `brew install autojump` first
 antigen bundle ssh-agent
+antigen bundle extract
+# antigen bundle vi-mode
+# antigen bundle dotenv
+
+## disable ones that are not currently used
+# antigen bundle darvid/zsh-poetry
+antigen bundle pipenv
+antigen bundle jenv
+antigen bundle pyenv
+antigen bundle sdk
+# antigen bundle aws
+# antigen bundle gradle
+# antigen bundle docker
+# antigen bundle docker-compose
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions

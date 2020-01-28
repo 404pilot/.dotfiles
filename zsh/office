@@ -1,6 +1,5 @@
-export PC_PRIV_CONF="$HOME/work/pcops_priv"
-export JSON_DICTIONARY_REPO="$HOME/work/json-directory-repo"
-# source ~/.bash_ning1273
+export PC_PRIV_CONF="$HOME/work/private/pcops_priv"
+export JSON_DICTIONARY_REPO="$HOME/work/private/json-directory-repo"
 
 log(){
     echo "-------------------------------------------------------"
@@ -260,7 +259,7 @@ reloadDevEnv(){
 raxvpcDemo(){
     log "remember to reset raxVPC.json file"
 
-    cp ${JSON_DICTIONARY_REPO}/DemoSpec.groovy ~/work/raxVPC/src/test/groovy/com/rackspace/vdo
+    cp ${JSON_DICTIONARY_REPO}/DemoSpec.groovy ~/work/private/raxVPC/src/test/groovy/com/rackspace/vdo
 }
 
 fAppProcess(){
@@ -271,11 +270,11 @@ fAppProcess(){
 }
 
 showVcfFiles(){
-    rvi_vcf_api="${HOME}/work/RVI-Api/grails-app/resources/com/rackspace/vdo/api/VcfResource.groovy"
-    rvi_hypervisor_api="${HOME}/work/RVI-Api/grails-app/resources/com/rackspace/vdo/api/HypervisorResource.groovy"
-    virtapp_controllers_folders="${HOME}/work/virtapp/grails-app/controllers/com/rackspace/virtapp/vcf"
-    virtapp_controllers="${HOME}/work/virtapp/grails-app/controllers/com/rackspace/virtapp/vcf/VcfController.groovy"
-    virtapp_apis="${HOME}/work/virtapp/src/main/groovy/com/rackspace/vdo/clients/vdo/rviapi/v1/ex/RviApiClient.groovy"
+    rvi_vcf_api="${HOME}/work/private/RVI-Api/grails-app/resources/com/rackspace/vdo/api/VcfResource.groovy"
+    rvi_hypervisor_api="${HOME}/work/private/RVI-Api/grails-app/resources/com/rackspace/vdo/api/HypervisorResource.groovy"
+    virtapp_controllers_folders="${HOME}/work/private/virtapp/grails-app/controllers/com/rackspace/virtapp/vcf"
+    virtapp_controllers="${HOME}/work/private/virtapp/grails-app/controllers/com/rackspace/virtapp/vcf/VcfController.groovy"
+    virtapp_apis="${HOME}/work/private/virtapp/src/main/groovy/com/rackspace/vdo/clients/vdo/rviapi/v1/ex/RviApiClient.groovy"
 
     code $rvi_vcf_api $rvi_hypervisor_api $virtapp_controllers $virtapp_apis $virtapp_controllers_folders
 }

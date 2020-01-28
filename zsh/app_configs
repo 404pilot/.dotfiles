@@ -1,17 +1,57 @@
-## init jEnv if it is installed
-if which jenv > /dev/null ; then
-  eval "$(jenv init -)"
-fi
+########################################################################
+# it is done by zsh plugin
+# init jEnv if it is installed
+########################################################################
+# if which jenv > /dev/null ; then
+#   eval "$(jenv init -)"
+# fi
 
-## init pyenv if it is installed
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+########################################################################
+# it is done by zsh plugin
+# init pyenv if it is installed
+########################################################################
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
 
+
+########################################################################
+# sdkman
+# init sdkman
+########################################################################
 ## configure sdkman
 if [ -d ~/.sdkman ]; then
   source "$HOME/.sdkman/bin/sdkman-init.sh"
 fi
 
-## homebrew
+########################################################################
+# homebrew
+# add path
+########################################################################
 export PATH="/usr/local/sbin:$PATH"
+
+########################################################################
+# poetry
+# add path
+########################################################################
+source ~/.poetry/env
+
+########################################################################
+# fix issue that paste is slow caused by zsh
+########################################################################
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+
+########################################################################
+# other
+########################################################################
+# pipenv plugin is disabled since poetry is in use; maybe put poetry plugin before pipenv
+# eval "$(pipenv --completion)"

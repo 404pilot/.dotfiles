@@ -10,7 +10,7 @@ dotfiles
 
    `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-3. `brew install git jenv ccat`
+3. `brew install git ccat`
 
 4. `brew install vim --with-override-system-vi`
 
@@ -18,9 +18,13 @@ dotfiles
 
 6. install `shuttle`, `karabiner-elements`, `hammerspoon`
 
-7. instal `sdkman`
+7. optinal installations
 
-   `curl -s "https://get.sdkman.io" | bash`
+   1. install `sdkman`
+
+      `curl -s "https://get.sdkman.io" | bash`
+
+   2. `brew install jenv pyenv sops maven gradle`
 
 8. run script `./up.sh` to install **configs** for
 
@@ -39,10 +43,8 @@ dotfiles
 
 10. other usefull apps:
 
-   * `Visual Studio Code`
-     * install `editorConfig` plugin
-   * `sdk install gradle`
-   * `sdk install maven`
+  * `Visual Studio Code`
+    * install `editorConfig` plugin
 
 ## hammerspoon
 

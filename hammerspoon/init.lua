@@ -41,8 +41,8 @@ hs.hotkey.bind({"alt"}, "j", toPreviousScreen)
 shortcuts = {
   -- c       =   "Google Chrome Canary",
   c       =   "Google Chrome",
-  a       =   "IntelliJ IDEA",
-  -- s       =   "RubyMine",
+  -- a       =   "IntelliJ IDEA",
+  s       =   "PyCharm Community",
   v       =   "Postman",
   e       =   "iTerm",
   -- r       =   "Royal TSX",
@@ -51,11 +51,9 @@ shortcuts = {
   -- ["1"]   =   "Atom",
   ["1"]   =   "Visual Studio Code",
   ["2"]   =   "Typora",
-  -- ["2"]   =   "Mark Text",
-  -- ["3"]   =   "Bear",
   ["3"]   =   "Notion",
   ['4']   =   "Slack",
-  -- ['5']   =   "Postico",
+  ['5']   =   "Royal TSX",
   ['6']   =   "Microsoft Outlook"
 }
 
