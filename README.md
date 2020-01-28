@@ -61,6 +61,47 @@ for key,value in pairs(hs.application.runningApplications()) do print(key,value)
     path = ~/work/gitconfig-work
 ```
 
+```
+# to see which user is using
+ssh -T git@github.com-personal
+ssh -T git@github.com
+
+# list all keys
+ssh-add -l
+# delete all cached keys
+ssh-add -D
+```
+
+
+
+```
+# sample ~/.ssh/config
+
+Host github.com
+  Hostname ssh.github.com
+  Port 443
+  User git
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_rsa
+  IdentitiesOnly yes
+
+# modify gitconfig to use github.com-personal in the upstream
+Host github.com-personal
+  Hostname ssh.github.com
+  Port 443
+  User git
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_rsa_personal
+  IdentitiesOnly yes
+
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa
+```
+
+
+
 ## iTerm2
 
 `General` -> `Preferences`
