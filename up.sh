@@ -28,23 +28,6 @@ rm ~/.zshrc || true \
   && ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 
 ######################################################
-## git
-echo "#### Config git"
-
-rm ~/.gitconfig || true \
-  && ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
-
-if [ -d ~/work/private ] && [ ! -f ~/work/private/gitconfig-work ]; then
-  echo "######## Please modify ~/work/private/gitconfig-work"
-  cp ~/.dotfiles/git/gitconfig-work ~/work/private
-fi
-
-if [ -d ~/work/public ] && [ ! -f ~/work/public/gitconfig-work ]; then
-  echo "######## Please modify ~/work/public/gitconfig-work"
-  cp ~/.dotfiles/git/gitconfig-work ~/work/public
-fi
-
-######################################################
 ## editorConfig
 echo "#### Config editorConfig"
 
@@ -82,4 +65,30 @@ echo "#### Config shuttle"
 rm ~/.shuttle.json || true \
   && ln -s ~/.dotfiles/shuttle/shuttle.json ~/.shuttle.json
 
+######################################################
+## poetry
+POETRY_CONFIG_PATH="${HOME}/Library/Application Support/pypoetry"
+
+rm ${POETRY_CONFIG_PATH}/config.toml || true \
+  && ln -s ~/.dotfiles/poetry/config.toml ${POETRY_CONFIG_PATH}/config.toml
+
+######################################################
+## git
+echo "#### Config git"
+
+rm ~/.gitconfig || true \
+  && ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
+
+if [ -d ~/work/private ] && [ ! -f ~/work/private/gitconfig-work ]; then
+  echo "######## Please modify ~/work/private/gitconfig-work"
+  cp ~/.dotfiles/git/gitconfig-work ~/work/private
+fi
+
+if [ -d ~/work/public ] && [ ! -f ~/work/public/gitconfig-work ]; then
+  echo "######## Please modify ~/work/public/gitconfig-work"
+  cp ~/.dotfiles/git/gitconfig-work ~/work/public
+fi
+
+######################################################
+## done
 echo "#### Finish"
