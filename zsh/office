@@ -279,6 +279,18 @@ showVcfFiles(){
     code $rvi_vcf_api $rvi_hypervisor_api $virtapp_controllers $virtapp_apis $virtapp_controllers_folders
 }
 
+updateAws(){
+    AWS_CREDENTIALS_FILE="${HOME}/.aws/credentials"
+
+    log "cliboard -> aws crednentials"
+
+    clipboard="$(pbpaste)"
+
+    echo $clipboard > $AWS_CREDENTIALS_FILE
+
+    cat $AWS_CREDENTIALS_FILE
+}
+
 vdoHelper(){
     grep -E '^[[:space:]]*([[:alnum:]_]+[[:space:]]*\(\)|function[[:space:]]+[[:alnum:]_]+)' ~/.dotfiles/zsh/office
 }
