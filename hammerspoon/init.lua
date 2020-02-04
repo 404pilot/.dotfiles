@@ -62,6 +62,17 @@ for shortcut, app in pairs(shortcuts) do
 end
 
 -- ************************************************************
+-- Scripts
+-- ************************************************************
+local function setAwsCredentials()
+  hs.execute("echo \"$(pbpaste)\" > ~/.aws/credentials")
+
+  hs.notify.new({title="Hammerspoon", informativeText="AWS credentials is updated"}):send()
+end
+
+hs.hotkey.bind({"alt"}, "8", setAwsCredentials)
+
+-- ************************************************************
 -- auto layout
 -- ************************************************************
 -- get name by
