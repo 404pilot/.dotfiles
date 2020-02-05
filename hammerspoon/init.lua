@@ -73,6 +73,19 @@ end
 hs.hotkey.bind({"alt"}, "8", setAwsCredentials)
 
 -- ************************************************************
+-- URL handlers
+-- ************************************************************
+-- ➜  Chrome  defaults read com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox
+-- 2020-02-05 09:19:29.451 defaults[87394:6359726]
+-- The domain/default pair of (com.google.Chrome, ExternalProtocolDialogShowAlwaysOpenCheckbox) does not exist
+-- ➜  Chrome defaults write com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox -bool true
+
+-- ➜  Chrome defaults read com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox
+-- 1
+-- Restart Chrome
+hs.urlevent.bind("update_aws", setAwsCredentials)
+
+-- ************************************************************
 -- auto layout
 -- ************************************************************
 -- get name by
@@ -227,3 +240,43 @@ function ssidChangedCallback()
 end
 
 wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback):start()
+
+
+-- function keyStrokes(str)
+--   return function()
+--       hs.eventtap.keyStrokes(str)
+--   end
+-- end
+-- hs.hotkey.bind({"ctrl", "alt", "cmd"}, "L", keyStrokes("console.log("))
+
+-- function chrome_active_tab_with_name(name)
+--   return function()
+--       hs.osascript.javascript([[
+--           // below is javascript code
+--           var chrome = Application('Google Chrome');
+--           chrome.activate();
+--           var wins = chrome.windows;
+
+--           // loop tabs to find a web page with a title of <name>
+--           function main() {
+--               for (var i = 0; i < wins.length; i++) {
+--                   var win = wins.at(i);
+--                   var tabs = win.tabs;
+--                   for (var j = 0; j < tabs.length; j++) {
+--                   var tab = tabs.at(j);
+--                   tab.title(); j;
+--                   if (tab.title().indexOf(']] .. name .. [[') > -1) {
+--                           win.activeTabIndex = j + 1;
+--                           return;
+--                       }
+--                   }
+--               }
+--           }
+--           main();
+--           // end of javascript
+--       ]])
+--   end
+-- end
+
+-- --- Use
+-- hs.hotkey.bind({"alt"}, "H", chrome_active_tab_with_name("HipChat"))
