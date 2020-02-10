@@ -19,6 +19,7 @@
 (function () {
   'use strict';
 
+  let consoleButtonClassName = "particles-button particles-button--secondary particles-button--regular particles-button console-signin-button"
   let buttonClassName = "particles-button particles-button--secondary particles-button--regular particles-button generate-key-button"
   let credTabId = "__react_clipboard_3__"
   let buttonSelector = ".particles-button.particles-button--secondary.particles-button--regular.particles-button.generate-key-button"
@@ -44,7 +45,12 @@
     GM_setClipboard(cred);
 
     // GM_openInTab("hammerspoon://update_aws", { "active": true, "setParent": true })
-    GM_openInTab("hammerspoon://update_aws", true)
+    GM_openInTab("hammerspoon://update_aws", true);
+
+    let baseUrl = window.location.origin;
+    let consoleUrl = document.getElementsByClassName(consoleButtonClassName)[0].getAttribute("href");
+
+    GM_openInTab(baseUrl + consoleUrl, { "active": true, "setParent": true });
 
     // GM_xmlhttpRequest({
     //   method: 'HEAD',
