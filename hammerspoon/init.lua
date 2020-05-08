@@ -39,14 +39,14 @@ hs.hotkey.bind({"alt"}, "j", toPreviousScreen)
 -- ************************************************************
 
 shortcuts = {
-  -- c       =   "Google Chrome Canary",
+  f       =   "Google Chrome Canary",
   c       =   "Google Chrome",
-  -- a       =   "IntelliJ IDEA",
+  a       =   "IntelliJ IDEA",
   s       =   "PyCharm Community",
   v       =   "Postman",
   e       =   "iTerm",
   -- r       =   "Royal TSX",
-  r       =   "Postico",
+  -- r       =   "Postico",
   ["`"]   =   "Finder",
   -- ["1"]   =   "Atom",
   ["1"]   =   "Visual Studio Code",
@@ -83,6 +83,9 @@ hs.hotkey.bind({"alt"}, "8", setAwsCredentials)
 -- ➜  Chrome defaults read com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox
 -- 1
 -- Restart Chrome
+-- $ defaults read | grep Chrome
+-- $ defaults write com.google.Chrome.canary ExternalProtocolDialogShowAlwaysOpenCheckbox -bool true
+-- $ defaults read com.google.Chrome.canary
 hs.urlevent.bind("update_aws", setAwsCredentials)
 
 -- ************************************************************

@@ -97,9 +97,11 @@ localpr(){
 
     prNum=$1
 
-    git checkout development
+    # git checkout development
+    git checkout master
     git branch -D pr"${prNum}"
-    git fetch upstream pull/"$prNum"/head:pr"$prNum"
+    # git fetch upstream pull/"$prNum"/head:pr"$prNum"
+    git fetch origin pull/"$prNum"/head:pr"$prNum"
     git checkout pr"${prNum}"
 }
 
@@ -289,6 +291,18 @@ updateAws(){
     echo $clipboard > $AWS_CREDENTIALS_FILE
 
     cat $AWS_CREDENTIALS_FILE
+}
+
+rpcvDemo(){
+    source=~/work/public/vdo-rpcv/rpcv/tests/rpcv_demo.py
+    copy=${JSON_DICTIONARY_REPO}/rpcv_demo.py
+
+    if [[ -f "$source" ]]; then
+        cp $source $copy
+        rm $source
+    else
+        cp $copy $source
+    fi
 }
 
 vdoHelper(){

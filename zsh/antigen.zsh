@@ -7,6 +7,7 @@ antigen use oh-my-zsh
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
 # antigen bundle git
 antigen bundle autojump # have to run `brew install autojump` first
+#antigen bundle ssh-agent id_rsa id_rsa_personal # load two different ssh keys
 antigen bundle ssh-agent
 antigen bundle extract
 # antigen bundle vi-mode
@@ -18,6 +19,7 @@ antigen bundle pipenv
 antigen bundle jenv
 antigen bundle pyenv
 antigen bundle sdk
+antigen bundle nvm
 # antigen bundle aws
 # antigen bundle gradle
 # antigen bundle docker

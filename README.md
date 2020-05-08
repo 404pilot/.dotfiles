@@ -55,27 +55,37 @@ for key,value in pairs(hs.application.runningApplications()) do print(key,value)
 
 ## Git
 
+### how to manage different github accounts
+
 ```
 # root .gitconfig
 [includeIf "gitdir:~/work/"]
     path = ~/work/gitconfig-work
 ```
+### how to manage different github ssh keys
+
+for personal GitHub repos, use `git clone  git@github.com-personal:404pilot/.dotfiles.git` instead of `git@github.com:404pilot/.dotfiles.git`
 
 ```
-# to see which user is using
-ssh -T git@github.com-personal
-ssh -T git@github.com
+# to figure out which user is using
+$ ssh -T git@github.com-personal
+$ ssh -T git@github.com
 
 # list all keys
-ssh-add -l
+$ ssh-add -l
+
 # delete all cached keys
-ssh-add -D
+$ ssh-add -D
+
+# add keys; keys needs to be added first otherwise certain keys will be cached for a certain endpoint to be used 
+$ ssh-add ~/.ssh/id_rsa
+$ ssh-add ~/.ssh/id_rsa_personal
 ```
 
 
 
 ```
-# sample ~/.ssh/config
+$ cat ~/.ssh/config
 
 Host github.com
   Hostname ssh.github.com
@@ -100,6 +110,11 @@ Host *
   IdentityFile ~/.ssh/id_rsa
 ```
 
+```
+$ ls ~/.ssh
+id_rsa              id_rsa.pub          id_rsa_personal     id_rsa_personal.pub
+```
+
 
 
 ## iTerm2
@@ -122,6 +137,9 @@ $ antigen cleanup
 $ antigen selfupdate
 # update all repos in $(antigen list)
 $ antigen update
+
+# if there is a problem
+$ antigen reset
 
 # reload zsh config
 $ exec zsh

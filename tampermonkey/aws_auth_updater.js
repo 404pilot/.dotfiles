@@ -1,14 +1,10 @@
 // ==UserScript==
-// @name         aws updater
+// @name         aws auth updater
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
 // @author       404pilot
-// **********************************************************************************
-// **********************************************************************************
-// @match        {{URL}}
-// **********************************************************************************
-// **********************************************************************************
+// @match        https://manage.rackspace.com/racker/rackspace-accounts/121*/aws-accounts/81656*
 // @grant        GM_setClipboard
 // @grant        GM_xmlhttpRequest
 // @grant        GM_openInTab
