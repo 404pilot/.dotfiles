@@ -12,13 +12,13 @@ fi
 
 ######################################################
 ## bash & bash_completion & jenv & rbenv
-echo "#### Config bash and other configs (bash_completion, jenv, rbenv)"
+# echo "#### Config bash and other configs (bash_completion, jenv, rbenv)"
 
-cp ~/.dotfiles/bash/bash_profile ~/.bash_profile
+# cp ~/.dotfiles/bash/bash_profile ~/.bash_profile
 
-rm ~/.bashrc
-echo "source ~/.dotfiles/bash/bash_bridge" > ~/.bashrc
-echo "source ~/.dotfiles/bash/bash_other_app_configs" >> ~/.bashrc
+# rm ~/.bashrc
+# echo "source ~/.dotfiles/bash/bash_bridge" > ~/.bashrc
+# echo "source ~/.dotfiles/bash/bash_other_app_configs" >> ~/.bashrc
 
 ######################################################
 ## zsh & jenv & sdkman
@@ -26,6 +26,13 @@ echo "#### Config zsh and other configs (bash_completion, jenv, sdkman ...)"
 
 rm ~/.zshrc || true \
   && ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
+
+######################################################
+## editorConfig
+echo "#### Config vim"
+
+rm ~/.vimrc || true \
+  && ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 
 ######################################################
 ## editorConfig
@@ -44,6 +51,8 @@ rm ~/.tmux.conf || true \
 
 ######################################################
 ## Karabiner
+## by default, click 'Open config folder' from karabiner will delete the symbolink file and generate the latest configuration json file
+##   which it is a way to configure stuff in GUI first and then get the corresponding configuration file
 echo "#### Config karabiner"
 
 rm ~/.config/karabiner/karabiner.json || true \
@@ -69,8 +78,8 @@ rm ~/.shuttle.json || true \
 ## poetry
 POETRY_CONFIG_PATH="${HOME}/Library/Application Support/pypoetry"
 
-rm ${POETRY_CONFIG_PATH}/config.toml || true \
-  && ln -s ~/.dotfiles/poetry/config.toml ${POETRY_CONFIG_PATH}/config.toml
+rm "${POETRY_CONFIG_PATH}/config.toml" || true \
+  && ln -s ~/.dotfiles/poetry/config.toml "${POETRY_CONFIG_PATH}/config.toml"
 
 ######################################################
 ## git
