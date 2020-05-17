@@ -1,3 +1,4 @@
+# Remember, there are some ZSH plugins that manage some programs' configuration (jenv, pyenv, poetry, etc...)
 ########################################################################
 # it is done by zsh plugin
 # init jEnv if it is installed
@@ -29,12 +30,6 @@ fi
 # add path
 ########################################################################
 export PATH="/usr/local/sbin:$PATH"
-
-########################################################################
-# poetry
-# add path
-########################################################################
-source ~/.poetry/env
 
 ########################################################################
 # fix issue that paste is slow caused by zsh

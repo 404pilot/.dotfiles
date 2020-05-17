@@ -55,7 +55,6 @@
     document.getElementById(authOptionId).click();
   }
 
-
   function focusInput() {
     console.log("focusing");
 

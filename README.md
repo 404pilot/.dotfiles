@@ -77,7 +77,7 @@ $ ssh-add -l
 # delete all cached keys
 $ ssh-add -D
 
-# add keys; keys needs to be added first otherwise certain keys will be cached for a certain endpoint to be used 
+# add keys; keys needs to be added first otherwise certain keys will be cached for a certain endpoint to be used
 $ ssh-add ~/.ssh/id_rsa
 $ ssh-add ~/.ssh/id_rsa_personal
 ```
@@ -128,6 +128,8 @@ Manually type `~/.dotfiles/iTerm2`
 
 
 ## Antigen & Zsh
+
+[how a specific plugin works](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins)
 
 ``` shell
 $ antigen list
@@ -270,6 +272,7 @@ which python is used?
 ## Homebrew
 
 ### usages
+[how a specific formula works](https://github.com/Homebrew/homebrew-core/tree/master/Formula)
 [FAQ](http://docs.brew.sh/FAQ.html)
 
 ```
