@@ -11,5 +11,12 @@
 (function() {
   'use strict';
 
-  GM_openInTab("https://rackspace.slack.com/ssb/signin_redirect", true);
+  function loginSlack(openInBackgroud) {
+    console.log("logging slack");
+    GM_openInTab("https://rackspace.slack.com/ssb/signin_redirect", openInBackgroud);
+  }
+
+  loginSlack(false);
+
+  setTimeout(function(){loginSlack(true)}, 40000);
 })();

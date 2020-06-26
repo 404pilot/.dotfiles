@@ -105,10 +105,6 @@ localpr(){
     git checkout pr"${prNum}"
 }
 
-cbastIn(){
-    ssh ning1273@cbast.ord1.corp.rackspace.net
-}
-
 jumpTo(){
     # default values
     self_address='127.0.0.1'
@@ -152,7 +148,7 @@ jumpTo(){
         return 1
     fi
 
-    command="ssh ning1273@cbast.ord1.corp.rackspace.net -L ${self_address}:${self_port}:${target_address}:${target_port}"
+    command="ssh cbast.ord1.corp.rackspace.net -L ${self_address}:${self_port}:${target_address}:${target_port}"
 
     echo "========================================================================================"
     echo "self:      ${self_address}:${self_port}"

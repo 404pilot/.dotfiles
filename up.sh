@@ -50,6 +50,13 @@ rm ~/.tmux.conf || true \
   && ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 ######################################################
+## ssh
+echo "#### Config ssh"
+
+# make sure terminal: $TERM=xterm-256color
+rm ~/.ssh/config || true \
+  && ln -s ~/.dotfiles/ssh/config ~/.ssh/config
+######################################################
 ## Karabiner
 ## by default, click 'Open config folder' from karabiner will delete the symbolink file and generate the latest configuration json file
 ##   which it is a way to configure stuff in GUI first and then get the corresponding configuration file

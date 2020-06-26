@@ -9,9 +9,9 @@ antigen use oh-my-zsh
 antigen bundle autojump # have to run `brew install autojump` first
 antigen bundle extract
 
-## TODO personal config needs to be put at the beginning otherwise :faceplam
-zstyle :omz:plugins:ssh-agent identities id_rsa_personal id_rsa
-antigen bundle ssh-agent
+## personal config needs to be put at the beginning otherwise :faceplam
+# zstyle :omz:plugins:ssh-agent identities id_rsa_personal id_rsa
+# antigen bundle ssh-agent
 
 # antigen bundle vi-mode
 # antigen bundle dotenv
