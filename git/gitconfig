@@ -2,11 +2,11 @@
     name = 404pilot
     email = 404pilot@users.noreply.github.com
 
-[includeIf "gitdir:~/work/private/"]
-    path = ~/work/private/gitconfig-work
+[includeIf "gitdir:~/Work/private/"]
+    path = ~/Work/private/gitconfig-work
 
-[includeIf "gitdir:~/work/public/"]
-    path = ~/work/public/gitconfig-work
+[includeIf "gitdir:~/Work/public/"]
+    path = ~/Work/public/gitconfig-work
 
 [color]
     ui = true

@@ -64,11 +64,11 @@ Host github.com
   IdentitiesOnly yes
 
 # modify gitconfig to use github.com-personal in the upstream
-Host github.com-personal
+Host github.com-second
   Hostname ssh.github.com
   Port 443
   User git
-  IdentityFile ~/.ssh/id_rsa_personal
+  IdentityFile ~/.ssh/id_rsa_second
   IdentitiesOnly yes
 
 #Host *

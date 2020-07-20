@@ -1,32 +1,19 @@
-
 dotfiles
 ========
 
-1. `iTerm2`
-
-   * load preferences
-
-2. install `homebrew`
-
-   `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-
-3. `brew install git ccat`
-
-4. `brew install vim --with-override-system-vi`
-
-5. `brew install zsh antigen autojump`
-
-6. install `shuttle`, `karabiner-elements`, `hammerspoon`
-
-7. optinal installations
-
-   1. install `sdkman`
-
-      `curl -s "https://get.sdkman.io" | bash`
-
-   2. `brew install jenv pyenv sops maven gradle`
-
-8. run script `./up.sh` to install **configs** for
+1. install `homebrew`
+2. install `iTerm2`
+   1. load preferences
+   2. restart terminal to make sure `/usr/local/bin` has high priority in `$PATH` so `homebrew` works correctly
+3. create two ssh keys `ssh-keygen -t rsa -b 4096 -C "xxx@email"`
+   1. `~/.ssh/id_rsa`
+   2. `~/.ssh/id_rsa_second`
+4. install apps
+   1. `brew install git`
+   2. `brew install ccat vim zsh antigen autojump direnv tmux` 
+   3. install `karabiner` & `hammerspoon`
+   4. install `shuttle`
+5. run script `./up.sh` to install **configs** for
 
    * `bash`
    * `editorConfig`
@@ -38,13 +25,51 @@ dotfiles
    * other configurations included in `app_configs` file
      * `jenv`
      * `sdkman`
+6. modify gitconfig files
+   1. `~/Work/public/gitconfig-work`
+   2. `~/Work/private/gitconfig-work`
 
-9. modify `~/work/gitconfig-work` file
 
-10. other usefull apps:
 
-  * `Visual Studio Code`
-    * install `editorConfig` plugin
+## Apps
+
+```
+brew install poetry jenv pyenv sops maven gradle
+
+# manual installation
+sdkman
+docker
+postman
+```
+
+
+
+## iTerm2
+
+`General` -> `Preferences` -> Load Preferences -> restart iTerm2 with correct file `~/.dotfiles/iTerm2`
+
+
+
+## Karabiner
+
+workaround: https://github.com/pqrs-org/Karabiner-Elements/issues/1508#issuecomment-414998728
+
+```
+✗ codesign --display --verbose=4 /Applications/Karabiner-Elements.app/
+
+...
+Authority=Developer ID Application: Fumihiko Takayama (G43BCU2T37)
+...
+```
+
+
+
+```
+# go into macos recovery mode 
+spctl kext-consent add G43BCU2T37
+```
+
+
 
 ## hammerspoon
 
@@ -53,22 +78,52 @@ dotfiles
 for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
 ```
 
+
+
 ## Git
+
+```
+# file structure
+
+~/Work/public
+~/Work/public/.gitconfig
+~/Work/private
+~/Work/private/.gitconfig
+~/404pilot
+~/.gitconfig
+```
+
+
+
+```
+✗ ls ~/.ssh
+config            
+id_rsa            
+id_rsa.pub        
+id_rsa_second     
+id_rsa_second.pub 
+known_hosts
+```
+
+
 
 ### how to manage different github accounts
 
 ```
 # root .gitconfig
-[includeIf "gitdir:~/work/"]
-    path = ~/work/gitconfig-work
+[includeIf "gitdir:~/Work/private/"]
+    path = ~/Work/private/gitconfig-work
+
+[includeIf "gitdir:~/Work/public/"]
+    path = ~/Work/public/gitconfig-work
 ```
 ### how to manage different github ssh keys
 
-for personal GitHub repos, use `git clone  git@github.com-personal:404pilot/.dotfiles.git` instead of `git@github.com:404pilot/.dotfiles.git`
+for secondary GitHub repos, use `git clone git@github.com-second:404pilot/.dotfiles.git` instead of `git@github.com:404pilot/.dotfiles.git`
 
 ```
 # to figure out which user is using
-$ ssh -T git@github.com-personal
+$ ssh -T git@github.com-second
 $ ssh -T git@github.com
 
 # list all keys
@@ -79,7 +134,7 @@ $ ssh-add -D
 
 # add keys; keys needs to be added first otherwise certain keys will be cached for a certain endpoint to be used
 $ ssh-add ~/.ssh/id_rsa
-$ ssh-add ~/.ssh/id_rsa_personal
+$ ssh-add ~/.ssh/id_rsa_second
 ```
 
 
@@ -96,12 +151,12 @@ Host github.com
   IdentitiesOnly yes
 
 # modify gitconfig to use github.com-personal in the upstream
-Host github.com-personal
+Host github.com-second
   Hostname ssh.github.com
   Port 443
   User git
   AddKeysToAgent yes
-  IdentityFile ~/.ssh/id_rsa_personal
+  IdentityFile ~/.ssh/id_rsa_second
   IdentitiesOnly yes
 
 Host *
@@ -111,19 +166,14 @@ Host *
 ```
 
 ```
-$ ls ~/.ssh
-id_rsa              id_rsa.pub          id_rsa_personal     id_rsa_personal.pub
+✗ ls ~/.ssh
+config            
+id_rsa            
+id_rsa.pub        
+id_rsa_second     
+id_rsa_second.pub 
+known_hosts
 ```
-
-
-
-## iTerm2
-
-`General` -> `Preferences`
-
-Check `Load preferences from a custom folder or URL:`
-
-Manually type `~/.dotfiles/iTerm2`
 
 
 
@@ -346,7 +396,7 @@ Restart terminal and test it
 
 In this way, I may not need to explicitly specify command home location for `JAVA_HOME` or `MAVEN_HOME` in `.bashrc`. It will automatically use the default one, i,e, the first line in `/etc/paths`.
 
-## Homebrew Cask
+### Homebrew Cask
 
 applications are installed at `/usr/local/Caskroom`, each application could have multiple versions
 
