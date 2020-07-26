@@ -28,8 +28,15 @@ rm ~/.zshrc || true \
   && ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 
 ######################################################
-## editorConfig
+## vim
 echo "#### Config vim"
+
+rm ~/.ideavimrc || true \
+  && ln -s ~/.dotfiles/ideavim/ideavimrc ~/.ideavimrc
+
+######################################################
+## ideavim
+echo "#### Config ideavim"
 
 rm ~/.vimrc || true \
   && ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
