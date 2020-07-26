@@ -29,7 +29,7 @@ fi
 # homebrew
 # add path
 ########################################################################
-export PATH="/usr/local/sbin:$PATH"
+# export PATH="/usr/local/sbin:$PATH"
 
 ########################################################################
 # fix issue that paste is slow caused by zsh

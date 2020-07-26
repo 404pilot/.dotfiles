@@ -8,6 +8,7 @@ dotfiles
 3. create two ssh keys `ssh-keygen -t rsa -b 4096 -C "xxx@email"`
    1. `~/.ssh/id_rsa`
    2. `~/.ssh/id_rsa_second`
+   3. or just copy original ssh keys
 4. install apps
    1. `brew install git`
    2. `brew install ccat vim zsh antigen autojump direnv tmux` 
@@ -117,6 +118,8 @@ known_hosts
 [includeIf "gitdir:~/Work/public/"]
     path = ~/Work/public/gitconfig-work
 ```
+
+
 ### how to manage different github ssh keys
 
 for secondary GitHub repos, use `git clone git@github.com-second:404pilot/.dotfiles.git` instead of `git@github.com:404pilot/.dotfiles.git`
@@ -132,38 +135,12 @@ $ ssh-add -l
 # delete all cached keys
 $ ssh-add -D
 
-# add keys; keys needs to be added first otherwise certain keys will be cached for a certain endpoint to be used
+# add keys; I don't think they are needed here
 $ ssh-add ~/.ssh/id_rsa
 $ ssh-add ~/.ssh/id_rsa_second
 ```
 
 
-
-```
-$ cat ~/.ssh/config
-
-Host github.com
-  Hostname ssh.github.com
-  Port 443
-  User git
-  AddKeysToAgent yes
-  IdentityFile ~/.ssh/id_rsa
-  IdentitiesOnly yes
-
-# modify gitconfig to use github.com-personal in the upstream
-Host github.com-second
-  Hostname ssh.github.com
-  Port 443
-  User git
-  AddKeysToAgent yes
-  IdentityFile ~/.ssh/id_rsa_second
-  IdentitiesOnly yes
-
-Host *
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_rsa
-```
 
 ```
 ✗ ls ~/.ssh
@@ -190,7 +167,7 @@ $ antigen selfupdate
 # update all repos in $(antigen list)
 $ antigen update
 
-# if there is a problem
+# if there is a problem; or a new plugin is used
 $ antigen reset
 
 # reload zsh config
@@ -199,7 +176,7 @@ $ exec zsh
 
 
 
-## Jenv & sdkman
+## Java
 
 ```shell
 # 1. install
@@ -216,21 +193,26 @@ $ sdk default java 8.0.181-zulu
 $ jenv versions
 ```
 
-### Jenv
 
-```shell
-brew install jenv
-echo 'eval "$(jenv init -)"' >> ~/.bashrc
 
-# not need to do the following, since brew install jenv under /usr/local/bin
-# echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bashrc
-```
+### Java locations
+
 ```
 # list all JAVA_HOMEs configured in jenv
 ls -alF ~/.jenv/versions
 ```
 
-#### enable jenv for maven
+
+
+* `sdkman` installs java at: `~/.sdkman/candidates/java/`
+* `jenv` creates symbolic links at: `~/.jenv/versions`
+* macos system default location: `/System/Library/Frameworks/JavaVM.framework/Versions/`
+* java in System Perferences location: `/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/`
+
+
+
+### Jenv & Maven
+
 ```shell
 # run maven with a specific jdk
 $ jenv local 1.7
@@ -246,28 +228,51 @@ $ jenv shell 1.8
 $ mvn -version
 ```
 
-#### java locations
-
-* `sdkman` install java at: `~/.sdkman/candidates/java/`
-
-  `jenv add ~/.sdkman/candidates/java/8u161-oracle/`
-
-* system default location: `/System/Library/Frameworks/JavaVM.framework/Versions/`
-
-* java in System Perferences location: `/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/`
 
 
+### Intellij & Gradle
 
-## pyenv
+To use old version of `gradle`:
 
-### installation
+1. install `choose runtime` plugin
+2. select jetbrain 1.8 version
+3. no need to set default gradle for intellij, just use the project-specific one
+4. run `./gradlew -version` to verify the version is correct
 
+
+
+## Python
+
+```shell
+# no need to use homebrew to install python
+$ pyenv install 3.8.1
+$ pyenv install 3.8.3
+
+# generate a local .python-version file and use the specific one locally
+$ pyenv local 3.8.1
+# set 3.8.3 as the global version
+$ pyenv global 3.8.3
+
+# no need to use pyenv shell actually
+# disable specific shell version in order to activate the version specified in .python-version
+$ pyenv shell --unset
+
+# list all python versions managed by pyenv
+$ pyenv versions
 ```
-# and add eval "$(pyenv init -)" in zsh file
-$ brew install pyenv
+
+
+
+```shell
+# find out which python is in use
+$ pyenv which python
+$ which python
+$ python --version
 ```
 
-### details
+
+
+### Python locations
 
 ```shell
 # system-installed python
@@ -280,46 +285,53 @@ $ ls -al /usr/local/bin/python*
 $ ls -alFh ~/.pyenv/versions/
 ```
 
-* macos install python @`/System/Library/Frameworks/Python.framework` -> ` /usr/bin/`
-* brew install python @`/Cellar/python` -> `/usr/local/bin/`
-* `pyenv` install python @`~/.pyenv/versions/`
-
-### usage
-
-```
-➜  ~ pyenv versions
-  system
-* 3.6.9 (set by /Users/foo/.pyenv/version)
-  3.8.0
-➜  ~ pyenv global 3.8.0
-➜  ~ pyenv shell 3.8.0
-➜  ~ pyenv which python
-/Users/foo/.pyenv/versions/3.8.0/bin/python
-➜  ~ python --version
-Python 3.8.0
-➜  ~ which python
-/Users/foo/.pyenv/shims/python
-```
+* macos installs python @`/System/Library/Frameworks/Python.framework` -> ` /usr/bin/`
+* `homebrew` installs python @`/Cellar/python` -> `/usr/local/bin/`
+* `pyenv` installs python @`~/.pyenv/versions/`
 
 
 
-```
-# disable specific shell version in order to activate the version specified in .python-version
-$ pyenv shell --unset
-```
-
-
-
-which python is used?
+**which python is used?**
 
 1. pyenv shell
-2. pyenv local
+2. pyenv local (`pyenv shell --unset` to allow `.python-version` work)
 3. pyenv global
 4. python in the `$PATH` (system or brew-installed one)
 
 
 
+### poetry
+
+**poetry does not work well currently, maybe homebrew doesn't install it correctly**
+
+```
+$ poetry config --list
+virtualenvs.create = true
+virtualenvs.in-project = true
+```
+
+
+
+```
+# force poetry to use a specific version
+poetry env use 3.8.1
+poetry env use $(cat .python-version)
+
+# run following command to make sure poetry uses correct python
+poetry env info
+
+# remove current virtual env if python is not correct
+poetry env remove $virtualenvs-hash
+# or
+rm -rf .venv
+```
+
+
+
+
+
 ## Homebrew
+
 
 ### usages
 [how a specific formula works](https://github.com/Homebrew/homebrew-core/tree/master/Formula)
@@ -354,6 +366,16 @@ brew deps --installed
 ```
 
 ### details
+
+```
+# run which to identify potential issues if command version is not right
+# command should be the one under /usr/local/bin
+$ which git
+
+/usr/local/bin/git
+```
+
+
 
 Homebrew installs packages to their own directory and then symlinks their files into `/usr/local`.
 ```
@@ -411,12 +433,53 @@ Probably need to manually delete old versions.
 
 ## MacOS
 
-```
+```shell
+# save screenshots to ~/Documents
 $ defaults write com.apple.screencapture location $HOME/documents
 $ killall SystemUIServer
+```
 
+```shell
+# allow chrome open applications by default
+$ defaults read com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox
+$ defaults write com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox -bool true
+```
+
+```shell
 $ defaults read .GlobalPreferences com.apple.mouse.scaling
 3
 $ defaults read .GlobalPreferences com.apple.trackpad.scaling
 1.5
 ```
+
+
+
+## Other Applications
+
+```
+# dev
+docker
+postman
+iHosts
+
+# Essential
+notion
+clipy
+typora
+hapticKey https://github.com/niw/HapticKey/issues
+
+# Misc
+amphetamine
+hidden bar
+pomo timer
+Irvue
+Itsycal
+numi
+clocker
+noizio
+
+# in case, disk storage is not enough
+omniDIskSweeper
+tencent lemon lite
+```
+

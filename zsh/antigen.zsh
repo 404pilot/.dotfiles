@@ -5,13 +5,14 @@ source /usr/local/share/antigen/antigen.zsh
 antigen use oh-my-zsh
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
+# https://project-awesome.org/unixorn/awesome-zsh-plugins
 # antigen bundle git
 antigen bundle autojump # have to run `brew install autojump` first
 antigen bundle extract
 
-## personal config needs to be put at the beginning otherwise :faceplam
-# zstyle :omz:plugins:ssh-agent identities id_rsa_personal id_rsa
-# antigen bundle ssh-agent
+# only add main one; or use AddKeysToAgent in ssh config
+zstyle :omz:plugins:ssh-agent identities id_rsa
+antigen bundle ssh-agent
 
 # antigen bundle vi-mode
 # antigen bundle dotenv
@@ -22,6 +23,7 @@ antigen bundle pipenv
 antigen bundle jenv
 antigen bundle pyenv
 antigen bundle sdk
+# antigen bundle matthieusb/zsh-sdkman
 antigen bundle nvm
 # antigen bundle aws
 # antigen bundle gradle
