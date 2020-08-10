@@ -178,6 +178,8 @@ $ exec zsh
 
 ## Java
 
+`gradle` and `mvn` are not required. Use their wrapper!
+
 ```shell
 # 1. install
 $ sdk install java 9.0.7-zulu
@@ -440,9 +442,11 @@ $ killall SystemUIServer
 ```
 
 ```shell
-# allow chrome open applications by default
-$ defaults read com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox
+# allow chrome open applications (hammerspoon) by default
+$ defaults read com.google.Chrome
+
 $ defaults write com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox -bool true
+$ defaults write com.google.Chrome URLWhitelist -array 'hammerspoon://*'
 ```
 
 ```shell
@@ -453,6 +457,8 @@ $ defaults read .GlobalPreferences com.apple.trackpad.scaling
 ```
 
 
+
+* Preferences -> Keyboard -> check `use F1, F2, etc. keys`
 
 ## Other Applications
 

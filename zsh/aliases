@@ -34,10 +34,24 @@ alias typora="open -a typora"
 gradle() {
     if [[ -f ./gradlew ]]; then
         echo ">>>>>> Using ./gradlew wrapper instead of system gradle <<<<<<"
-        ./gradlew $@ ;
+        ./gradlew $@
+    elif [[ -f /usr/local/bin/gradle ]]; then
+        echo ">>>>> Using system gradle: $(which gradle) <<<<<"
+        $(which gradle) $@
     else
-        echo "Using system gradle: $(which gradle)"
-        $(which gradle) $@ ;
+        echo ">>>>> No gradle found <<<<<"
+    fi
+}
+
+mvn() {
+    if [[ -f ./mvnw ]]; then
+        echo ">>>>>> Using ./mvnw wrapper instead of system maven <<<<<<"
+        ./mvnw $@
+    elif [[ -f /usr/local/bin/maven ]]; then
+        echo ">>>>> Using system maven: $(which mvn) <<<<<"
+        $(which mvn) $@
+    else
+        echo ">>>>> No maven found <<<<<"
     fi
 }
 
