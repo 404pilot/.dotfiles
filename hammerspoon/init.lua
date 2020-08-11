@@ -74,7 +74,12 @@ local function setAwsCredentials()
   hs.notify.new({title="Hammerspoon", informativeText="AWS credentials is updated"}):send()
 end
 
-hs.hotkey.bind({"alt"}, "8", setAwsCredentials)
+local function intiProcessToLoadAwsCredentials()
+  hs.execute("open https://rax.io/vdo-dev-aws")
+end
+
+-- hs.hotkey.bind({"alt"}, "8", setAwsCredentials)
+hs.hotkey.bind({"alt"}, "8", intiProcessToLoadAwsCredentials)
 
 -- ************************************************************
 -- URL handlers
