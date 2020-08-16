@@ -122,11 +122,13 @@ local defaultLayout = {
   {"Slack",             macScreenHint,   centerCoordinate},
   {"Trello",            macScreenHint,   centerCoordinate},
   {"Typora",            macScreenHint,   centerCoordinate},
+  {"Finder",            macScreenHint,   centerCoordinate},
+  {"Telegram",          macScreenHint,   centerCoordinate},
 
-  {"Google Chrome",     macScreenHint,   maximizedCoordinate},
-  {"IntelliJ IDEA",     macScreenHint,   maximizedCoordinate},
-  {"Microsoft Outlook", macScreenHint,   maximizedCoordinate},
-  {"RubyMine",          macScreenHint,   maximizedCoordinate}
+  {"Google Chrome",        macScreenHint,   maximizedCoordinate},
+  {"IntelliJ IDEA",        macScreenHint,   maximizedCoordinate},
+  {"Microsoft Outlook",    macScreenHint,   maximizedCoordinate},
+  {"PyCharm",              macScreenHint,   maximizedCoordinate},
 }
 
 local officeLayout = {
@@ -164,7 +166,22 @@ local function applyLayout(layout)
   transformedLayout = {}
 
   for key,value in pairs(layout) do
-    table.insert(transformedLayout, {value[1], nil, hs.screen.find(value[2]), value[3], nil, nil})
+    -- Try to get first two applications which are matched by name because
+    --    google chrome and google chrome canary are sharing the same "Google Chrome"
+
+    local app1, app2 = hs.application.find(value[1])
+
+    local apps = {app1, app2}
+
+    for i = 1, 2 do
+      if apps[i] ~= nil then
+        if hs.application.name(apps[i]) == value[1] then
+          print("Found application "..value[1])
+
+          table.insert(transformedLayout, {apps[i], nil, hs.screen.find(value[2]), value[3], nil, nil})
+        end
+      end
+    end
   end
 
   hs.layout.apply(transformedLayout)
