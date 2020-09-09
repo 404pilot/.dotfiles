@@ -199,6 +199,19 @@ reloadVdoPostgres(){
     postgres
 }
 
+reloadVdoGossPostgres(){
+    docker rm -f vdo-goss-postgres
+
+    docker run \
+    -d \
+    --name vdo-goss-postgres \
+    -e POSTGRES_PASSWORD=123456 \
+    -e POSTGRES_USER=postgres \
+    -e POSTGRES_DB=goss \
+    -p 5433:5432 \
+    postgres
+}
+
 reloadVdoRedis(){
     docker rm -f vdo-redis
 
@@ -246,6 +259,7 @@ reloadDevEnv(){
 
         reloadVdoRabbitmq
         reloadVdoPostgres
+        reloadVdoGossPostgres
         reloadVdoRedis
     else
         log 'restarting containers'
@@ -279,14 +293,15 @@ showVcfFiles(){
 
 updateAws(){
     AWS_CREDENTIALS_FILE="${HOME}/.aws/credentials"
+    AWS_CREDENTIALS_FILE_BAK="${HOME}/.aws/credentials.bak"
 
     log "cliboard -> aws crednentials"
 
     clipboard="$(pbpaste)"
 
-    echo $clipboard > $AWS_CREDENTIALS_FILE
+    cp $AWS_CREDENTIALS_FILE_BAK $AWS_CREDENTIALS_FILE
 
-    cat $AWS_CREDENTIALS_FILE
+    echo $clipboard >> $AWS_CREDENTIALS_FILE
 }
 
 rpcvDemo(){

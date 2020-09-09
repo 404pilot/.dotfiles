@@ -69,7 +69,8 @@ end
 -- Scripts
 -- ************************************************************
 local function setAwsCredentials()
-  hs.execute("echo \"$(pbpaste)\" > ~/.aws/credentials")
+  hs.execute("~/.dotfiles/hammerspoon/updateAws.sh")
+  -- hs.execute("echo \"$(pbpaste)\" > ~/.aws/credentials")
 
   hs.notify.new({title="Hammerspoon", informativeText="AWS credentials is updated"}):send()
 end

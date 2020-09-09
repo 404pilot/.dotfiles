@@ -11,7 +11,7 @@ dotfiles
    3. or just copy original ssh keys
 4. install apps
    1. `brew install git`
-   2. `brew install ccat vim zsh antigen autojump direnv tmux` 
+   2. `brew install ccat vim zsh antigen autojump direnv tmux`
    3. install `karabiner` & `hammerspoon`
    4. install `shuttle`
 5. run script `./up.sh` to install **configs** for
@@ -98,11 +98,11 @@ for key,value in pairs(hs.application.runningApplications()) do print(key,value)
 
 ```
 ✗ ls ~/.ssh
-config            
-id_rsa            
-id_rsa.pub        
-id_rsa_second     
-id_rsa_second.pub 
+config
+id_rsa
+id_rsa.pub
+id_rsa_second
+id_rsa_second.pub
 known_hosts
 ```
 
@@ -144,11 +144,11 @@ $ ssh-add ~/.ssh/id_rsa_second
 
 ```
 ✗ ls ~/.ssh
-config            
-id_rsa            
-id_rsa.pub        
-id_rsa_second     
-id_rsa_second.pub 
+config
+id_rsa
+id_rsa.pub
+id_rsa_second
+id_rsa_second.pub
 known_hosts
 ```
 
@@ -450,6 +450,13 @@ $ defaults write com.google.Chrome URLWhitelist -array 'hammerspoon://*'
 ```
 
 ```shell
+# prevent music app from starting when bluetooth airpods are connected
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist
+
+# launchctl load -w /System/Library/LaunchAgents/com.apple.rcd.plist
+```
+
+```shell
 $ defaults read .GlobalPreferences com.apple.mouse.scaling
 3
 $ defaults read .GlobalPreferences com.apple.trackpad.scaling
@@ -483,9 +490,16 @@ Itsycal
 numi
 clocker
 noizio
+imageOptim
+Lightweight PDF
 
 # in case, disk storage is not enough
 omniDIskSweeper
 tencent lemon lite
 ```
 
+
+
+## Notes
+
+* disable `sougou input` shortcuts since it has lots of conflicts against jetbrains' IDEs
