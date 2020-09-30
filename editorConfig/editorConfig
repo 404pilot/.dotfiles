@@ -11,5 +11,8 @@ charset = utf-8
 indent_style = space
 indent_size = 4
 
-[*.{erb,rb,json,yml,lua,js,yaml}]
+[*.{erb,rb,json,yml,lua,js,yaml,java}]
 indent_size = 2
+
+[*.tmp.yea]
+insert_final_newline = false

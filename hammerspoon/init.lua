@@ -68,6 +68,32 @@ end
 -- ************************************************************
 -- Scripts
 -- ************************************************************
+local function openInVim()
+  -- prerequisite:
+  --   1. associate .yea file with visual code in macos
+  --   2. iTerm2 support:
+
+  -- copy current line
+  hs.eventtap.keyStroke({}, "end")
+  hs.eventtap.keyStroke({"shift"}, "home")
+  hs.eventtap.keyStroke({"cmd"}, "c")
+
+  -- open the line with the application
+  hs.execute("echo \"$(pbpaste)\" > ~/.tmp.yea")
+  hs.execute("open ~/.tmp.yea")
+end
+
+local function replaceCurrent()
+  -- delete current line
+  hs.eventtap.keyStroke({}, "end")
+  hs.eventtap.keyStroke({"shift"}, "home")
+  hs.eventtap.keyStroke({}, "delete")
+
+  -- replace
+  hs.execute("pbcopy < ~/.tmp.yea")
+  hs.eventtap.keyStroke({"cmd"}, "v")
+end
+
 local function setAwsCredentials()
   hs.execute("~/.dotfiles/hammerspoon/updateAws.sh")
   -- hs.execute("echo \"$(pbpaste)\" > ~/.aws/credentials")
@@ -80,6 +106,8 @@ local function intiProcessToLoadAwsCredentials()
 end
 
 -- hs.hotkey.bind({"alt"}, "8", setAwsCredentials)
+-- hs.hotkey.bind({"alt"}, "6", openInVim)
+-- hs.hotkey.bind({"alt"}, "7", replaceCurrent)
 hs.hotkey.bind({"alt"}, "8", intiProcessToLoadAwsCredentials)
 
 -- ************************************************************
@@ -176,7 +204,8 @@ local function applyLayout(layout)
 
     for i = 1, 2 do
       if apps[i] ~= nil then
-        if hs.application.name(apps[i]) == value[1] then
+        -- if hs.application.name(apps[i]) == value[1] then
+        if apps[i].name(apps[i]) == value[1] then
           print("Found application "..value[1])
 
           table.insert(transformedLayout, {apps[i], nil, hs.screen.find(value[2]), value[3], nil, nil})

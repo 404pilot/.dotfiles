@@ -199,6 +199,10 @@ reloadVdoPostgres(){
     postgres
 }
 
+cleanDocker() {
+    docker system prune -a --volumes
+}
+
 reloadVdoGossPostgres(){
     docker rm -f vdo-goss-postgres
 

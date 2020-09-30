@@ -3,20 +3,26 @@ set hlsearch
 
 "yank stuff to clipboard as well
 set clipboard=unnamed
+
 "put deleted stuff in black hole
-nnoremap x "_x
-nnoremap X "_X
 nnoremap d "_d
 nnoremap dd "_dd
 nnoremap D "_D
 vnoremap d "_d
-vnoremap dd "_dd
-nnoremap <leader>x ""x
-nnoremap <leader>X ""X
-nnoremap <leader>d ""d
-nnoremap <leader>dd ""dd
-nnoremap <leader>D ""D
-vnoremap <leader>d ""d
-vnoremap <leader>dd ""dd
+" re-map the original action with leader key prefixed
+" nnoremap <leader>d ""d
+" nnoremap <leader>dd ""dd
+" nnoremap <leader>D ""D
+" vnoremap <leader>d ""d
 
+nnoremap c "_c
+nnoremap C "_C
+vnoremap c "_c
+
+nnoremap x "_x
+nnoremap X "_X
+"nnoremap <leader>x ""x
+"nnoremap <leader>X ""X
 syntax on
+
+" http://liadbiz.github.io/vim-custimization/
