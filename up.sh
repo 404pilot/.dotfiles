@@ -117,5 +117,14 @@ if [ -d ~/Work/public ] && [ ! -f ~/Work/public/gitconfig-work ]; then
 fi
 
 ######################################################
+## sleepwatcher
+echo "#### Config sleepwatcher"
+rm ~/.sleep || true \
+  && ln -s ~/.dotfiles/sleepwatcher/sleep ~/.sleep
+
+rm ~/.wakeup || true \
+  && ln -s ~/.dotfiles/sleepwatcher/wakeup ~/.wakeup
+
+######################################################
 ## done
 echo "#### Finish"

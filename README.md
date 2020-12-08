@@ -11,7 +11,7 @@ dotfiles
    3. or just copy original ssh keys
 4. install apps
    1. `brew install git`
-   2. `brew install ccat vim zsh antigen autojump direnv tmux`
+   2. `brew install ccat vim zsh antigen autojump direnv tmux blueutil sleepwatcher`
    3. install `karabiner` & `hammerspoon`
    4. install `shuttle`
 5. run script `./up.sh` to install **configs** for
