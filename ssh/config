@@ -20,25 +20,6 @@ Host jump-server
     # into the background instead (man ssh -> "-O ctl_cmd")
     # ControlPersist 10h
 
-Host cbast.*
-    # https://one.rackspace.com/display/support/Linux+Support+-+Next+Gen+Bastion+Readiness
-    ForwardAgent yes
-    ForwardX11Trusted yes
-    ProxyCommand none
-    User ning1273
-    ControlMaster auto
-    ControlPath ~/.ssh/master-%r@%h:%p
-    TCPKeepAlive yes
-    ServerAliveInterval 300
-    IdentitiesOnly=yes
-    IdentityFile ~/.ssh/id_rsa
-    #
-    # Most techs run a terminal permanently open to the bastion
-    # which serves as the MUX socket; if you do not do this,
-    # uncomment the below to have the first MUX created tossed
-    # into the background instead (man ssh -> "-O ctl_cmd")
-    # ControlPersist 10h
-
 Host a-build*.pc.rackspace.com
     User ning1273
     ProxyCommand ssh -A cbast.dfw1.corp.rackspace.net 'nc %h %p'
@@ -58,20 +39,24 @@ Host a-build*.pc.rackspace.com
     IdentityFile ~/.ssh/id_rsa
 
 Host github.com
-  Hostname ssh.github.com
-  Port 443
-  User git
-  # IdentityFile and IdentitiesOnly are a pair
-  IdentityFile ~/.ssh/id_rsa
-  IdentitiesOnly yes
+    Hostname ssh.github.com
+    Port 443
+    User git
+    # IdentityFile and IdentitiesOnly are a pair
+    IdentityFile ~/.ssh/id_rsa
+    IdentitiesOnly yes
 
 # modify gitconfig to use github.com-second in the upstream
 Host github.com-second
-  Hostname ssh.github.com
-  Port 443
-  User git
-  IdentityFile ~/.ssh/id_rsa_second
-  IdentitiesOnly yes
+    Hostname ssh.github.com
+    Port 443
+    User git
+    IdentityFile ~/.ssh/id_rsa_second
+    IdentitiesOnly yes
+
+Host *
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
 
 #Host *
 #  User ning1273

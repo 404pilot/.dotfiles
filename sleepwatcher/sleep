@@ -1,1 +1,11 @@
-$(which blueutil) -p 0
+#!/bin/bash
+# .sleep
+
+echo "" >> ~/.sleepwatcher.log
+echo "#############################################################################" >> ~/.sleepwatcher.log
+echo "[$(date)] sleepwatcher sleep" >> ~/.sleepwatcher.log
+
+/usr/local/bin/blueutil -p 0 && echo "Bluetooth is turned off." >> ~/.sleepwatcher.log
+# networksetup setairportpower en0 off
+
+echo "#############################################################################" >> ~/.sleepwatcher.log

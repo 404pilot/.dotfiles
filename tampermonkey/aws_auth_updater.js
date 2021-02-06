@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       404pilot
-// @match        https://manage.rackspace.com/racker/rackspace-accounts/121*/aws-accounts/81656*
+// @match        https://manage.rackspace.com/racker/rackspace-accounts/121*/aws-accounts/*
 // @grant        GM_setClipboard
 // @grant        GM_xmlhttpRequest
 // @grant        GM_openInTab

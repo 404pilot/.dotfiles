@@ -41,6 +41,8 @@ hs.hotkey.bind({"alt, shift"}, "j", toPreviousScreen)
 -- ************************************************************
 -- Application Shortcuts (use name in applications folder)
 -- ************************************************************
+-- list all running applications:
+--   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
 
 shortcuts = {
   f       =   "Google Chrome Canary",
@@ -50,14 +52,16 @@ shortcuts = {
   v       =   "Postman",
   e       =   "iTerm",
   -- r       =   "Royal TSX",
-  -- r       =   "Postico",
+  r       =   "Microsoft Remote Desktop",
   ["`"]   =   "Finder",
   -- ["1"]   =   "Atom",
   ["1"]   =   "Visual Studio Code",
   ["2"]   =   "Typora",
   ["3"]   =   "Notion",
   ['4']   =   "Slack",
-  ['5']   =   "Royal TSX",
+  -- ['4']   =   "Microsoft Teams",
+  -- ['5']   =   "Royal TSX",
+  -- ['5']   =   "Microsoft Remote Desktop",
   ['6']   =   "Microsoft Outlook"
 }
 
@@ -101,6 +105,7 @@ local function setAwsCredentials()
   hs.notify.new({title="Hammerspoon", informativeText="AWS credentials is updated"}):send()
 end
 
+-- website will trigger tampermonkey scripts to call some hammerspoon scripts
 local function intiProcessToLoadAwsCredentials()
   hs.execute("open https://rax.io/vdo-dev-aws")
 end
@@ -109,6 +114,7 @@ end
 -- hs.hotkey.bind({"alt"}, "6", openInVim)
 -- hs.hotkey.bind({"alt"}, "7", replaceCurrent)
 hs.hotkey.bind({"alt"}, "8", intiProcessToLoadAwsCredentials)
+hs.hotkey.bind({"alt"}, "9", setAwsCredentials)
 
 -- ************************************************************
 -- URL handlers
@@ -154,10 +160,11 @@ local defaultLayout = {
   {"Finder",            macScreenHint,   centerCoordinate},
   {"Telegram",          macScreenHint,   centerCoordinate},
 
-  {"Google Chrome",        macScreenHint,   maximizedCoordinate},
-  {"IntelliJ IDEA",        macScreenHint,   maximizedCoordinate},
-  {"Microsoft Outlook",    macScreenHint,   maximizedCoordinate},
-  {"PyCharm",              macScreenHint,   maximizedCoordinate},
+  {"Google Chrome",           macScreenHint,   maximizedCoordinate},
+  {"Google Chrome Canary",    macScreenHint,   maximizedCoordinate},
+  {"IntelliJ IDEA",           macScreenHint,   maximizedCoordinate},
+  {"Microsoft Outlook",       macScreenHint,   maximizedCoordinate},
+  {"PyCharm",                 macScreenHint,   maximizedCoordinate},
 }
 
 local officeLayout = {

@@ -1,1 +1,14 @@
-$(which blueutil) -p 1 && $(which blueutil) --connect "MX Ergo"
+#!/bin/bash
+# .wakeup
+
+echo "" >> ~/.sleepwatcher.log
+echo "#############################################################################" >> ~/.sleepwatcher.log
+echo "[$(date)] sleepwatcher wakeup" >> ~/.sleepwatcher.log
+
+# networksetup setairportpower en0 on
+# /usr/local/bin/blueutil -p 1 && /usr/local/bin/blueutil --connect "MX Ergo" && echo "bluetooth is turned on" >> ~/.sleepwatcher.log
+
+/usr/local/bin/blueutil -p 1 \
+  && echo "bluetooth is turned on" >> ~/.sleepwatcher.log
+
+echo "#############################################################################" >> ~/.sleepwatcher.log

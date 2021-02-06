@@ -28,13 +28,9 @@
     if (document.getElementById("formsAuthenticationArea") != undefined) {
       console.log("Trying to click the login button");
 
-      const test_val = document.getElementById("passwordInput").value;
-
-      console.log("value:", test_val)
-      console.log("value type:", typeof test_val)
-
       while (document.getElementById("passwordInput").value === "") {
-        console.log("Waiting for lastpass to fill out password");
+        // update chrome password when sso password is updated
+        console.log("Waiting for chrome to fill out password");
 
         setTimeout(loginButton, 1000);
         return

@@ -1,4 +1,4 @@
-settings.blacklistPattern = /.*mail.google.com.*|.*inbox.google.com.*|.*sts.rackspace.com.*|.*leetcode.com.*|localhost/i;
+settings.blacklistPattern = /.*mail.google.com.*|.*inbox.google.com.*|.*sts.rackspace.com.*|.*leetcode.com.*|localhost|.*.appstream2.*.aws.amazon.com/i;
 
 
 // an example to create a new mapping `ctrl-y`
