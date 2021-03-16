@@ -52,14 +52,14 @@ shortcuts = {
   v       =   "Postman",
   e       =   "iTerm",
   -- r       =   "Royal TSX",
-  r       =   "Microsoft Remote Desktop",
+  -- r       =   "Microsoft Remote Desktop",
+  r       =   "Postico",
   ["`"]   =   "Finder",
-  -- ["1"]   =   "Atom",
   ["1"]   =   "Visual Studio Code",
   ["2"]   =   "Typora",
   ["3"]   =   "Notion",
-  ['4']   =   "Slack",
-  -- ['4']   =   "Microsoft Teams",
+  -- ['4']   =   "Slack",
+  ['4']   =   "Microsoft Teams",
   -- ['5']   =   "Royal TSX",
   -- ['5']   =   "Microsoft Remote Desktop",
   ['6']   =   "Microsoft Outlook"
@@ -107,7 +107,8 @@ end
 
 -- website will trigger tampermonkey scripts to call some hammerspoon scripts
 local function intiProcessToLoadAwsCredentials()
-  hs.execute("open https://rax.io/vdo-dev-aws")
+  -- hs.execute("open https://rax.io/vdo-dev-aws")
+  hs.execute("open https://rax.io/pvc-dev-aws")
 end
 
 -- hs.hotkey.bind({"alt"}, "8", setAwsCredentials)

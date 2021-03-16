@@ -36,7 +36,11 @@ antigen bundle zsh-users/zsh-completions
 # antigen bundle zsh-users/zsh-docker
 
 # Load the theme.
-antigen theme robbyrussell
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/themes
+# https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes
+# antigen theme robbyrussell
+# antigen theme romkatv/powerlevel10k
+antigen theme denysdovhan/spaceship-prompt
 
 #################################################################
 ##################### Custom configurations #####################

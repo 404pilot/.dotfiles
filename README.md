@@ -14,6 +14,7 @@ dotfiles
    2. `brew install ccat vim zsh antigen autojump direnv tmux blueutil sleepwatcher`
    3. install `karabiner` & `hammerspoon`
    4. install `shuttle`
+   5. `brew tap homebrew/cask-fonts && brew install --cask font-fira-code`
 5. run script `./up.sh` to install **configs** for
 
    * `bash`
@@ -419,6 +420,37 @@ Restart terminal and test it
 	/usr/local/bin/git
 
 In this way, I may not need to explicitly specify command home location for `JAVA_HOME` or `MAVEN_HOME` in `.bashrc`. It will automatically use the default one, i,e, the first line in `/etc/paths`.
+
+
+### install an older version
+```
+# find the location first
+$ find $(brew --repository) | grep poetry
+/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/poetry.rb
+
+# find the git log
+$ cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+$ git log --oneline -10 poetry.rb
+2f9efdffd9 poetry: update 1.1.5 bottle.
+1edb1d62ab poetry 1.1.5
+3952f14a26 poetry: update 1.1.4_2 bottle.
+68d9332a18 poetry: add importlib-metadata to support running in python envs <3.8
+0ca4b8b14c poetry: update 1.1.4_1 bottle.
+c9b23e825f poetry: don't hardcode Homebrew Python
+72ca6364fe Remove unnecessary livecheck blocks
+e2c833d326 formulae: use new bottle syntax
+865fd38223 poetry: update 1.1.4 bottle.
+a788a0d054 poetry: add shell completions
+
+# checkout a previous version
+$ git checkout 3952f14a26 -- poetry.rb
+
+# validate the version
+$ brew info poetry
+
+
+# if it is a homebrew tap, then instead of the file, the tap repo needs to be checked out to a specific version
+``` shell
 
 ### Homebrew Cask
 
