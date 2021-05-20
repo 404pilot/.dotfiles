@@ -28,6 +28,9 @@ alias ga='git add'
 alias gall='git add --all'
 alias gp='git pull'
 
+## aws
+alias aws="PAGER=cat aws"
+
 ## application Shortcuts
 alias typora="open -a typora"
 

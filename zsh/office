@@ -65,6 +65,10 @@ gCleanUp(){
                 remoteCleanUp="$2"
                 shift
             ;;
+            --target_branch)
+                target_branch="$2"
+                shift
+            ;;
             -*)
                 echo "unknown option: $1"
                 return 1
@@ -76,8 +80,8 @@ gCleanUp(){
 
     log 'cleaning up local merged branches'
 
-    git branch --merged master \
-    | grep -v "\(master\|development\|staing\)" \
+    git branch --merged ${target_branch} \
+    | grep -v "\(${target_branch}\|development\|staing\)" \
     | xargs -n 1 git branch -d
 
     gCleanUpPr; if [[ "$?" -ne 0 ]]; then return 1; fi
@@ -86,8 +90,8 @@ gCleanUp(){
     then
         log 'cleaning up >>REMOTE<< merged branches'
 
-        git branch --remote --merged master \
-        | grep -v master | grep -v development | grep -v staging | grep -v upstream \
+        git branch --remote --merged ${target_branch} \
+        | grep -v ${target_branch} | grep -v development | grep -v staging | grep -v upstream \
         | sed 's/origin\//:/' | xargs -n 1 git push origin
     fi
 }

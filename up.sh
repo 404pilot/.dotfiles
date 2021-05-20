@@ -32,7 +32,9 @@ rm ~/.zshrc || true \
 echo "#### Config vim"
 
 rm ~/.ideavimrc || true \
-  && ln -s ~/.dotfiles/ideavim/ideavimrc ~/.ideavimrc
+  && ln -s ~/.dotfiles/ideavim/ideavimrc ~/.ideavimrc \
+  && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ######################################################
 ## ideavim
@@ -55,6 +57,11 @@ echo "#### Config tmux"
 # make sure terminal: $TERM=xterm-256color
 rm ~/.tmux.conf || true \
   && ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+  echo "git clone tpm plugins..."
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 ######################################################
 ## ssh
