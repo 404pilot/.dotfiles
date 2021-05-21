@@ -47,7 +47,7 @@ hs.hotkey.bind({"alt, shift"}, "j", toPreviousScreen)
 shortcuts = {
   f       =   "Google Chrome Canary",
   c       =   "Google Chrome",
-  a       =   "IntelliJ IDEA",
+  a       =   "IntelliJ IDEA Community",
   s       =   "PyCharm Community",
   v       =   "Postman",
   e       =   "iTerm",
