@@ -32,11 +32,13 @@ hs.hotkey.bind({"alt"}, "o", function() adjustFrame(maximizedCoordinate) end)
 
 hs.hotkey.bind({"alt"}, "i", function() adjustFrame(topHalfCoordinate) end)
 hs.hotkey.bind({"alt"}, "k", function() adjustFrame(bottomHalfCoordinate) end)
-hs.hotkey.bind({"alt"}, "j", function() adjustFrame(leftHalfCoordinate) end)
-hs.hotkey.bind({"alt"}, "l", function() adjustFrame(rightHalfCoordinate) end)
+hs.hotkey.bind({"alt"}, "j", toNextScreen)
+hs.hotkey.bind({"alt"}, "l", toPreviousScreen)
 
-hs.hotkey.bind({"alt, shift"}, "l", toNextScreen)
-hs.hotkey.bind({"alt, shift"}, "j", toPreviousScreen)
+-- hs.hotkey.bind({"alt"}, "j", function() adjustFrame(leftHalfCoordinate) end)
+-- hs.hotkey.bind({"alt"}, "l", function() adjustFrame(rightHalfCoordinate) end)
+-- hs.hotkey.bind({"alt, shift"}, "l", toNextScreen)
+-- hs.hotkey.bind({"alt, shift"}, "j", toPreviousScreen)
 
 -- ************************************************************
 -- Application Shortcuts (use name in applications folder)
@@ -49,11 +51,11 @@ shortcuts = {
   c       =   "Google Chrome",
   a       =   "IntelliJ IDEA",
   s       =   "PyCharm Community",
-  v       =   "Postman",
+  -- v       =   "Postman",
   e       =   "iTerm",
   -- r       =   "Royal TSX",
   -- r       =   "Microsoft Remote Desktop",
-  r       =   "Postico",
+  -- r       =   "Postico",
   ["`"]   =   "Finder",
   ["1"]   =   "Visual Studio Code",
   ["2"]   =   "Typora",

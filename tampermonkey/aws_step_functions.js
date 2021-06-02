@@ -20,9 +20,14 @@
   function addText() {
     console.log("Adding text");
 
+    // input event
+    let evt = document.createEvent('HTMLEvents');
+    evt.initEvent('input', true, true);
+
     let searchBar = document.getElementsByClassName(searchBarClassName)[0]
 
     searchBar.value = "ningzou"
+    searchBar.dispatchEvent(evt)
   }
 
   //let targetNode = document.querySelector("#passcodeInput")

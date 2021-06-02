@@ -416,14 +416,16 @@ Or go to shell configuration and add `/usr/local/bin` to `$PATH`.
 
 Restart terminal and test it
 
-	$ which git
-	/usr/local/bin/git
+```
+$ which git
+/usr/local/bin/git
+```
 
 In this way, I may not need to explicitly specify command home location for `JAVA_HOME` or `MAVEN_HOME` in `.bashrc`. It will automatically use the default one, i,e, the first line in `/etc/paths`.
 
 
 ### install an older version
-```
+```shell
 # find the location first
 $ find $(brew --repository) | grep poetry
 /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/poetry.rb
@@ -450,14 +452,15 @@ $ brew info poetry
 
 
 # if it is a homebrew tap, then instead of the file, the tap repo needs to be checked out to a specific version
-``` shell
+```
 
 ### Homebrew Cask
 
 applications are installed at `/usr/local/Caskroom`, each application could have multiple versions
 
-```
-# find out outdated installed versions
+### find out outdated installed versions
+
+```shell
 brew cask outdated
 ```
 
@@ -498,6 +501,8 @@ $ defaults read .GlobalPreferences com.apple.trackpad.scaling
 
 
 * Preferences -> Keyboard -> check `use F1, F2, etc. keys`
+* caldigit
+  * https://www.caldigit.com/my-monitor-can-not-enter-power-save-mode/
 
 ## Other Applications
 
