@@ -152,7 +152,7 @@ jumpTo(){
         return 1
     fi
 
-    command="ssh cbast.ord1.corp.rackspace.net -L ${self_address}:${self_port}:${target_address}:${target_port}"
+    command="ssh jump-server -L ${self_address}:${self_port}:${target_address}:${target_port}"
 
     echo "========================================================================================"
     echo "self:      ${self_address}:${self_port}"
