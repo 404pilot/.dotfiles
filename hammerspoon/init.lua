@@ -154,7 +154,6 @@ local eastScreenHint   = "DELL U2412M"
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
 
 local defaultLayout = {
-  {"Code",              macScreenHint,   centerCoordinate},
   {"iTerm2",            macScreenHint,   centerCoordinate},
   {"Notion",            macScreenHint,   centerCoordinate},
   {"Postman",           macScreenHint,   centerCoordinate},
@@ -163,7 +162,9 @@ local defaultLayout = {
   {"Typora",            macScreenHint,   centerCoordinate},
   {"Finder",            macScreenHint,   centerCoordinate},
   {"Telegram",          macScreenHint,   centerCoordinate},
+  {"Activity Monitor",  macScreenHint,   centerCoordinate},
 
+  {"Code",                    macScreenHint,   maximizedCoordinate},
   {"Preview",                 macScreenHint,   maximizedCoordinate},
   {"Google Chrome",           macScreenHint,   maximizedCoordinate},
   {"Google Chrome Canary",    macScreenHint,   maximizedCoordinate},
@@ -196,6 +197,7 @@ local homeLayout = {
   {"Typora",                  mainScreenHint,  maximizedCoordinate},
   {"Code",                    mainScreenHint,  maximizedCoordinate},
   {"Finder",                  mainScreenHint,  maximizedCoordinate},
+  {"Activity Monitor",        mainScreenHint,  centerCoordinate},
 
   {"Preview",           eastScreenHint,  maximizedCoordinate},
   {"iTerm2",            eastScreenHint,  maximizedCoordinate},
