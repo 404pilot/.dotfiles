@@ -35,8 +35,8 @@ hs.hotkey.bind({"alt"}, "k", function() adjustFrame(bottomHalfCoordinate) end)
 hs.hotkey.bind({"alt"}, "j", toNextScreen)
 hs.hotkey.bind({"alt"}, "l", toPreviousScreen)
 
--- hs.hotkey.bind({"alt"}, "j", function() adjustFrame(leftHalfCoordinate) end)
--- hs.hotkey.bind({"alt"}, "l", function() adjustFrame(rightHalfCoordinate) end)
+hs.hotkey.bind({"alt, shift"}, "j", function() adjustFrame(leftHalfCoordinate) end)
+hs.hotkey.bind({"alt, shift"}, "l", function() adjustFrame(rightHalfCoordinate) end)
 -- hs.hotkey.bind({"alt, shift"}, "l", toNextScreen)
 -- hs.hotkey.bind({"alt, shift"}, "j", toPreviousScreen)
 
@@ -146,9 +146,9 @@ hs.urlevent.bind("update_aws", setAwsCredentials)
 local macScreenHint    = "Color LCD"
 local middleScreenHint = 722488782
 local eastScreenHint   = 722478799
--- home
-local upperScreenHint = "DELL U2412M"
-local lowerScreenHint = "HP 2011"
+-- 2 mointors
+local mainScreenHint   = "DELL U2718Q"
+local eastScreenHint   = "DELL U2412M"
 
 -- get application name by
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
@@ -164,6 +164,7 @@ local defaultLayout = {
   {"Finder",            macScreenHint,   centerCoordinate},
   {"Telegram",          macScreenHint,   centerCoordinate},
 
+  {"Preview",                 macScreenHint,   maximizedCoordinate},
   {"Google Chrome",           macScreenHint,   maximizedCoordinate},
   {"Google Chrome Canary",    macScreenHint,   maximizedCoordinate},
   {"IntelliJ IDEA",           macScreenHint,   maximizedCoordinate},
@@ -188,18 +189,20 @@ local officeLayout = {
 }
 
 local homeLayout = {
-  {"Google Chrome",     upperScreenHint,  maximizedCoordinate},
-  {"IntelliJ IDEA",     upperScreenHint,  maximizedCoordinate},
-  {"RubyMine",          upperScreenHint,  maximizedCoordinate},
+  {"Google Chrome",           mainScreenHint,  maximizedCoordinate},
+  {"Google Chrome Canary",    mainScreenHint,  maximizedCoordinate},
+  {"IntelliJ IDEA",           mainScreenHint,  maximizedCoordinate},
+  {"PyCharm",                 mainScreenHint,  maximizedCoordinate},
+  {"Typora",                  mainScreenHint,  maximizedCoordinate},
+  {"Code",                    mainScreenHint,  maximizedCoordinate},
+  {"Finder",                  mainScreenHint,  maximizedCoordinate},
 
-  {"Code",              lowerScreenHint,  maximizedCoordinate},
-  {"iTerm2",            lowerScreenHint,  maximizedCoordinate},
-  {"Microsoft Outlook", lowerScreenHint,  maximizedCoordinate},
-  {"Notion",            lowerScreenHint,  maximizedCoordinate},
-  {"Postman",           lowerScreenHint,  maximizedCoordinate},
-  {"Slack",             lowerScreenHint,  maximizedCoordinate},
-  {"Trello",            lowerScreenHint,  maximizedCoordinate},
-  {"Typora",            lowerScreenHint,  maximizedCoordinate}
+  {"Preview",           eastScreenHint,  maximizedCoordinate},
+  {"iTerm2",            eastScreenHint,  maximizedCoordinate},
+  {"Microsoft Outlook", mainScreenHint,  maximizedCoordinate},
+  {"Notion",            eastScreenHint,  maximizedCoordinate},
+  {"Microsoft Teams",   eastScreenHint,  maximizedCoordinate},
+  {"Trello",            eastScreenHint,  maximizedCoordinate},
 }
 
 local function applyLayout(layout)
