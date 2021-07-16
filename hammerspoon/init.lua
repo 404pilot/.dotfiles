@@ -43,32 +43,48 @@ hs.hotkey.bind({"alt, shift"}, "l", function() adjustFrame(rightHalfCoordinate) 
 -- ************************************************************
 -- Application Shortcuts (use name in applications folder)
 -- ************************************************************
--- list all running applications:
+-- list all running applications: (it might be changed in Big Sur. Look for application name in Application folder)
+-- Use `hs.application.enableSpotlightForNameSearches(true)` in Big Sur unless I can find something better in the future
+-- I believe the issue is some applications are not put in Application folder like IntelliJ Idea
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
-
-shortcuts = {
-  f       =   "Google Chrome Canary",
-  c       =   "Google Chrome",
-  -- a       =   "IntelliJ IDEA Community",
-  a       =   "IntelliJ IDEA",
-  s       =   "PyCharm Community",
-  -- v       =   "Postman",
-  e       =   "iTerm",
-  -- r       =   "Royal TSX",
-  -- r       =   "Microsoft Remote Desktop",
-  -- r       =   "Postico",
-  ["`"]   =   "Finder",
-  ["1"]   =   "Visual Studio Code",
-  ["2"]   =   "Typora",
-  ["3"]   =   "Notion",
-  -- ['4']   =   "Slack",
-  ['4']   =   "Microsoft Teams",
-  -- ['5']   =   "Royal TSX",
-  -- ['5']   =   "Microsoft Remote Desktop",
-  ['6']   =   "Microsoft Outlook"
+--   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
+SHORTCUT_MAPPING = {
+  ["Jedi"] = {
+      c       = "Google Chrome",
+      a       = "IntelliJ IDEA Community Edition",
+      e       = "iTerm",
+      ["`"]   = "Finder",
+      ["1"]   = "Visual Studio Code",
+      ["2"]   = "Typora",
+      ["3"]   = "Notion"
+  },
+  ["ning.macbook.13"] = {
+      f       =   "Google Chrome Canary",
+      c       =   "Google Chrome",
+      a       =   "IntelliJ IDEA",
+      s       =   "PyCharm Community",
+      -- v       =   "Postman",
+      e       =   "iTerm",
+      -- r       =   "Royal TSX",
+      -- r       =   "Microsoft Remote Desktop",
+      -- r       =   "Postico",
+      ["`"]   =   "Finder",
+      ["1"]   =   "Visual Studio Code",
+      ["2"]   =   "Typora",
+      ["3"]   =   "Notion",
+      -- ['4']   =   "Slack",
+      ['4']   =   "Microsoft Teams",
+      -- ['5']   =   "Royal TSX",
+      -- ['5']   =   "Microsoft Remote Desktop",
+      ['6']   =   "Microsoft Outlook"
+  },
 }
 
-for shortcut, app in pairs(shortcuts) do
+laptop_id = hs.host.localizedName()
+laptop_shortcut = SHORTCUT_MAPPING[laptop_id]
+
+hs.application.enableSpotlightForNameSearches(true)
+for shortcut, app in pairs(laptop_shortcut) do
   hs.hotkey.bind({"alt"}, shortcut, function() hs.application.launchOrFocus(app) end)
 end
 
