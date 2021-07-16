@@ -1,4 +1,5 @@
-settings.blacklistPattern = /.*mail.google.com.*|.*inbox.google.com.*|.*sts.rackspace.com.*|.*leetcode.com.*|localhost|.*.appstream2.*.aws.amazon.com/i;
+// needs to turn on `Allow access to file URLs` in chrome
+settings.blacklistPattern = /.*mail.google.com.*|.*inbox.google.com.*|.*sts.rackspace.com.*|.*leetcode.com.*|localhost|.*.appstream2.*.aws.amazon.com|.*rackspace.auth.securid.com.*/i;
 
 
 // an example to create a new mapping `ctrl-y`

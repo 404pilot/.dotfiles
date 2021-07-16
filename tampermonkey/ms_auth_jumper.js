@@ -18,25 +18,30 @@
   let passwordSelector = "[name='passwd']";
 
   function clickSignIn() {
-    console.log("Clicking sign-in button...")
+    console.log("Clicking sign-in button...");
 
-    let signInButton = $("#idSIButton9")[0]
+    let signInButton = $("#idSIButton9")[0];
 
-    signInButton.click()
+    signInButton.click();
   }
 
   function clickEmail() {
-    console.log("Clicking email...")
+    console.log("Clicking email...");
 
-    let emailButton = $(emailSelector)[0]
+    let emailButton = $(emailSelector)[0];
 
-    emailButton.click()
+    emailButton.click();
   }
 
   function passwordLoader() {
-    console.log("Waiting for the password to be filled...")
+    let password = $(passwordSelector)[0];
 
-    let password = $(passwordSelector)[0]
+    if (password.value === "") {
+      console.log("Waiting for the password to be filled...");
+
+      setTimeout(passwordLoader, 1000);
+      return;
+    }
 
     setTimeout(clickSignIn, 2000);
   }
