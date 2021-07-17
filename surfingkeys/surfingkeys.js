@@ -1,4 +1,4 @@
-// needs to turn on `Allow access to file URLs` in chrome
+// needs to turn on `Allow access to file URLs` in chrome if the file is loaded from a local file
 settings.blacklistPattern = /.*mail.google.com.*|.*inbox.google.com.*|.*sts.rackspace.com.*|.*leetcode.com.*|localhost|.*.appstream2.*.aws.amazon.com|.*rackspace.auth.securid.com.*/i;
 
 
@@ -12,6 +12,8 @@ settings.blacklistPattern = /.*mail.google.com.*|.*inbox.google.com.*|.*sts.rack
 
 // an example to remove mapkey `Ctrl-i`
 // unmap('<Ctrl-i>');
+// press ? to list all key mappings
+unmap('<Alt-s>');
 
 // set theme
 settings.theme = `
