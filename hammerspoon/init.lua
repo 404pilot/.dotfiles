@@ -47,7 +47,6 @@ hs.hotkey.bind({"alt, shift"}, "l", function() adjustFrame(rightHalfCoordinate) 
 -- Use `hs.application.enableSpotlightForNameSearches(true)` in Big Sur unless I can find something better in the future
 -- I believe the issue is some applications are not put in Application folder like IntelliJ Idea
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
---   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
 SHORTCUT_MAPPING = {
   ["Jedi"] = {
       c       = "Google Chrome",
