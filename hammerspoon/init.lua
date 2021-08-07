@@ -77,6 +77,14 @@ SHORTCUT_MAPPING = {
       -- ['5']   =   "Microsoft Remote Desktop",
       ['6']   =   "Microsoft Outlook"
   },
+  -- ["ning.macbook.13"] = {
+  --   c       =   "Google Chrome",
+  --   e       =   "iTerm",
+  --   ["`"]   =   "Finder",
+  --   ["1"]   =   "Visual Studio Code",
+  --   ["2"]   =   "Typora",
+  --   ["3"]   =   "Notion",
+  -- },
 }
 
 laptop_id = hs.host.localizedName()
