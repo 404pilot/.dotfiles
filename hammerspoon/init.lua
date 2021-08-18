@@ -62,6 +62,7 @@ SHORTCUT_MAPPING = {
       c       =   "Google Chrome",
       a       =   "IntelliJ IDEA",
       s       =   "PyCharm Community",
+      v       =   "Preview",
       -- v       =   "Postman",
       e       =   "iTerm",
       -- r       =   "Royal TSX",

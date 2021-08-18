@@ -36,7 +36,7 @@
   function passwordLoader() {
     let password = $(passwordSelector)[0].value;
     // it looks like I need to call getElementByID to load the password
-    document.getElementById("i0118")
+    var test = document.getElementById("i0118")
 
     if (password === "") {
       console.log("Waiting for the password to be filled...");
