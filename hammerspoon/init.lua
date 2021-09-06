@@ -57,7 +57,7 @@ SHORTCUT_MAPPING = {
       ["2"]   = "Typora",
       ["3"]   = "Notion"
   },
-  ["ning.macbook.13"] = {
+  ["FVF"] = {
       f       =   "Google Chrome Canary",
       c       =   "Google Chrome",
       a       =   "IntelliJ IDEA",
@@ -88,8 +88,16 @@ SHORTCUT_MAPPING = {
   -- },
 }
 
-laptop_id = hs.host.localizedName()
-laptop_shortcut = SHORTCUT_MAPPING[laptop_id]
+local function getMapping(laptop_id, mapping)
+  for key, value in pairs(mapping) do
+    if laptop_id:find("^" .. key) ~= nil then
+      return value
+    end
+  end
+end
+
+laptop_id = hs.host.localizedName() -- Serial Number
+laptop_shortcut = getMapping(laptop_id, SHORTCUT_MAPPING)
 
 hs.application.enableSpotlightForNameSearches(true)
 for shortcut, app in pairs(laptop_shortcut) do
@@ -225,7 +233,7 @@ local homeLayout = {
 
   {"Preview",           eastScreenHint,  maximizedCoordinate},
   {"iTerm2",            eastScreenHint,  maximizedCoordinate},
-  {"Microsoft Outlook", mainScreenHint,  maximizedCoordinate},
+  {"Microsoft Outlook", eastScreenHint,  maximizedCoordinate},
   {"Notion",            eastScreenHint,  maximizedCoordinate},
   {"Microsoft Teams",   eastScreenHint,  maximizedCoordinate},
   {"Trello",            eastScreenHint,  maximizedCoordinate},
@@ -246,9 +254,10 @@ local function applyLayout(layout)
       if apps[i] ~= nil then
         -- if hs.application.name(apps[i]) == value[1] then
         if apps[i].name(apps[i]) == value[1] then
-          print("Found application "..value[1])
+          -- print("Found application "..value[1])
 
           table.insert(transformedLayout, {apps[i], nil, hs.screen.find(value[2]), value[3], nil, nil})
+          break;
         end
       end
     end
