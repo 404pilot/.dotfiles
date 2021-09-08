@@ -57,7 +57,7 @@ SHORTCUT_MAPPING = {
       ["2"]   = "Typora",
       ["3"]   = "Notion"
   },
-  ["FVF"] = {
+  ["404pilot.macbook.13"] = {
       f       =   "Google Chrome Canary",
       c       =   "Google Chrome",
       a       =   "IntelliJ IDEA",
@@ -78,7 +78,7 @@ SHORTCUT_MAPPING = {
       -- ['5']   =   "Microsoft Remote Desktop",
       ['6']   =   "Microsoft Outlook"
   },
-  -- ["ning.macbook.13"] = {
+  -- ["404pilot.macbook.13"] = {
   --   c       =   "Google Chrome",
   --   e       =   "iTerm",
   --   ["`"]   =   "Finder",
@@ -96,8 +96,9 @@ local function getMapping(laptop_id, mapping)
   end
 end
 
-laptop_id = hs.host.localizedName() -- Serial Number
-laptop_shortcut = getMapping(laptop_id, SHORTCUT_MAPPING)
+laptop_id = hs.host.localizedName() -- name can be found in preferences/sharing
+-- laptop_shortcut = getMapping(laptop_id, SHORTCUT_MAPPING)
+laptop_shortcut = SHORTCUT_MAPPING[laptop_id]
 
 hs.application.enableSpotlightForNameSearches(true)
 for shortcut, app in pairs(laptop_shortcut) do
