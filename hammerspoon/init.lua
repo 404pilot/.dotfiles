@@ -57,7 +57,7 @@ SHORTCUT_MAPPING = {
       ["2"]   = "Typora",
       ["3"]   = "Notion"
   },
-  ["404pilot.macbook.13"] = {
+  ["FVF"] = {
       f       =   "Google Chrome Canary",
       c       =   "Google Chrome",
       a       =   "IntelliJ IDEA",
@@ -97,8 +97,8 @@ local function getMapping(laptop_id, mapping)
 end
 
 laptop_id = hs.host.localizedName() -- name can be found in preferences/sharing
--- laptop_shortcut = getMapping(laptop_id, SHORTCUT_MAPPING)
-laptop_shortcut = SHORTCUT_MAPPING[laptop_id]
+laptop_shortcut = getMapping(laptop_id, SHORTCUT_MAPPING)
+-- laptop_shortcut = SHORTCUT_MAPPING[laptop_id]
 
 hs.application.enableSpotlightForNameSearches(true)
 for shortcut, app in pairs(laptop_shortcut) do
