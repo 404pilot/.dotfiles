@@ -78,14 +78,15 @@ SHORTCUT_MAPPING = {
       -- ['5']   =   "Microsoft Remote Desktop",
       ['6']   =   "Microsoft Outlook"
   },
-  -- ["404pilot.macbook.13"] = {
-  --   c       =   "Google Chrome",
-  --   e       =   "iTerm",
-  --   ["`"]   =   "Finder",
-  --   ["1"]   =   "Visual Studio Code",
-  --   ["2"]   =   "Typora",
-  --   ["3"]   =   "Notion",
-  -- },
+--   ["FVF"] = {
+--     c       =   "Google Chrome",
+--     a       =   "IntelliJ IDEA",
+--     e       =   "iTerm",
+--     ["`"]   =   "Finder",
+--     ["1"]   =   "Visual Studio Code",
+--     ["2"]   =   "Typora",
+--     ["3"]   =   "Notion",
+--   },
 }
 
 local function getMapping(laptop_id, mapping)
