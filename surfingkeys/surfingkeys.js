@@ -21,7 +21,7 @@ const {
 } = api;
 
 // needs to turn on `Allow access to file URLs` in chrome if the file is loaded from a local file
-settings.blacklistPattern = /.*mail.google.com.*|.*inbox.google.com.*|.*sts.rackspace.com.*|.*leetcode.com.*|localhost|.*.appstream2.*.aws.amazon.com|.*rackspace.auth.securid.com.*|.*hackerrank.com.*|.*codesignal.com.*|.*hired.com.*|.*excalidraw.com.*|.*karat.io.*|.*byteboard.dev.*|.*coderpad.io.*|.*codility.com.*/i;
+settings.blocklistPattern = /.*mail.google.com.*|.*inbox.google.com.*|.*sts.rackspace.com.*|.*leetcode.com.*|localhost|.*.appstream2.*.aws.amazon.com|.*rackspace.auth.securid.com.*|.*hackerrank.com.*|.*codesignal.com.*|.*hired.com.*|.*excalidraw.com.*|.*karat.io.*|.*byteboard.dev.*|.*coderpad.io.*|.*codility.com.*/i;
 
 // an example to create a new mapping `ctrl-y`
 // mapkey('<Ctrl-y>', 'Show me the money', function() {
