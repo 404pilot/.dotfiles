@@ -2,13 +2,53 @@
 # set -x
 set -euo pipefail
 
+choice_install_apps="skip_by_default"
+choice_install_fonts="skip_by_default"
+
+while getopts ":a:f:" opt; do
+  case $opt in
+    a) choice_install_apps="$OPTARG"
+    ;;
+    f) choice_install_fonts="$OPTARG"
+    ;;
+    \?) echo "Invalid option -$OPTARG" >&2
+    exit 1
+    ;;
+  esac
+done
+
 ######################################################
+## clone dotfiles
 if [ ! -d ~/.dotfiles ]; then
   echo "#### pull .dotfiles"
-  (cd && git clone git@github.com:404pilot/.dotfiles.git)
+  (cd && GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_personal -o IdentitiesOnly=yes' git clone git@github.com:404pilot/.dotfiles.git)
 fi
 
-# TODO check all apps are installed correctly
+######################################################
+## install necessary apps
+apps=(git ccat vim zsh antigen autojump tmux blueutil sleepwatcher direnv)
+
+if [[ "$choice_install_apps" == "install_apps" ]]; then
+  for app in "${apps[@]}"
+  do
+    echo "#### install $app"
+    brew list $app || brew install $app
+  done
+fi
+
+######################################################
+## install fonts
+if [[ "$choice_install_fonts" == "install_fonts" ]]; then
+  brew tap homebrew/cask-fonts || true && brew install --cask font-fira-code
+fi
+
+######################################################
+## iterm2
+echo "### Config iterm2"
+# Specify the preferences directory
+defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.dotfiles/iterm2"
+# Tell iTerm2 to use the custom preferences in the directory
+defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 
 ######################################################
 ## bash & bash_completion & jenv & rbenv
@@ -31,8 +71,8 @@ rm ~/.zshrc || true \
 ## vim
 echo "#### Config vim"
 
-rm ~/.ideavimrc || true \
-  && ln -s ~/.dotfiles/ideavim/ideavimrc ~/.ideavimrc \
+rm ~/.vimrc || true \
+  && ln -s ~/.dotfiles/vim/vimrc ~/.vimrc \
   && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -40,8 +80,8 @@ rm ~/.ideavimrc || true \
 ## ideavim
 echo "#### Config ideavim"
 
-rm ~/.vimrc || true \
-  && ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
+rm ~/.ideavimrc || true \
+  && ln -s ~/.dotfiles/ideavim/ideavimrc ~/.ideavimrc
 
 ######################################################
 ## editorConfig
@@ -70,6 +110,7 @@ echo "#### Config ssh"
 # make sure terminal: $TERM=xterm-256color
 rm ~/.ssh/config || true \
   && ln -s ~/.dotfiles/ssh/config ~/.ssh/config
+
 ######################################################
 ## Karabiner
 ## by default, click 'Open config folder' from karabiner will delete the symbolink file and generate the latest configuration json file
@@ -97,14 +138,14 @@ rm ~/.shuttle.json || true \
 
 ######################################################
 ## poetry
-echo "#### Config poetry"
-
-POETRY_CONFIG_PATH="${HOME}/Library/Application Support/pypoetry"
-
-if [ -d "${POETRY_CONFIG_PATH}" ]; then
-  rm "${POETRY_CONFIG_PATH}/config.toml" || true \
-    && ln -s ~/.dotfiles/poetry/config.toml "${POETRY_CONFIG_PATH}/config.toml"
-fi
+# echo "#### Config poetry"
+#
+# POETRY_CONFIG_PATH="${HOME}/Library/Application Support/pypoetry"
+#
+# if [ -d "${POETRY_CONFIG_PATH}" ]; then
+#   rm "${POETRY_CONFIG_PATH}/config.toml" || true \
+#     && ln -s ~/.dotfiles/poetry/config.toml "${POETRY_CONFIG_PATH}/config.toml"
+# fi
 
 ######################################################
 ## git

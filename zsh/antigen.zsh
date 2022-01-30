@@ -11,7 +11,7 @@ antigen bundle autojump # have to run `brew install autojump` first
 antigen bundle extract
 
 # only add main one; or use AddKeysToAgent in ssh config
-zstyle :omz:plugins:ssh-agent identities id_rsa
+zstyle :omz:plugins:ssh-agent identities id_rsa_personal
 antigen bundle ssh-agent
 
 # antigen bundle vi-mode
@@ -19,12 +19,12 @@ antigen bundle ssh-agent
 
 ## disable ones that are not currently used
 # antigen bundle darvid/zsh-poetry
-antigen bundle pipenv
-antigen bundle jenv
-antigen bundle pyenv
-antigen bundle sdk
+# antigen bundle pipenv
+# antigen bundle jenv
+# antigen bundle pyenv
+# antigen bundle sdk
 # antigen bundle matthieusb/zsh-sdkman
-antigen bundle nvm
+# antigen bundle nvm
 # antigen bundle aws
 # antigen bundle gradle
 # antigen bundle docker

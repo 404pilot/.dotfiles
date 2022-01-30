@@ -48,6 +48,14 @@ hs.hotkey.bind({"alt, shift"}, "l", function() adjustFrame(rightHalfCoordinate) 
 -- I believe the issue is some applications are not put in Application folder like IntelliJ Idea
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
 SHORTCUT_MAPPING = {
+  ["Default"] = {
+      c       = "Google Chrome",
+      e       = "iTerm",
+      ["`"]   = "Finder",
+      ["1"]   = "Visual Studio Code",
+      ["2"]   = "Typora",
+      ["3"]   = "Notion"
+  },
   ["Jedi"] = {
       c       = "Google Chrome",
       a       = "IntelliJ IDEA Community Edition",
@@ -78,15 +86,16 @@ SHORTCUT_MAPPING = {
       -- ['5']   =   "Microsoft Remote Desktop",
       ['6']   =   "Microsoft Outlook"
   },
---   ["FVF"] = {
---     c       =   "Google Chrome",
---     a       =   "IntelliJ IDEA",
---     e       =   "iTerm",
---     ["`"]   =   "Finder",
---     ["1"]   =   "Visual Studio Code",
---     ["2"]   =   "Typora",
---     ["3"]   =   "Notion",
---   },
+  ["Rocket"] = {
+      c       = "Google Chrome",
+      f       = "Microsoft Edge",
+      e       = "iTerm",
+      ["`"]   = "Finder",
+      ["1"]   = "Visual Studio Code",
+      ["2"]   = "Typora",
+      ["3"]   = "Notion",
+      ['4']   =   "Microsoft Teams"
+  },
 }
 
 local function getMapping(laptop_id, mapping)
@@ -95,6 +104,8 @@ local function getMapping(laptop_id, mapping)
       return value
     end
   end
+
+  return SHORTCUT_MAPPING["Default"]
 end
 
 laptop_id = hs.host.localizedName() -- name can be found in preferences/sharing
