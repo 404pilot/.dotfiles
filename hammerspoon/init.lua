@@ -54,7 +54,7 @@ SHORTCUT_MAPPING = {
       ["`"]   = "Finder",
       ["1"]   = "Visual Studio Code",
       ["2"]   = "Typora",
-      ["3"]   = "Notion"
+      ["3"]   = "Notion",
   },
   ["Jedi"] = {
       c       = "Google Chrome",
@@ -63,7 +63,7 @@ SHORTCUT_MAPPING = {
       ["`"]   = "Finder",
       ["1"]   = "Visual Studio Code",
       ["2"]   = "Typora",
-      ["3"]   = "Notion"
+      ["3"]   = "Notion",
   },
   ["FVF"] = {
       f       =   "Google Chrome Canary",
@@ -84,17 +84,19 @@ SHORTCUT_MAPPING = {
       ['4']   =   "Microsoft Teams",
       -- ['5']   =   "Royal TSX",
       -- ['5']   =   "Microsoft Remote Desktop",
-      ['6']   =   "Microsoft Outlook"
+      ['6']   =   "Microsoft Outlook",
   },
   ["Rocket"] = {
       c       = "Google Chrome",
       f       = "Microsoft Edge",
       e       = "iTerm",
+      v       = "Microsoft Word",
       ["`"]   = "Finder",
       ["1"]   = "Visual Studio Code",
-      ["2"]   = "Typora",
+      ["2"]   = "Mark Text",
       ["3"]   = "Notion",
-      ['4']   =   "Microsoft Teams"
+      ['4']   = "Microsoft Teams",
+      ['6']   = "Microsoft Outlook",
   },
 }
 

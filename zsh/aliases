@@ -28,6 +28,40 @@ alias ga='git add'
 alias gall='git add --all'
 alias gp='git pull'
 
+get_alias() {
+    local git_name=$(git config user.name)
+    local name=${git_name// /}
+    local name=${name:l}
+
+    echo $name
+}
+
+gpc() {
+    # git pull current branch
+    local current_branch_name=$(git rev-parse --abbrev-ref HEAD)
+
+    local command="git pull --ff-only origin $current_branch_name"
+
+    echo ">>> Running command: $command\n"
+
+    eval  "$command"
+}
+
+gbu() {
+    # create a git branch with user info
+    local alias=$(get_alias)
+    local branch_name=$1
+
+    local command="git checkout -b user/$alias/$branch_name"
+
+    echo ">>> Running command: $command\n"
+
+    eval  "$command"
+}
+
+## marktext
+alias marktext="/Applications/Mark\ Text.app/Contents/MacOS/Mark\ Text"
+
 ## aws
 alias aws="PAGER=cat aws"
 

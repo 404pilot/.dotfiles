@@ -8,6 +8,9 @@
 [includeIf "gitdir:~/Work/public/"]
     path = ~/Work/public/gitconfig-work
 
+[includeIf "gitdir:~/Work/ms/"]
+    path = ~/Work/ms/gitconfig-work
+
 [color]
     ui = true
 
@@ -16,12 +19,16 @@
     st = status
     br = branch -a
     cmm = commit -m
-    lol = log --oneline -n 10
+    ll = log --oneline -n 10
+    lll = log --pretty=format:"%h%x09%an%x09%ad%x09%s" -n 10
     bye = reset --hard HEAD
     wormhole = reset --hard HEAD~1
     wip = reset --soft HEAD~1
     sh = stash
     mg = merge --no-ff
+
+[log]
+    date = relative
 
 [push]
     # default = simple

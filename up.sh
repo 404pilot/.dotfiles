@@ -107,7 +107,6 @@ fi
 ## ssh
 echo "#### Config ssh"
 
-# make sure terminal: $TERM=xterm-256color
 rm ~/.ssh/config || true \
   && ln -s ~/.dotfiles/ssh/config ~/.ssh/config
 
@@ -154,15 +153,21 @@ echo "#### Config git"
 rm ~/.gitconfig || true \
   && ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
 
-if [ -d ~/Work/private ] && [ ! -f ~/Work/private/gitconfig-work ]; then
-  echo "######## Please modify ~/work/private/gitconfig-work"
-  cp ~/.dotfiles/git/gitconfig-work ~/work/private
-fi
+function set_up_git_config_for_work(){
+  local location=$1
 
-if [ -d ~/Work/public ] && [ ! -f ~/Work/public/gitconfig-work ]; then
-  echo "######## Please modify ~/work/public/gitconfig-work"
-  cp ~/.dotfiles/git/gitconfig-work ~/work/public
-fi
+  mkdir -p $location
+
+  if [ ! -f $location/gitconfig-work ]; then
+    echo "######## Please modify $location/gitconfig-work"
+    cp ~/.dotfiles/git/gitconfig-work $location
+  fi
+}
+
+set_up_git_config_for_work ~/Work/private
+set_up_git_config_for_work ~/Work/public
+set_up_git_config_for_work ~/Work/ms
+
 
 ######################################################
 ## sleepwatcher
