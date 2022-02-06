@@ -4,12 +4,15 @@ set -euo pipefail
 
 choice_install_apps="skip_by_default"
 choice_install_fonts="skip_by_default"
+choice_update_mac_defaults="skip_by_default"
 
-while getopts ":a:f:" opt; do
+while getopts ":a:f:m:" opt; do
   case $opt in
     a) choice_install_apps="$OPTARG"
     ;;
     f) choice_install_fonts="$OPTARG"
+    ;;
+    m) choice_update_mac_defaults="$OPTARG"
     ;;
     \?) echo "Invalid option -$OPTARG" >&2
     exit 1
@@ -177,6 +180,28 @@ rm ~/.sleep || true \
 
 rm ~/.wakeup || true \
   && ln -s ~/.dotfiles/sleepwatcher/wakeup ~/.wakeup
+
+brew service restart sleepwatcher
+
+######################################################
+## macOS
+# see docs at https://macos-defaults.com/
+echo "#### Config macOS defaults values"
+if [[ "$choice_update_mac_defaults" == "update_mac_defaults" ]]; then
+  # save screenshots to ~/Documents
+  defaults write com.apple.screencapture location $HOME/documents && killall SystemUIServer
+
+  # allow repeated keys
+  defaults write -g ApplePressAndHoldEnabled -bool false
+
+  # show all extensions name
+  defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true" && killall Finder
+
+  # set dock position
+  defaults write com.apple.dock "orientation" -string "left" \
+    && defaults write com.apple.dock "show-recents" -bool "false" \
+    && killall Dock
+fi
 
 ######################################################
 ## done
