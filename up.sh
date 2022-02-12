@@ -181,7 +181,7 @@ rm ~/.sleep || true \
 rm ~/.wakeup || true \
   && ln -s ~/.dotfiles/sleepwatcher/wakeup ~/.wakeup
 
-brew service restart sleepwatcher
+brew services restart sleepwatcher
 
 ######################################################
 ## macOS
