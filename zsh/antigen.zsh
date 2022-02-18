@@ -29,7 +29,7 @@ antigen bundle ssh-agent
 # antigen bundle gradle
 # antigen bundle docker
 # antigen bundle docker-compose
-# antigen bundle rbenv
+antigen bundle rbenv
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
