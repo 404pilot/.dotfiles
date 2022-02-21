@@ -195,7 +195,7 @@ local middleScreenHint = 722488782
 local eastScreenHint   = 722478799
 -- 2 mointors
 local mainScreenHint   = "DELL U2718Q"
-local eastScreenHint   = "DELL U2412M"
+local eastScreenHint   = "DELL P2721Q"
 
 -- get application name by
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
@@ -239,9 +239,10 @@ local officeLayout = {
 local homeLayout = {
   {"Google Chrome",           mainScreenHint,  maximizedCoordinate},
   {"Google Chrome Canary",    mainScreenHint,  maximizedCoordinate},
+  {"Microsoft Edge",          mainScreenHint,  maximizedCoordinate},
   {"IntelliJ IDEA",           mainScreenHint,  maximizedCoordinate},
   {"PyCharm",                 mainScreenHint,  maximizedCoordinate},
-  {"Typora",                  mainScreenHint,  maximizedCoordinate},
+  {"Mark Text",               mainScreenHint,  maximizedCoordinate},
   {"Code",                    mainScreenHint,  maximizedCoordinate},
   {"Finder",                  mainScreenHint,  maximizedCoordinate},
   {"Activity Monitor",        mainScreenHint,  centerCoordinate},
@@ -249,9 +250,10 @@ local homeLayout = {
   {"Preview",           eastScreenHint,  maximizedCoordinate},
   {"iTerm2",            eastScreenHint,  maximizedCoordinate},
   {"Microsoft Outlook", eastScreenHint,  maximizedCoordinate},
+  {"Microsoft Word",    eastScreenHint,  maximizedCoordinate},
+  {"Microsoft Excel",   eastScreenHint,  maximizedCoordinate},
   {"Notion",            eastScreenHint,  maximizedCoordinate},
   {"Microsoft Teams",   eastScreenHint,  maximizedCoordinate},
-  {"Trello",            eastScreenHint,  maximizedCoordinate},
 }
 
 local function applyLayout(layout)

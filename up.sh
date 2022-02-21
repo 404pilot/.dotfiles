@@ -186,6 +186,8 @@ brew services restart sleepwatcher
 ######################################################
 ## macOS
 # see docs at https://macos-defaults.com/
+# default reads
+# default domains
 echo "#### Config macOS defaults values"
 if [[ "$choice_update_mac_defaults" == "update_mac_defaults" ]]; then
   # save screenshots to ~/Documents
@@ -196,6 +198,9 @@ if [[ "$choice_update_mac_defaults" == "update_mac_defaults" ]]; then
 
   # show all extensions name
   defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true" && killall Finder
+
+  # show path
+  defaults write com.apple.finder "ShowPathbar" -bool true && killall Finder
 
   # set dock position
   defaults write com.apple.dock "orientation" -string "left" \
