@@ -186,10 +186,14 @@ brew services restart sleepwatcher
 ######################################################
 ## macOS
 # see docs at https://macos-defaults.com/
-# default reads
-# default domains
+# defaults reads
+# defaults domains
+# lots of configurations exist at ~/Library/Preferences
 echo "#### Config macOS defaults values"
 if [[ "$choice_update_mac_defaults" == "update_mac_defaults" ]]; then
+  # backup current settings
+  defaults read > /tmp/defaults_read_$(date -u +"%Y-%m-%dT%H:%M:%SZ").bak
+
   # save screenshots to ~/Documents
   defaults write com.apple.screencapture location $HOME/documents && killall SystemUIServer
 
@@ -206,6 +210,11 @@ if [[ "$choice_update_mac_defaults" == "update_mac_defaults" ]]; then
   defaults write com.apple.dock "orientation" -string "left" \
     && defaults write com.apple.dock "show-recents" -bool "false" \
     && killall Dock
+
+  # set default view in finder
+  defaults write com.apple.finder "FXPreferredGroupBy" -string "Kind" \
+    && defaults write com.apple.finder "FXPreferredSearchViewStyle" -string "Nlsv" \
+    && killall Finder
 fi
 
 ######################################################
