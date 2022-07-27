@@ -17,34 +17,34 @@ gAnyChange(){
     fi
 }
 
-gsync(){
-    gAnyChange; if [[ "$?" -ne 0 ]]; then return 1; fi
+# gsync(){
+#     gAnyChange; if [[ "$?" -ne 0 ]]; then return 1; fi
 
-    # default
-    branch='development'
+#     # default
+#     branch='development'
 
-    while [[ "$#" -gt 0 ]]; do
-        case "$1" in
-            -b|--branch)
-                branch="$2"
-                shift
-            ;;
-            -*)
-                echo "unknown option: $1"
-                return 1
-            ;;
-        esac
+#     while [[ "$#" -gt 0 ]]; do
+#         case "$1" in
+#             -b|--branch)
+#                 branch="$2"
+#                 shift
+#             ;;
+#             -*)
+#                 echo "unknown option: $1"
+#                 return 1
+#             ;;
+#         esac
 
-        shift
-    done
+#         shift
+#     done
 
-    git fetch upstream
-    git checkout $branch
+#     git fetch upstream
+#     git checkout $branch
 
-    log "syncing"
+#     log "syncing"
 
-    git reset --hard upstream/$branch
-}
+#     git reset --hard upstream/$branch
+# }
 
 gCleanUpPr(){
     log 'cleaning up local PR branches'
@@ -276,27 +276,11 @@ reloadDevEnv(){
     fi
 }
 
-raxvpcDemo(){
-    log "remember to reset raxVPC.json file"
-
-    cp ${JSON_DICTIONARY_REPO}/DemoSpec.groovy ~/Work/private/raxVPC/src/test/groovy/com/rackspace/vdo
-}
-
 fAppProcess(){
     # fAppProcess rvi-api virtapp raxvpc
     app_name=$1
 
     jps -v | grep info.app.name=$app_name
-}
-
-showVcfFiles(){
-    rvi_vcf_api="${HOME}/Work/private/RVI-Api/grails-app/resources/com/rackspace/vdo/api/VcfResource.groovy"
-    rvi_hypervisor_api="${HOME}/Work/private/RVI-Api/grails-app/resources/com/rackspace/vdo/api/HypervisorResource.groovy"
-    virtapp_controllers_folders="${HOME}/Work/private/virtapp/grails-app/controllers/com/rackspace/virtapp/vcf"
-    virtapp_controllers="${HOME}/Work/private/virtapp/grails-app/controllers/com/rackspace/virtapp/vcf/VcfController.groovy"
-    virtapp_apis="${HOME}/Work/private/virtapp/src/main/groovy/com/rackspace/vdo/clients/vdo/rviapi/v1/ex/RviApiClient.groovy"
-
-    code $rvi_vcf_api $rvi_hypervisor_api $virtapp_controllers $virtapp_apis $virtapp_controllers_folders
 }
 
 updateAws(){
@@ -310,20 +294,4 @@ updateAws(){
     cp $AWS_CREDENTIALS_FILE_BAK $AWS_CREDENTIALS_FILE
 
     echo $clipboard >> $AWS_CREDENTIALS_FILE
-}
-
-rpcvDemo(){
-    source=~/Work/public/vdo-rpcv/rpcv/tests/rpcv_demo.py
-    copy=${JSON_DICTIONARY_REPO}/rpcv_demo.py
-
-    if [[ -f "$source" ]]; then
-        cp $source $copy
-        rm $source
-    else
-        cp $copy $source
-    fi
-}
-
-vdoHelper(){
-    grep -E '^[[:space:]]*([[:alnum:]_]+[[:space:]]*\(\)|function[[:space:]]+[[:alnum:]_]+)' ~/.dotfiles/zsh/office
 }

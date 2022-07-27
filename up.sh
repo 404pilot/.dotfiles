@@ -213,7 +213,7 @@ if [[ "$choice_update_mac_defaults" == "update_mac_defaults" ]]; then
 
   # set default view in finder
   defaults write com.apple.finder "FXPreferredGroupBy" -string "Kind" \
-    && defaults write com.apple.finder "FXPreferredSearchViewStyle" -string "Nlsv" \
+    && defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv" \
     && killall Finder
 fi
 

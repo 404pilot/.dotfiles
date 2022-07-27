@@ -1,3 +1,7 @@
+local function log(message)
+  print(">>>>>>" .. message)
+end
+
 -- ************************************************************
 -- Windows Management
 -- ************************************************************
@@ -91,9 +95,10 @@ SHORTCUT_MAPPING = {
       f       = "Microsoft Edge",
       e       = "iTerm",
       v       = "Microsoft Word",
+      r       = "Microsoft Remote Desktop",
       ["`"]   = "Finder",
       ["1"]   = "Visual Studio Code",
-      ["2"]   = "Mark Text",
+      ["2"]   = "MarkText",
       ["3"]   = "Notion",
       ['4']   = "Microsoft Teams",
       ['6']   = "Microsoft Outlook",
@@ -119,35 +124,11 @@ for shortcut, app in pairs(laptop_shortcut) do
   hs.hotkey.bind({"alt"}, shortcut, function() hs.application.launchOrFocus(app) end)
 end
 
+-- https://github.com/Hammerspoon/hammerspoon/issues/272
+
 -- ************************************************************
 -- Scripts
 -- ************************************************************
-local function openInVim()
-  -- prerequisite:
-  --   1. associate .yea file with visual code in macos
-  --   2. iTerm2 support:
-
-  -- copy current line
-  hs.eventtap.keyStroke({}, "end")
-  hs.eventtap.keyStroke({"shift"}, "home")
-  hs.eventtap.keyStroke({"cmd"}, "c")
-
-  -- open the line with the application
-  hs.execute("echo \"$(pbpaste)\" > ~/.tmp.yea")
-  hs.execute("open ~/.tmp.yea")
-end
-
-local function replaceCurrent()
-  -- delete current line
-  hs.eventtap.keyStroke({}, "end")
-  hs.eventtap.keyStroke({"shift"}, "home")
-  hs.eventtap.keyStroke({}, "delete")
-
-  -- replace
-  hs.execute("pbcopy < ~/.tmp.yea")
-  hs.eventtap.keyStroke({"cmd"}, "v")
-end
-
 local function setAwsCredentials()
   hs.execute("~/.dotfiles/hammerspoon/updateAws.sh")
   -- hs.execute("echo \"$(pbpaste)\" > ~/.aws/credentials")
@@ -161,11 +142,8 @@ local function intiProcessToLoadAwsCredentials()
   hs.execute("open https://rax.io/pvc-dev-aws")
 end
 
--- hs.hotkey.bind({"alt"}, "8", setAwsCredentials)
--- hs.hotkey.bind({"alt"}, "6", openInVim)
--- hs.hotkey.bind({"alt"}, "7", replaceCurrent)
-hs.hotkey.bind({"alt"}, "8", intiProcessToLoadAwsCredentials)
-hs.hotkey.bind({"alt"}, "9", setAwsCredentials)
+-- hs.hotkey.bind({"alt"}, "8", intiProcessToLoadAwsCredentials)
+-- hs.hotkey.bind({"alt"}, "9", setAwsCredentials)
 
 -- ************************************************************
 -- URL handlers
@@ -186,94 +164,113 @@ hs.urlevent.bind("update_aws", setAwsCredentials)
 -- ************************************************************
 -- auto layout
 -- ************************************************************
--- get name by
+-- get monitor name by
 --   for index,value in pairs(hs.screen.allScreens()) do print(value:name() .. " - " .. value:id()) end
-
--- office
-local macScreenHint    = "Color LCD"
-local middleScreenHint = 722488782
-local eastScreenHint   = 722478799
--- 2 mointors
-local mainScreenHint   = "DELL U2718Q"
-local eastScreenHint   = "DELL P2721Q"
-
 -- get application name by
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
 
-local defaultLayout = {
-  {"iTerm2",            macScreenHint,   centerCoordinate},
-  {"Notion",            macScreenHint,   centerCoordinate},
-  {"Postman",           macScreenHint,   centerCoordinate},
-  {"Slack",             macScreenHint,   centerCoordinate},
-  {"Trello",            macScreenHint,   centerCoordinate},
-  {"Typora",            macScreenHint,   centerCoordinate},
-  {"Finder",            macScreenHint,   centerCoordinate},
-  {"Telegram",          macScreenHint,   centerCoordinate},
-  {"Activity Monitor",  macScreenHint,   centerCoordinate},
+local macScreen   = "Built-in Retina Display"
+local macScreenLua = "Built%-in Retina Display"
+local dellP2721Q = "DELL P2721Q"
+local dellU2718Q = "DELL U2718Q"
 
-  {"Code",                    macScreenHint,   maximizedCoordinate},
-  {"Preview",                 macScreenHint,   maximizedCoordinate},
-  {"Google Chrome",           macScreenHint,   maximizedCoordinate},
-  {"Google Chrome Canary",    macScreenHint,   maximizedCoordinate},
-  {"IntelliJ IDEA",           macScreenHint,   maximizedCoordinate},
-  {"Microsoft Outlook",       macScreenHint,   maximizedCoordinate},
-  {"PyCharm",                 macScreenHint,   maximizedCoordinate},
+local layouts = {
+  officeLayout={
+    -- office: dellP2721Q(main) - macScreen
+    screens={dellP2721Q, macScreen},
+    appConfigs={
+      {"Google Chrome",             dellP2721Q,  maximizedCoordinate},
+      {"Microsoft Edge",            dellP2721Q,  maximizedCoordinate},
+      {"Microsoft Remote Desktop",  dellP2721Q,  maximizedCoordinate},
+      {"Code",                      dellP2721Q,  maximizedCoordinate},
+
+      {"Finder",                    macScreen,      centerCoordinate},
+      {"Activity Monitor",          macScreen,      centerCoordinate},
+      {"MarkText",                  macScreen,      centerCoordinate},
+      {"Preview",                   macScreen,      maximizedCoordinate},
+      {"iTerm2",                    macScreen,      maximizedCoordinate},
+      {"Microsoft Outlook",         macScreen,      maximizedCoordinate},
+      {"Microsoft Word",            macScreen,      maximizedCoordinate},
+      {"Microsoft Excel",           macScreen,      maximizedCoordinate},
+      {"Notion",                    macScreen,      maximizedCoordinate},
+      {"Microsoft Teams",           macScreen,      maximizedCoordinate},
+    }
+  },
+  homeLayout={
+    -- home: macScreen(main) - dellU2718Q
+    screens={macScreen,dellU2718Q},
+    appConfigs={
+      {"Google Chrome",             dellU2718Q,     maximizedCoordinate},
+      {"Microsoft Edge",            dellU2718Q,     maximizedCoordinate},
+      {"Microsoft Remote Desktop",  dellU2718Q,     maximizedCoordinate},
+      {"Code",                      dellU2718Q,     maximizedCoordinate},
+
+      {"Finder",                    macScreen,      centerCoordinate},
+      {"Activity Monitor",          macScreen,      centerCoordinate},
+      {"MarkText",                  macScreen,      centerCoordinate},
+      {"Preview",                   macScreen,      maximizedCoordinate},
+      {"iTerm2",                    macScreen,      maximizedCoordinate},
+      {"Microsoft Outlook",         macScreen,      maximizedCoordinate},
+      {"Microsoft Word",            macScreen,      maximizedCoordinate},
+      {"Microsoft Excel",           macScreen,      maximizedCoordinate},
+      {"Notion",                    macScreen,      maximizedCoordinate},
+      {"Microsoft Teams",           macScreen,      maximizedCoordinate},
+    }
+  },
+  defaultLayout={
+    screens={macScreen},
+    appConfigs={
+      {"iTerm2",                  macScreen,   centerCoordinate},
+      {"Notion",                  macScreen,   centerCoordinate},
+      {"Postman",                 macScreen,   centerCoordinate},
+      {"Slack",                   macScreen,   centerCoordinate},
+      {"Trello",                  macScreen,   centerCoordinate},
+      {"Typora",                  macScreen,   centerCoordinate},
+      {"Finder",                  macScreen,   centerCoordinate},
+      {"Telegram",                macScreen,   centerCoordinate},
+      {"Activity Monitor",        macScreen,   centerCoordinate},
+      {"Code",                    macScreen,   maximizedCoordinate},
+      {"Preview",                 macScreen,   maximizedCoordinate},
+      {"Google Chrome",           macScreen,   maximizedCoordinate},
+      {"Google Chrome Canary",    macScreen,   maximizedCoordinate},
+      {"IntelliJ IDEA",           macScreen,   maximizedCoordinate},
+      {"Microsoft Outlook",       macScreen,   maximizedCoordinate},
+      {"PyCharm",                 macScreen,   maximizedCoordinate},
+    }
+  }
 }
 
-local officeLayout = {
-  {"Code",              macScreenHint,    centerCoordinate},
-  {"iTerm2",            macScreenHint,    centerCoordinate},
-  {"Trello",            macScreenHint,    centerCoordinate},
-  {"Typora",            macScreenHint,    centerCoordinate},
+local function getScreensId(screens)
+  screensCopy = {}
+  for _, screen in ipairs(screens) do
+    table.insert(screensCopy, screen)
+  end
 
-  {"Google Chrome",     middleScreenHint, maximizedCoordinate},
-  {"IntelliJ IDEA",     middleScreenHint, maximizedCoordinate},
-  {"RubyMine",          middleScreenHint, maximizedCoordinate},
+  table.sort(screensCopy)
 
-  {"Microsoft Outlook", eastScreenHint,   topHalfCoordinate},
-  {"Notion",            eastScreenHint,   maximizedCoordinate},
-  {"Postman",           eastScreenHint,   maximizedCoordinate},
-  {"Slack",             eastScreenHint,   bottomHalfCoordinate}
-}
-
-local homeLayout = {
-  {"Google Chrome",           mainScreenHint,  maximizedCoordinate},
-  {"Google Chrome Canary",    mainScreenHint,  maximizedCoordinate},
-  {"Microsoft Edge",          mainScreenHint,  maximizedCoordinate},
-  {"IntelliJ IDEA",           mainScreenHint,  maximizedCoordinate},
-  {"PyCharm",                 mainScreenHint,  maximizedCoordinate},
-  {"Mark Text",               mainScreenHint,  maximizedCoordinate},
-  {"Code",                    mainScreenHint,  maximizedCoordinate},
-  {"Finder",                  mainScreenHint,  maximizedCoordinate},
-  {"Activity Monitor",        mainScreenHint,  centerCoordinate},
-
-  {"Preview",           eastScreenHint,  maximizedCoordinate},
-  {"iTerm2",            eastScreenHint,  maximizedCoordinate},
-  {"Microsoft Outlook", eastScreenHint,  maximizedCoordinate},
-  {"Microsoft Word",    eastScreenHint,  maximizedCoordinate},
-  {"Microsoft Excel",   eastScreenHint,  maximizedCoordinate},
-  {"Notion",            eastScreenHint,  maximizedCoordinate},
-  {"Microsoft Teams",   eastScreenHint,  maximizedCoordinate},
-}
+  return table.concat(screensCopy, ",")
+end
 
 local function applyLayout(layout)
   transformedLayout = {}
 
-  for key,value in pairs(layout) do
+  for _, appConfig in pairs(layout["appConfigs"]) do
     -- Try to get first two applications which are matched by name because
     --    google chrome and google chrome canary are sharing the same "Google Chrome"
 
-    local app1, app2 = hs.application.find(value[1])
+    local app1, app2 = hs.application.find(appConfig[1])
 
     local apps = {app1, app2}
 
     for i = 1, 2 do
       if apps[i] ~= nil then
-        -- if hs.application.name(apps[i]) == value[1] then
-        if apps[i].name(apps[i]) == value[1] then
-          -- print("Found application "..value[1])
-
-          table.insert(transformedLayout, {apps[i], nil, hs.screen.find(value[2]), value[3], nil, nil})
+        -- if hs.application.name(apps[i]) == appConfig[1] then
+        if apps[i].name(apps[i]) == appConfig[1] then
+          if appConfig[2] == macScreen then
+            table.insert(transformedLayout, {apps[i], nil, hs.screen.find(macScreenLua), appConfig[3], nil, nil})
+          else
+            table.insert(transformedLayout, {apps[i], nil, hs.screen.find(appConfig[2]), appConfig[3], nil, nil})
+          end
           break;
         end
       end
@@ -283,16 +280,27 @@ local function applyLayout(layout)
   hs.layout.apply(transformedLayout)
 end
 
-local function reformatLayout()
-  currentNumberOfScreens = #hs.screen.allScreens()
-
-  if currentNumberOfScreens == 3 then
-    applyLayout(officeLayout)
-  elseif currentNumberOfScreens == 2 then
-    applyLayout(homeLayout)
-  else
-    applyLayout(defaultLayout)
+local function getCurrentScreensId()
+  currentScreens = {}
+  for _, screen in ipairs(hs.screen.allScreens()) do
+    table.insert(currentScreens, screen:name())
   end
+
+  return getScreensId(currentScreens)
+end
+
+local function reformatLayout()
+  currentScreensId = getCurrentScreensId()
+
+  for _, layout in pairs(layouts) do
+    if getScreensId(layout["screens"]) == currentScreensId then
+      log("Using layout: " .. currentScreensId)
+      applyLayout(layout)
+      return
+    end
+  end
+
+  log("There is no matching layout found")
 end
 
 hs.hotkey.bind({"alt"}, "0", reformatLayout)
@@ -300,16 +308,12 @@ hs.hotkey.bind({"alt"}, "0", reformatLayout)
 -- ************************************************************
 -- screen watcher to set layouts automatically
 -- ************************************************************
-local lastNumberOfScreens = #hs.screen.allScreens()
+local lastRecordedScreensId = getCurrentScreensId()
 
 function screenChangedCallback()
-    currentNumberOfScreens = #hs.screen.allScreens()
-
-    if currentNumberOfScreens ~= lastNumberOfScreens then
-      reformatLayout()
-
-      lastNumberOfScreens = currentNumberOfScreens
-    end
+  if lastRecordedScreensId ~= getCurrentScreensId() then
+    reformatLayout()
+  end
 end
 
 -- http://www.hammerspoon.org/go/#variablelife

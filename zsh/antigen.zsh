@@ -24,12 +24,16 @@ antigen bundle ssh-agent
 # antigen bundle pyenv
 # antigen bundle sdk
 # antigen bundle matthieusb/zsh-sdkman
-# antigen bundle nvm
 # antigen bundle aws
 # antigen bundle gradle
 # antigen bundle docker
 # antigen bundle docker-compose
 antigen bundle rbenv
+antigen bundle terraform
+
+antigen bundle nvm
+antigen bundle npm
+antigen bundle node
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions

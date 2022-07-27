@@ -1,4 +1,3 @@
-
 alias grep='grep --color=auto -i'
 alias ll='ls -alFh'
 alias la='ls -A'
@@ -22,11 +21,14 @@ alias gb='git branch'
 alias gma='git commit -am'
 alias gmm='git commit -m'
 alias gc='git checkout'
-alias gcm='git checkout master'
-alias gcd='git checkout development'
 alias ga='git add'
 alias gall='git add --all'
 alias gp='git pull'
+
+log(){
+    echo ">>>>> $1"
+    echo
+}
 
 get_alias() {
     local git_name=$(git config user.name)
@@ -36,27 +38,53 @@ get_alias() {
     echo $name
 }
 
+run_command() {
+    local command=$1
+
+    echo "\n    𐦚𐦚𐦚 Running command: 𐦲𐦲 $command 𐦲𐦲\n"
+    eval "$command"
+}
+
+get_master_branch() {
+    local branch_indicator=$(git branch -l master main)
+    # the output could be "  master" or "* master"
+    # need to remove first two characters
+    local master_branch=${branch_indicator:2}
+
+    if [[ $master_branch == "master" ]] || [[ $master_branch == "main" ]]; then
+        echo ${branch_indicator:2}
+    else
+        exit 1
+    fi
+}
+
+get_current_branch() {
+    local current_branch=$(git rev-parse --abbrev-ref HEAD)
+    echo $current_branch
+}
+
+gcm() {
+    run_command "git checkout $(get_master_branch)"
+}
+
 gpc() {
-    # git pull current branch
-    local current_branch_name=$(git rev-parse --abbrev-ref HEAD)
-
-    local command="git pull --ff-only origin $current_branch_name"
-
-    echo ">>> Running command: $command\n"
-
-    eval  "$command"
+    # log "Getting latest changes from the 'master|main' branch..."
+    run_command "git pull --ff-only origin $(get_current_branch)"
 }
 
 gbu() {
     # create a git branch with user info
-    local alias=$(get_alias)
     local branch_name=$1
+    run_command "git checkout -b user/$(get_alias)/$branch_name"
+}
 
-    local command="git checkout -b user/$alias/$branch_name"
+gsync() {
+    # sync current `master` branch
+    local previous_branch=$(git rev-parse --abbrev-ref @{-1})
 
-    echo ">>> Running command: $command\n"
-
-    eval  "$command"
+    gcm && gpc && \
+        run_command "git checkout $previous_branch" && \
+        run_command "git checkout $(get_current_branch)"
 }
 
 ## marktext
