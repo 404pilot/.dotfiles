@@ -54,6 +54,7 @@ get_master_branch() {
     if [[ $master_branch == "master" ]] || [[ $master_branch == "main" ]]; then
         echo ${branch_indicator:2}
     else
+        echo "Wrong branch name!!"
         exit 1
     fi
 }
