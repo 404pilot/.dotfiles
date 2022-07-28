@@ -69,13 +69,17 @@ local function getMapping(laptop_id, mapping)
   return SHORTCUT_MAPPING["Default"]
 end
 
-laptop_id = hs.host.localizedName() -- name can be found in preferences/sharing
-laptop_shortcut = getMapping(laptop_id, SHORTCUT_MAPPING)
--- laptop_shortcut = SHORTCUT_MAPPING[laptop_id]
+local function bind_keys_for_application_shortcuts()
+  laptop_id = hs.host.localizedName() -- name can be found in preferences/sharing
+  laptop_shortcut = getMapping(laptop_id, SHORTCUT_MAPPING)
+  -- laptop_shortcut = SHORTCUT_MAPPING[laptop_id]
 
-hs.application.enableSpotlightForNameSearches(true)
-for shortcut, app in pairs(laptop_shortcut) do
-  hs.hotkey.bind({"alt"}, shortcut, function() hs.application.launchOrFocus(app) end)
+  hs.application.enableSpotlightForNameSearches(true)
+  for shortcut, app in pairs(laptop_shortcut) do
+    hs.hotkey.bind({"alt"}, shortcut, function() hs.application.launchOrFocus(app) end)
+  end
 end
+
+bind_keys_for_application_shortcuts()
 
 -- https://github.com/Hammerspoon/hammerspoon/issues/272

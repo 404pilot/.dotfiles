@@ -29,18 +29,22 @@ local function toPreviousScreen()
   win:moveToScreen(nextScreen)
 end
 
-hs.hotkey.bind({"alt"}, "u", function() adjustFrame(CENTER_COORDINATE) end)
-hs.hotkey.bind({"alt"}, "o", function() adjustFrame(MAXIMIZED_COORDINATE) end)
+local function bind_keys_for_windows_management()
+  hs.hotkey.bind({"alt"}, "u", function() adjustFrame(CENTER_COORDINATE) end)
+  hs.hotkey.bind({"alt"}, "o", function() adjustFrame(MAXIMIZED_COORDINATE) end)
 
-hs.hotkey.bind({"alt"}, "i", function() adjustFrame(TOP_HALF_COORDINATE) end)
-hs.hotkey.bind({"alt"}, "k", function() adjustFrame(BOTTOM_HALF_COORDINATE) end)
-hs.hotkey.bind({"alt"}, "j", toNextScreen)
-hs.hotkey.bind({"alt"}, "l", toPreviousScreen)
+  hs.hotkey.bind({"alt"}, "i", function() adjustFrame(TOP_HALF_COORDINATE) end)
+  hs.hotkey.bind({"alt"}, "k", function() adjustFrame(BOTTOM_HALF_COORDINATE) end)
+  hs.hotkey.bind({"alt"}, "j", toNextScreen)
+  hs.hotkey.bind({"alt"}, "l", toPreviousScreen)
 
-hs.hotkey.bind({"alt, shift"}, "j", function() adjustFrame(LEFT_HALF_COORDINATE) end)
-hs.hotkey.bind({"alt, shift"}, "l", function() adjustFrame(RIGHT_HALF_COORDINATE) end)
--- hs.hotkey.bind({"alt, shift"}, "l", toNextScreen)
--- hs.hotkey.bind({"alt, shift"}, "j", toPreviousScreen)
+  hs.hotkey.bind({"alt, shift"}, "j", function() adjustFrame(LEFT_HALF_COORDINATE) end)
+  hs.hotkey.bind({"alt, shift"}, "l", function() adjustFrame(RIGHT_HALF_COORDINATE) end)
+  -- hs.hotkey.bind({"alt, shift"}, "l", toNextScreen)
+  -- hs.hotkey.bind({"alt, shift"}, "j", toPreviousScreen)
+end
+
+bind_keys_for_windows_management()
 
 -- ************************************************************
 -- auto layout
@@ -185,19 +189,27 @@ local function reformatLayout()
   log("There is no matching layout found")
 end
 
-hs.hotkey.bind({"alt"}, "0", reformatLayout)
+local function bind_keys_for_windows_auto_formatting()
+  hs.hotkey.bind({"alt"}, "0", reformatLayout)
+end
+
+bind_keys_for_windows_auto_formatting()
 
 -- ************************************************************
 -- screen watcher to set layouts automatically
 -- ************************************************************
 local lastRecordedScreensId = getCurrentScreensId()
 
-function screenChangedCallback()
+local function screenChangedCallback()
   if lastRecordedScreensId ~= getCurrentScreensId() then
     reformatLayout()
   end
 end
 
--- http://www.hammerspoon.org/go/#variablelife
--- use a global variable to keep watchers out of being GCed
-screenWatcher = hs.screen.watcher.new(screenChangedCallback):start()
+local function register_screen_change_detector()
+  -- http://www.hammerspoon.org/go/#variablelife
+  -- use a global variable to keep watchers out of being GCed
+  screenWatcher = hs.screen.watcher.new(screenChangedCallback):start()
+end
+
+register_screen_change_detector()
