@@ -59,7 +59,7 @@ local MAC_SCREEN_LUA = "Built%-in Retina Display"
 local Dell_P2721Q = "DELL P2721Q"
 local Dell_U2718Q = "DELL U2718Q"
 
-local layouts = {
+local CUSTOM_LAYOUTS = {
   officeLayout={
     -- office: Dell_P2721Q(main) - MAC_SCREEN
     screens={Dell_P2721Q, MAC_SCREEN},
@@ -126,11 +126,8 @@ local layouts = {
 }
 
 local function getScreensId(screens)
-  screensCopy = {}
-  for _, screen in ipairs(screens) do
-    table.insert(screensCopy, screen)
-  end
-
+  -- screens: a list of screen names
+  local screensCopy = {table.unpack(screens)}
   table.sort(screensCopy)
 
   return table.concat(screensCopy, ",")
