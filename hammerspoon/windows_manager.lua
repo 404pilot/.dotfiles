@@ -198,8 +198,13 @@ bind_keys_for_windows_auto_formatting()
 local lastRecordedScreensId = getCurrentScreensId()
 
 local function screenChangedCallback()
-  if lastRecordedScreensId ~= getCurrentScreensId() then
+  local currentScreensId = getCurrentScreensId()
+  if lastRecordedScreensId ~= currentScreensId then
+    log("Reformatting layouts. current id = " .. currentScreensId .. "; last recorded id = " .. lastRecordedScreensId)
+
     reformatLayout()
+
+    lastRecordedScreensId = currentScreensId
   end
 end
 
