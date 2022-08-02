@@ -51,8 +51,10 @@ function inTable(tbl, item)
 end
 
 function ssidChangedCallback()
-    newSSID = hs.wifi.currentNetwork()
-    device = hs.audiodevice.defaultOutputDevice()
+    local newSSID = hs.wifi.currentNetwork()
+    local device = hs.audiodevice.defaultOutputDevice()
+
+    log("new wifi: " .. (newSSID or "nil") .. "; previous SSID: " .. (lastSSID or "nil"))
 
     if newSSID ~= lastSSID then
       -- os.execute("sleep " .. tonumber(2))
