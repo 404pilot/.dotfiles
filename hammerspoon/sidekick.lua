@@ -1,3 +1,5 @@
+require("helper")
+
 -- ************************************************************
 -- Scripts
 -- ************************************************************
@@ -8,6 +10,10 @@ local function setAwsCredentials()
   hs.notify.new({title="Hammerspoon", informativeText="AWS credentials is updated"}):send()
 end
 
+local function searchInAdo()
+  hs.execute("~/.dotfiles/hammerspoon/scripts/search_in_ado.sh")
+end
+
 -- website will trigger tampermonkey scripts to call some hammerspoon scripts
 local function intiProcessToLoadAwsCredentials()
   -- hs.execute("open https://rax.io/vdo-dev-aws")
@@ -16,6 +22,7 @@ end
 
 -- hs.hotkey.bind({"alt"}, "8", intiProcessToLoadAwsCredentials)
 -- hs.hotkey.bind({"alt"}, "9", setAwsCredentials)
+hs.hotkey.bind({"alt"}, "8", searchInAdo)
 
 -- ************************************************************
 -- URL handlers
