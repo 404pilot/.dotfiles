@@ -215,3 +215,71 @@ local function register_screen_change_detector()
 end
 
 register_screen_change_detector()
+
+-- ************************************************************
+-- Screens layout arrangement
+-- ************************************************************
+local homeScreens={MAC_SCREEN,Dell_U2718Q}
+
+local function getResolution(screenName)
+  local screenX = hs.screen.find(screenName)
+  local x = screenX:currentMode()['w']
+  local y = screenX:currentMode()['h']
+
+  log("screen " .. screenName .. "resolution: " .. x .. " x " .. y)
+
+  return {x, y}
+end
+
+--       ┌────────┐
+-- ┌─────┤  dell  │
+-- │ mac ├────────┘
+-- └─────┘
+local function setScreensArrangementA()
+  if getCurrentScreensId() == getScreensId(homeScreens) then
+    log("At home!")
+
+    local macResolution = getResolution(MAC_SCREEN_LUA)
+    local dellResolution = getResolution(Dell_U2718Q)
+    local gap = 360
+
+    local x = macResolution[1]
+    local y = (dellResolution[2] + gap - macResolution[2] ) * -1
+
+    log("Setting origin: " .. x .. " x " .. y)
+
+    hs.screen.find(Dell_U2718Q):setOrigin(x, y)
+
+    hs.notify.show("Hammerspoon", "Updating display arragement", "ArrangementA")
+  end
+end
+
+-- ┌─────────┐
+-- │  dell   │
+-- └─┬─────┬─┘
+--   │ mac │
+--   └─────┘
+local function setScreensArrangementB()
+  if getCurrentScreensId() == getScreensId(homeScreens) then
+    log("At home!")
+
+    local macResolution = getResolution(MAC_SCREEN_LUA)
+    local dellResolution = getResolution(Dell_U2718Q)
+
+    local x = (dellResolution[1] - macResolution[1]) / 2 * -1
+    local y = dellResolution[2] * -1
+
+    log("Setting origin: " .. x .. " x " .. y)
+
+    hs.screen.find(Dell_U2718Q):setOrigin(x, y)
+
+    hs.notify.show("Hammerspoon", "Updating display arragement", "ArrangementB")
+  end
+end
+
+local function bindKeysToSetScreensArrangement()
+  hs.hotkey.bind({"alt"}, "-", function() setScreensArrangementA() end)
+  hs.hotkey.bind({"alt"}, "=", function() setScreensArrangementB() end)
+end
+
+bindKeysToSetScreensArrangement()
