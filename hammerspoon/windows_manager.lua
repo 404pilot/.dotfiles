@@ -68,6 +68,7 @@ local CUSTOM_LAYOUTS = {
       {"Microsoft Edge",            Dell_P2721Q,     MAXIMIZED_COORDINATE},
       {"Microsoft Remote Desktop",  Dell_P2721Q,     MAXIMIZED_COORDINATE},
       {"Code",                      Dell_P2721Q,     MAXIMIZED_COORDINATE},
+      {"klogg log viewer",          Dell_P2721Q,     MAXIMIZED_COORDINATE},
 
       {"Finder",                    MAC_SCREEN,      CENTER_COORDINATE},
       {"Activity Monitor",          MAC_SCREEN,      CENTER_COORDINATE},
@@ -89,6 +90,7 @@ local CUSTOM_LAYOUTS = {
       {"Microsoft Edge",            Dell_U2718Q,     MAXIMIZED_COORDINATE},
       {"Microsoft Remote Desktop",  Dell_U2718Q,     MAXIMIZED_COORDINATE},
       {"Code",                      Dell_U2718Q,     MAXIMIZED_COORDINATE},
+      {"klogg log viewer",          Dell_U2718Q,     MAXIMIZED_COORDINATE},
 
       {"Finder",                    MAC_SCREEN,      CENTER_COORDINATE},
       {"Activity Monitor",          MAC_SCREEN,      CENTER_COORDINATE},
@@ -103,7 +105,6 @@ local CUSTOM_LAYOUTS = {
     }
   },
   defaultLayout={
-    screens={MAC_SCREEN},
     appConfigs={
       {"iTerm2",                    MAC_SCREEN,      CENTER_COORDINATE},
       {"Notion",                    MAC_SCREEN,      CENTER_COORDINATE},
@@ -114,6 +115,7 @@ local CUSTOM_LAYOUTS = {
       {"Finder",                    MAC_SCREEN,      CENTER_COORDINATE},
       {"Telegram",                  MAC_SCREEN,      CENTER_COORDINATE},
       {"Activity Monitor",          MAC_SCREEN,      CENTER_COORDINATE},
+      {"MarkText",                  MAC_SCREEN,      CENTER_COORDINATE},
       {"Code",                      MAC_SCREEN,      MAXIMIZED_COORDINATE},
       {"Preview",                   MAC_SCREEN,      MAXIMIZED_COORDINATE},
       {"Google Chrome",             MAC_SCREEN,      MAXIMIZED_COORDINATE},
@@ -121,6 +123,7 @@ local CUSTOM_LAYOUTS = {
       {"IntelliJ IDEA",             MAC_SCREEN,      MAXIMIZED_COORDINATE},
       {"Microsoft Outlook",         MAC_SCREEN,      MAXIMIZED_COORDINATE},
       {"PyCharm",                   MAC_SCREEN,      MAXIMIZED_COORDINATE},
+      {"klogg log viewer",          MAC_SCREEN,      MAXIMIZED_COORDINATE},
     }
   }
 }
@@ -173,6 +176,12 @@ local function getCurrentScreensId()
 end
 
 local function reformatLayout()
+  if #hs.screen.allScreens() == 1 then
+    log("Using layout: default")
+    applyLayout(CUSTOM_LAYOUTS['defaultLayout'])
+    return
+  end
+
   currentScreensId = getCurrentScreensId()
 
   for _, layout in pairs(CUSTOM_LAYOUTS) do
@@ -201,6 +210,7 @@ local function screenChangedCallback()
   local currentScreensId = getCurrentScreensId()
   if lastRecordedScreensId ~= currentScreensId then
     log("Reformatting layouts. current id = " .. currentScreensId .. "; last recorded id = " .. lastRecordedScreensId)
+    hs.execute("sleep 2")
 
     reformatLayout()
 

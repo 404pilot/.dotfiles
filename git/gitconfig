@@ -26,6 +26,8 @@
     wip = reset --soft HEAD~1
     sh = stash
     mg = merge --no-ff
+    fo = fetch origin
+    pf = pull --ff-only
 
 [log]
     date = relative

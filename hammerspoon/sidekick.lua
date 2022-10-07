@@ -14,15 +14,32 @@ local function searchInAdo()
   hs.execute("~/.dotfiles/hammerspoon/scripts/search_in_ado.sh")
 end
 
+local function runPlaceholder()
+  hs.execute("~/.dotfiles/hammerspoon/scripts/run_placeholder.sh")
+end
+
 -- website will trigger tampermonkey scripts to call some hammerspoon scripts
 local function intiProcessToLoadAwsCredentials()
   -- hs.execute("open https://rax.io/vdo-dev-aws")
   hs.execute("open https://rax.io/pvc-dev-aws")
 end
 
+local function putOsToSleepMode()
+  hs.execute("osascript -e 'tell application \"Finder\" to sleep'")
+end
+
+local function restartRemoteDesktop()
+  hs.execute("pkill KILL 'Microsoft Remote Desktop'")
+  hs.execute("sleep 1")
+  hs.execute("open '/Applications/Microsoft Remote Desktop.app'")
+end
+
 -- hs.hotkey.bind({"alt"}, "8", intiProcessToLoadAwsCredentials)
 -- hs.hotkey.bind({"alt"}, "9", setAwsCredentials)
 hs.hotkey.bind({"alt"}, "8", searchInAdo)
+hs.hotkey.bind({"alt"}, "7", runPlaceholder)
+hs.hotkey.bind({"ctrl,alt"}, "5", putOsToSleepMode)
+hs.hotkey.bind({"ctrl,alt"}, "8", restartRemoteDesktop)
 
 -- ************************************************************
 -- URL handlers

@@ -45,13 +45,30 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 Plug 'Lokaltog/vim-easymotion'
+Plug 'justinmk/vim-sneak'
 
 " Initialize plugin system
 call plug#end()
 
+" Reload .vimrc and :PlugInstall to install plugins.
+
+" ---------------------------------------------------------------------------
+" ------ EasyMotion | https://github.com/easymotion/vim-easymotion
+" ---------------------------------------------------------------------------
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 
-nmap ,, <Plug>(easymotion-prefix)
-" nmap s <Plug>(easymotion-overwin-f2)
-" nmap / <Plug>(easymotion-sn)
+" nmap \ <Plug>(easymotion-prefix)
+map  <Leader>f <Plug>(easymotion-bd-f2)
+nmap <Leader>f <Plug>(easymotion-overwin-f2)
+
+" search by 1 character (remap s)
+" nmap s <Plug>(easymotion-s2)
+" search by n characters (remap /)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" ---------------------------------------------------------------------------
+" ------ Sneak | https://github.com/justinmk/vim-sneak
+" ---------------------------------------------------------------------------
+let g:sneak#label = 1

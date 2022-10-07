@@ -41,7 +41,7 @@ get_alias() {
 run_command() {
     local command=$1
 
-    echo "\n    𐦚𐦚𐦚 Running command: 𐦲𐦲 $command 𐦲𐦲\n"
+    echo "\n𐦚𐦚𐦚\n    𐦚𐦚𐦚 Running command: 𐦲𐦲 $command 𐦲𐦲\n𐦚𐦚𐦚\n"
     eval "$command"
 }
 
@@ -82,10 +82,11 @@ gbu() {
 gsync() {
     # sync current `master` branch
     local previous_branch=$(git rev-parse --abbrev-ref @{-1})
+    local current_branch=$(get_current_branch)
 
     gcm && gpc && \
         run_command "git checkout $previous_branch" && \
-        run_command "git checkout $(get_current_branch)"
+        run_command "git checkout $current_branch"
 }
 
 ## marktext
