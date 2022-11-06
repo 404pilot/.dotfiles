@@ -42,7 +42,7 @@ fi
 ######################################################
 ## install fonts
 if [[ "$choice_install_fonts" == "install_fonts" ]]; then
-  brew tap homebrew/cask-fonts || true && brew install --cask font-fira-code
+  brew tap homebrew/cask-fonts || true && brew install --cask font-fira-code-nerd-font
 fi
 
 ######################################################

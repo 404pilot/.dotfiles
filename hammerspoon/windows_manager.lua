@@ -105,21 +105,19 @@ local CUSTOM_LAYOUTS = {
     }
   },
   defaultLayout={
+    screens="default",
     appConfigs={
       {"iTerm2",                    MAC_SCREEN,      CENTER_COORDINATE},
       {"Notion",                    MAC_SCREEN,      CENTER_COORDINATE},
-      {"Postman",                   MAC_SCREEN,      CENTER_COORDINATE},
-      {"Slack",                     MAC_SCREEN,      CENTER_COORDINATE},
       {"Trello",                    MAC_SCREEN,      CENTER_COORDINATE},
       {"Typora",                    MAC_SCREEN,      CENTER_COORDINATE},
       {"Finder",                    MAC_SCREEN,      CENTER_COORDINATE},
-      {"Telegram",                  MAC_SCREEN,      CENTER_COORDINATE},
       {"Activity Monitor",          MAC_SCREEN,      CENTER_COORDINATE},
       {"MarkText",                  MAC_SCREEN,      CENTER_COORDINATE},
+      {"Microsoft Teams",           MAC_SCREEN,      MAXIMIZED_COORDINATE},
       {"Code",                      MAC_SCREEN,      MAXIMIZED_COORDINATE},
       {"Preview",                   MAC_SCREEN,      MAXIMIZED_COORDINATE},
       {"Google Chrome",             MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Google Chrome Canary",      MAC_SCREEN,      MAXIMIZED_COORDINATE},
       {"IntelliJ IDEA",             MAC_SCREEN,      MAXIMIZED_COORDINATE},
       {"Microsoft Outlook",         MAC_SCREEN,      MAXIMIZED_COORDINATE},
       {"PyCharm",                   MAC_SCREEN,      MAXIMIZED_COORDINATE},

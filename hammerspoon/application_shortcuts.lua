@@ -5,6 +5,7 @@
 -- Use `hs.application.enableSpotlightForNameSearches(true)` in Big Sur unless I can find something better in the future
 -- I believe the issue is some applications are not put in Application folder like IntelliJ Idea
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
+-- Or just use the name from 'Applications' folder
 SHORTCUT_MAPPING = {
   ["Default"] = {
       c       = "Google Chrome",
