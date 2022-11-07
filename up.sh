@@ -79,6 +79,14 @@ rm ~/.vimrc || true \
   && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+
+######################################################
+## neovim
+echo "#### Config neovim"
+rm -rf ~/.config/nvim || true \
+  && ln -s ~/.dotfiles/nvim ~/.config/nvim \
+  && git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
 ######################################################
 ## ideavim
 echo "#### Config ideavim"
@@ -115,8 +123,8 @@ rm ~/.ssh/config || true \
 
 ######################################################
 ## Karabiner
-##
-## by default, click 'Open config folder' from karabiner will delete the symbolink file and generate the latest configuration json file
+## by default, click 'Export & Import -> Open config folder' from karabiner
+##   will delete the symbolink file and generate the latest configuration json file
 ##   which it is a way to configure stuff in GUI first and then get the corresponding configuration file
 ##
 ## Tips: find the bundle id by using the osascript "osascript -e 'id of app "Microsoft Remote Desktop"'"

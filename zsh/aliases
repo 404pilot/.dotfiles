@@ -15,6 +15,7 @@ alias mlu='mvn clean process-resources liquibase:update'
 alias mcj='mvn clean jetty:run'
 
 ## neovim
+# TODO turn on neovim
 # alias vim='nvim'
 # alias vi='nvim'
 # alias v='nvim'
