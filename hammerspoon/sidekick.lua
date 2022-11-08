@@ -1,8 +1,14 @@
 require("helper")
 
+local scripts_dir="$HOME/.dotfiles/hammerspoon/scripts"
+
 -- ************************************************************
 -- Scripts
 -- ************************************************************
+local function runScript(name)
+  hs.execute(scripts_dir .. "/" .. name .. " >> $HOME/.dotfiles/.log/$(date +%F).log 2>&1")
+end
+
 local function setAwsCredentials()
   hs.execute("~/.dotfiles/hammerspoon/updateAws.sh")
   -- hs.execute("echo \"$(pbpaste)\" > ~/.aws/credentials")
@@ -11,11 +17,11 @@ local function setAwsCredentials()
 end
 
 local function searchInAdo()
-  hs.execute("~/.dotfiles/hammerspoon/scripts/search_in_ado.sh")
+  runScript("search_in_ado.sh")
 end
 
 local function runPlaceholder()
-  hs.execute("~/.dotfiles/hammerspoon/scripts/run_placeholder.sh")
+  runScript("run_placeholder.sh")
 end
 
 -- website will trigger tampermonkey scripts to call some hammerspoon scripts
@@ -34,10 +40,15 @@ local function restartRemoteDesktop()
   hs.execute("open '/Applications/Microsoft Remote Desktop.app'")
 end
 
+local function openLastestLogFile()
+  runScript("open_latest_log_file.sh")
+end
+
 -- hs.hotkey.bind({"alt"}, "8", intiProcessToLoadAwsCredentials)
 -- hs.hotkey.bind({"alt"}, "9", setAwsCredentials)
-hs.hotkey.bind({"alt"}, "8", searchInAdo)
 hs.hotkey.bind({"alt"}, "7", runPlaceholder)
+hs.hotkey.bind({"alt"}, "8", searchInAdo)
+hs.hotkey.bind({"alt"}, "9", openLastestLogFile)
 hs.hotkey.bind({"ctrl,alt"}, "5", putOsToSleepMode)
 hs.hotkey.bind({"ctrl,alt"}, "8", restartRemoteDesktop)
 
@@ -55,7 +66,7 @@ hs.hotkey.bind({"ctrl,alt"}, "8", restartRemoteDesktop)
 -- $ defaults read | grep Chrome
 -- $ defaults write com.google.Chrome.canary ExternalProtocolDialogShowAlwaysOpenCheckbox -bool true
 -- $ defaults read com.google.Chrome.canary
-hs.urlevent.bind("update_aws", setAwsCredentials)
+-- hs.urlevent.bind("update_aws", setAwsCredentials)
 
 
 -- ************************************************************

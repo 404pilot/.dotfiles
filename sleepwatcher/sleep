@@ -1,11 +1,12 @@
 #!/bin/bash
 # .sleep
 
-echo "" >> ~/.sleepwatcher.log
-echo "#############################################################################" >> ~/.sleepwatcher.log
-echo "[$(date)] sleepwatcher sleep" >> ~/.sleepwatcher.log
+log_file="$HOME/.dotfiles/.log/sleepwatcher_$(date +%F).log"
 
-/usr/local/bin/blueutil -p 0 && echo "Bluetooth is turned off." >> ~/.sleepwatcher.log
+echo "#############################################################################" >> $log_file
+echo "[$(date)] sleepwatcher sleep" >> $log_file
+
+/usr/local/bin/blueutil -p 0 && echo "Bluetooth is turned off." >> $log_file
 # networksetup setairportpower en0 off
 
-echo "#############################################################################" >> ~/.sleepwatcher.log
+echo "#############################################################################" >> $log_file

@@ -1,14 +1,15 @@
 #!/bin/bash
 # .wakeup
 
-echo "" >> ~/.sleepwatcher.log
-echo "#############################################################################" >> ~/.sleepwatcher.log
-echo "[$(date)] sleepwatcher wakeup" >> ~/.sleepwatcher.log
+log_file="$HOME/.dotfiles/.log/sleepwatcher_$(date +%F).log"
+
+echo "#############################################################################" >> $log_file
+echo "[$(date)] sleepwatcher wakeup" >> $log_file
 
 # networksetup setairportpower en0 on
-# /usr/local/bin/blueutil -p 1 && /usr/local/bin/blueutil --connect "MX Ergo" && echo "bluetooth is turned on" >> ~/.sleepwatcher.log
+# /usr/local/bin/blueutil -p 1 && /usr/local/bin/blueutil --connect "MX Ergo" && echo "bluetooth is turned on" >> $log_file
 
 /usr/local/bin/blueutil -p 1 \
-  && echo "bluetooth is turned on" >> ~/.sleepwatcher.log
+  && echo "bluetooth is turned on" >> $log_file
 
-echo "#############################################################################" >> ~/.sleepwatcher.log
+echo "#############################################################################" >> $log_file
