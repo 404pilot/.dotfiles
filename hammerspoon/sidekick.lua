@@ -2,6 +2,9 @@ require("helper")
 
 local scripts_dir="$HOME/.dotfiles/hammerspoon/scripts"
 
+
+-- TOOD run od buddy?
+
 -- ************************************************************
 -- Scripts
 -- ************************************************************

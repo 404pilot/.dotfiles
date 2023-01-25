@@ -14,17 +14,6 @@ alias mld='mvn clean process-resources liquibase:dropAll'
 alias mlu='mvn clean process-resources liquibase:update'
 alias mcj='mvn clean jetty:run'
 
-## git
-alias gbye='git add --all; git reset --hard HEAD'
-alias gs='git status'
-alias gb='git branch'
-alias gma='git commit -am'
-alias gmm='git commit -m'
-alias gc='git checkout'
-alias ga='git add'
-alias gall='git add --all'
-alias gp='git pull'
-
 ## neovim
 # alias vim='nvim'
 # alias vi='nvim'
@@ -33,65 +22,6 @@ alias gp='git pull'
 log(){
     echo ">>>>> $1"
     echo
-}
-
-get_alias() {
-    local git_name=$(git config user.name)
-    local name=${git_name// /}
-    local name=${name:l}
-
-    echo $name
-}
-
-run_command() {
-    local command=$1
-
-    echo "\n𐦚𐦚𐦚\n    𐦚𐦚𐦚 Running command: 𐦲𐦲 $command 𐦲𐦲\n𐦚𐦚𐦚\n"
-    eval "$command"
-}
-
-get_master_branch() {
-    local branch_indicator=$(git branch -l master main)
-    # the output could be "  master" or "* master"
-    # need to remove first two characters
-    local master_branch=${branch_indicator:2}
-
-    if [[ $master_branch == "master" ]] || [[ $master_branch == "main" ]]; then
-        echo ${branch_indicator:2}
-    else
-        echo "Wrong branch name!!"
-        exit 1
-    fi
-}
-
-get_current_branch() {
-    local current_branch=$(git rev-parse --abbrev-ref HEAD)
-    echo $current_branch
-}
-
-gcm() {
-    run_command "git checkout $(get_master_branch)"
-}
-
-gpc() {
-    # log "Getting latest changes from the 'master|main' branch..."
-    run_command "git pull --ff-only origin $(get_current_branch)"
-}
-
-gbu() {
-    # create a git branch with user info
-    local branch_name=$1
-    run_command "git checkout -b user/$(get_alias)/$branch_name"
-}
-
-gsync() {
-    # sync current `master` branch
-    local previous_branch=$(git rev-parse --abbrev-ref @{-1})
-    local current_branch=$(get_current_branch)
-
-    gcm && gpc && \
-        run_command "git checkout $previous_branch" && \
-        run_command "git checkout $current_branch"
 }
 
 ## marktext

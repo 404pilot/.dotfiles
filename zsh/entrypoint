@@ -1,6 +1,9 @@
 ## add alias
 source ~/.dotfiles/zsh/aliases
 
+## add git-related functions
+source ~/.dotfiles/zsh/git_functions
+
 # other app
 source ~/.dotfiles/zsh/app_configs
 
