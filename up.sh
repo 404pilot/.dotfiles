@@ -120,6 +120,7 @@ rm ~/.ssh/config || true \
 ##   which it is a way to configure stuff in GUI first and then get the corresponding configuration file
 ##
 ## Tips: find the bundle id by using the osascript "osascript -e 'id of app "Microsoft Remote Desktop"'"
+##   or `mdls -name kMDItemCFBundleIdentifier /Applications/Microsoft\ Remote\ Desktop\ Beta.app`
 echo "#### Config karabiner"
 
 rm ~/.config/karabiner/karabiner.json || true \
