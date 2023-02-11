@@ -115,9 +115,11 @@ rm ~/.ssh/config || true \
 
 ######################################################
 ## Karabiner
+##
 ## by default, click 'Open config folder' from karabiner will delete the symbolink file and generate the latest configuration json file
 ##   which it is a way to configure stuff in GUI first and then get the corresponding configuration file
-## find the bundle id by using the osascript "osascript -e 'id of app "Microsoft Remote Desktop"'"
+##
+## Tips: find the bundle id by using the osascript "osascript -e 'id of app "Microsoft Remote Desktop"'"
 echo "#### Config karabiner"
 
 rm ~/.config/karabiner/karabiner.json || true \

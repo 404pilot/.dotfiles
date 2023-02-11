@@ -17,22 +17,6 @@
         },
         "rules": [
           {
-            "description": "[Microsoft Remote Desktop](mac -> win)",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "left_command"
-                },
-                "to": [
-                  {
-                    "key_code": "left_gui"
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
             "description": "[mac](r_cmd + wasd -> arrow keys)",
             "manipulators": [
               {
