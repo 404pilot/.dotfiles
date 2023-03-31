@@ -4,4 +4,5 @@ require "application_shortcuts"
 require "windows_manager"
 require "sidekick"
 
+-- use hammerspoon command line tool: hs -c "hs.reload()"
 hs.ipc.cliInstall()
