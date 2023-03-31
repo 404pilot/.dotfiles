@@ -106,3 +106,20 @@ g_pull_remote_branch() {
     run_command "git fetch origin $from_branch"
     run_command "git switch $from_branch"
 }
+
+g_clean_local_branches() {
+    # g_clean_local_branches user/blah 1
+    local branch_prefix=$1
+    local perform_deletion=$2
+
+    local branch_prefix_regex=${branch_prefix//\//\\\/}
+
+    echo "branch_prefix: ${branch_prefix_regex}"
+
+    if [[ $perform_deletion -eq 1 ]]; then
+        echo "Perfom branches deletion"
+        git branch | grep "^ *${branch_prefix_regex}*" | xargs git branch -D
+    else
+        git branch | grep "^ *${branch_prefix_regex}*"
+    fi
+}
