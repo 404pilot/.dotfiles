@@ -52,6 +52,7 @@ SHORTCUT_MAPPING = {
       v       = "klogg",
       -- r       = "Microsoft Remote Desktop",
       r       = "Microsoft Remote Desktop Beta",
+      a       = "chatbox",
       ["`"]   = "Finder",
       ["1"]   = "Visual Studio Code",
       ["2"]   = "MarkText",
