@@ -4,12 +4,16 @@ packer.startup({
     -- Packer 可以管理自己本身
     use "wbthomason/packer.nvim"
     use({ "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons" })
-    -- bufferline
-    use({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" }})
+    use({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" } })
+    use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
+    use("arkav/lualine-lsp-progress")
+    use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
+    use("LinArcX/telescope-env.nvim")
+    use({"glepnir/dashboard-nvim", requires = {"nvim-tree/nvim-web-devicons"} })
+    use("ahmedkhalf/project.nvim")
 
     -- 你的插件列表...
     -- tokyonight
-    use "folke/tokyonight.nvim"
     use("mhartington/oceanic-next")
     use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
   end,
