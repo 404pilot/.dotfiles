@@ -4,14 +4,14 @@ require("helper")
 -- Windows Management
 -- ************************************************************
 
-hs.window.animationDuration = 0
+hs.window.animationDuration  = 0
 
-local CENTER_COORDINATE       =      {x = 0.1, y = 0,    w = 0.8,  h = 1}
-local MAXIMIZED_COORDINATE    =      {x = 0,   y = 0,    w = 1,    h = 1}
-local LEFT_HALF_COORDINATE    =      {x = 0,   y = 0,    w = 0.5,  h = 1}
-local RIGHT_HALF_COORDINATE   =      {x = 0.5, y = 0,    w = 0.5,  h = 1}
-local TOP_HALF_COORDINATE     =      {x = 0,   y = 0,    w = 1,    h = 0.5}
-local BOTTOM_HALF_COORDINATE  =      {x = 0,   y = 0.5,  w = 1,    h = 0.5}
+local CENTER_COORDINATE      = { x = 0.1, y = 0, w = 0.8, h = 1 }
+local MAXIMIZED_COORDINATE   = { x = 0, y = 0, w = 1, h = 1 }
+local LEFT_HALF_COORDINATE   = { x = 0, y = 0, w = 0.5, h = 1 }
+local RIGHT_HALF_COORDINATE  = { x = 0.5, y = 0, w = 0.5, h = 1 }
+local TOP_HALF_COORDINATE    = { x = 0, y = 0, w = 1, h = 0.5 }
+local BOTTOM_HALF_COORDINATE = { x = 0, y = 0.5, w = 1, h = 0.5 }
 
 local function adjustFrame(coordinate)
   hs.window.focusedWindow():moveToUnit(coordinate)
@@ -30,16 +30,16 @@ local function toPreviousScreen()
 end
 
 local function bind_keys_for_windows_management()
-  hs.hotkey.bind({"alt"}, "u", function() adjustFrame(CENTER_COORDINATE) end)
-  hs.hotkey.bind({"alt"}, "o", function() adjustFrame(MAXIMIZED_COORDINATE) end)
+  hs.hotkey.bind({ "alt" }, "u", function() adjustFrame(CENTER_COORDINATE) end)
+  hs.hotkey.bind({ "alt" }, "o", function() adjustFrame(MAXIMIZED_COORDINATE) end)
 
-  hs.hotkey.bind({"alt"}, "i", function() adjustFrame(TOP_HALF_COORDINATE) end)
-  hs.hotkey.bind({"alt"}, "k", function() adjustFrame(BOTTOM_HALF_COORDINATE) end)
-  hs.hotkey.bind({"alt"}, "j", toNextScreen)
-  hs.hotkey.bind({"alt"}, "l", toPreviousScreen)
+  hs.hotkey.bind({ "alt" }, "i", function() adjustFrame(TOP_HALF_COORDINATE) end)
+  hs.hotkey.bind({ "alt" }, "k", function() adjustFrame(BOTTOM_HALF_COORDINATE) end)
+  hs.hotkey.bind({ "alt" }, "j", toNextScreen)
+  hs.hotkey.bind({ "alt" }, "l", toPreviousScreen)
 
-  hs.hotkey.bind({"alt, shift"}, "j", function() adjustFrame(LEFT_HALF_COORDINATE) end)
-  hs.hotkey.bind({"alt, shift"}, "l", function() adjustFrame(RIGHT_HALF_COORDINATE) end)
+  hs.hotkey.bind({ "alt, shift" }, "j", function() adjustFrame(LEFT_HALF_COORDINATE) end)
+  hs.hotkey.bind({ "alt, shift" }, "l", function() adjustFrame(RIGHT_HALF_COORDINATE) end)
   -- hs.hotkey.bind({"alt, shift"}, "l", toNextScreen)
   -- hs.hotkey.bind({"alt, shift"}, "j", toPreviousScreen)
 end
@@ -54,88 +54,89 @@ bind_keys_for_windows_management()
 -- get application name by
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
 
-local MAC_SCREEN   = "Built-in Retina Display"
-local MAC_SCREEN_LUA = "Built%-in Retina Display"
-local Dell_P2721Q = "DELL P2721Q"
-local Dell_U2718Q = "DELL U2718Q"
+local MAC_SCREEN        = "Built-in Retina Display"
+local Dell_P2721Q_LEFT  = "DELL P2721Q (1)"
+local Dell_P2721Q_RIGHT = "DELL P2721Q (2)"
+local Dell_U2718Q       = "DELL U2718Q"
 
-local CUSTOM_LAYOUTS = {
-  officeLayout={
-    -- office: Dell_P2721Q(main) - MAC_SCREEN
-    screens={Dell_P2721Q, MAC_SCREEN},
-    appConfigs={
-      {"Google Chrome",             Dell_P2721Q,     MAXIMIZED_COORDINATE},
-      {"Microsoft Edge",            Dell_P2721Q,     MAXIMIZED_COORDINATE},
-      {"Microsoft Remote Desktop",  Dell_P2721Q,     MAXIMIZED_COORDINATE},
-      {"Code",                      Dell_P2721Q,     MAXIMIZED_COORDINATE},
-      {"klogg log viewer",          Dell_P2721Q,     MAXIMIZED_COORDINATE},
+local CUSTOM_LAYOUTS    = {
+  officeLayout = {
+    screens = { Dell_P2721Q_LEFT, Dell_P2721Q_RIGHT },
+    appConfigs = {
+      { "Google Chrome",                 Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
+      { "Microsoft Edge",                Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
+      { "Microsoft Remote Desktop Beta", Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
+      { "Code",                          Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
+      { "klogg log viewer",              Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
 
-      {"Finder",                    MAC_SCREEN,      CENTER_COORDINATE},
-      {"Activity Monitor",          MAC_SCREEN,      CENTER_COORDINATE},
-      {"MarkText",                  MAC_SCREEN,      CENTER_COORDINATE},
-      {"Preview",                   MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"iTerm2",                    MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Microsoft Outlook",         MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Microsoft Word",            MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Microsoft Excel",           MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Notion",                    MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Microsoft Teams",           MAC_SCREEN,      MAXIMIZED_COORDINATE},
+      { "Finder",                        Dell_P2721Q_RIGHT, CENTER_COORDINATE },
+      { "Activity Monitor",              Dell_P2721Q_RIGHT, CENTER_COORDINATE },
+      { "MarkText",                      Dell_P2721Q_RIGHT, CENTER_COORDINATE },
+      { "Preview",                       Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
+      { "iTerm2",                        Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
+      { "Microsoft Outlook",             Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
+      { "Microsoft Word",                Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
+      { "Microsoft Excel",               Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
+      { "Notion",                        Dell_P2721Q_RIGHT, CENTER_COORDINATE },
+      { "Microsoft Teams",               Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
+      { "Arc",                           Dell_P2721Q_RIGHT, CENTER_COORDINATE },
     }
   },
-  homeLayout={
-    -- home: MAC_SCREEN(main) - Dell_U2718Q
-    screens={MAC_SCREEN,Dell_U2718Q},
-    appConfigs={
-      {"Google Chrome",             Dell_U2718Q,     MAXIMIZED_COORDINATE},
-      {"Microsoft Edge",            Dell_U2718Q,     MAXIMIZED_COORDINATE},
-      {"Microsoft Remote Desktop",  Dell_U2718Q,     MAXIMIZED_COORDINATE},
-      {"Code",                      Dell_U2718Q,     MAXIMIZED_COORDINATE},
-      {"klogg log viewer",          Dell_U2718Q,     MAXIMIZED_COORDINATE},
+  homeLayout = {
+    screens = { MAC_SCREEN, Dell_U2718Q },
+    appConfigs = {
+      { "Google Chrome",            Dell_U2718Q, MAXIMIZED_COORDINATE },
+      { "Microsoft Edge",           Dell_U2718Q, MAXIMIZED_COORDINATE },
+      { "Microsoft Remote Desktop", Dell_U2718Q, MAXIMIZED_COORDINATE },
+      { "Code",                     Dell_U2718Q, MAXIMIZED_COORDINATE },
+      { "klogg log viewer",         Dell_U2718Q, MAXIMIZED_COORDINATE },
 
-      {"Finder",                    MAC_SCREEN,      CENTER_COORDINATE},
-      {"Activity Monitor",          MAC_SCREEN,      CENTER_COORDINATE},
-      {"MarkText",                  MAC_SCREEN,      CENTER_COORDINATE},
-      {"Preview",                   MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"iTerm2",                    MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Microsoft Outlook",         MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Microsoft Word",            MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Microsoft Excel",           MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Notion",                    MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Microsoft Teams",           MAC_SCREEN,      MAXIMIZED_COORDINATE},
+      { "Finder",                   MAC_SCREEN,  CENTER_COORDINATE },
+      { "Activity Monitor",         MAC_SCREEN,  CENTER_COORDINATE },
+      { "MarkText",                 MAC_SCREEN,  CENTER_COORDINATE },
+      { "Preview",                  MAC_SCREEN,  MAXIMIZED_COORDINATE },
+      { "iTerm2",                   MAC_SCREEN,  MAXIMIZED_COORDINATE },
+      { "Microsoft Outlook",        MAC_SCREEN,  MAXIMIZED_COORDINATE },
+      { "Microsoft Word",           MAC_SCREEN,  MAXIMIZED_COORDINATE },
+      { "Microsoft Excel",          MAC_SCREEN,  MAXIMIZED_COORDINATE },
+      { "Notion",                   MAC_SCREEN,  MAXIMIZED_COORDINATE },
+      { "Microsoft Teams",          MAC_SCREEN,  MAXIMIZED_COORDINATE },
     }
   },
-  defaultLayout={
-    screens="default",
-    appConfigs={
-      {"iTerm2",                    MAC_SCREEN,      CENTER_COORDINATE},
-      {"Notion",                    MAC_SCREEN,      CENTER_COORDINATE},
-      {"Trello",                    MAC_SCREEN,      CENTER_COORDINATE},
-      {"Typora",                    MAC_SCREEN,      CENTER_COORDINATE},
-      {"Finder",                    MAC_SCREEN,      CENTER_COORDINATE},
-      {"Activity Monitor",          MAC_SCREEN,      CENTER_COORDINATE},
-      {"MarkText",                  MAC_SCREEN,      CENTER_COORDINATE},
-      {"Microsoft Teams",           MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Code",                      MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Preview",                   MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Google Chrome",             MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"IntelliJ IDEA",             MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"Microsoft Outlook",         MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"PyCharm",                   MAC_SCREEN,      MAXIMIZED_COORDINATE},
-      {"klogg log viewer",          MAC_SCREEN,      MAXIMIZED_COORDINATE},
+  defaultLayout = {
+    screens = "default",
+    appConfigs = {
+      { "iTerm2",            MAC_SCREEN, CENTER_COORDINATE },
+      { "Notion",            MAC_SCREEN, CENTER_COORDINATE },
+      { "Trello",            MAC_SCREEN, CENTER_COORDINATE },
+      { "Typora",            MAC_SCREEN, CENTER_COORDINATE },
+      { "Finder",            MAC_SCREEN, CENTER_COORDINATE },
+      { "Activity Monitor",  MAC_SCREEN, CENTER_COORDINATE },
+      { "MarkText",          MAC_SCREEN, CENTER_COORDINATE },
+      { "Microsoft Teams",   MAC_SCREEN, MAXIMIZED_COORDINATE },
+      { "Code",              MAC_SCREEN, MAXIMIZED_COORDINATE },
+      { "Preview",           MAC_SCREEN, MAXIMIZED_COORDINATE },
+      { "Google Chrome",     MAC_SCREEN, MAXIMIZED_COORDINATE },
+      { "IntelliJ IDEA",     MAC_SCREEN, MAXIMIZED_COORDINATE },
+      { "Microsoft Outlook", MAC_SCREEN, MAXIMIZED_COORDINATE },
+      { "PyCharm",           MAC_SCREEN, MAXIMIZED_COORDINATE },
+      { "klogg log viewer",  MAC_SCREEN, MAXIMIZED_COORDINATE },
     }
   }
 }
 
-local function getScreensId(screens)
+-- For each layout, there is a screens combination key to be used to idenitfy which layout will be used
+-- Basically, it concatenates all screens names sorted by the name
+local function getScreensCombinationKey(screens)
   -- screens: a list of screen names
-  local screensCopy = {table.unpack(screens)}
+  local screensCopy = { table.unpack(screens) }
   table.sort(screensCopy)
 
   return table.concat(screensCopy, ",")
 end
 
 local function applyLayout(layout)
-  transformedLayout = {}
+  local transformedLayout = {}
 
   for _, appConfig in pairs(layout["appConfigs"]) do
     -- Try to get first two applications which are matched by name because
@@ -143,18 +144,17 @@ local function applyLayout(layout)
 
     local app1, app2 = hs.application.find(appConfig[1])
 
-    local apps = {app1, app2}
+    local apps = { app1, app2 }
 
     for i = 1, 2 do
       if apps[i] ~= nil then
         -- if hs.application.name(apps[i]) == appConfig[1] then
         if apps[i].name(apps[i]) == appConfig[1] then
-          if appConfig[2] == MAC_SCREEN then
-            -- hack!
-            table.insert(transformedLayout, {apps[i], nil, hs.screen.find(MAC_SCREEN_LUA), appConfig[3], nil, nil})
-          else
-            table.insert(transformedLayout, {apps[i], nil, hs.screen.find(appConfig[2]), appConfig[3], nil, nil})
-          end
+          -- for example, "Built-in Retina Display" needs to be converted to "Built%-in Retina Display"
+          local escapedScreenName = appConfig[2]:gsub("([%(%)%-])", "%%%1") -- escape '(', ')' and '-'
+          log('app: ' .. appConfig[1] .. '-> escapedScreenName is ' .. escapedScreenName)
+
+          table.insert(transformedLayout, { apps[i], nil, hs.screen.find(escapedScreenName), appConfig[3], nil, nil })
           break;
         end
       end
@@ -164,13 +164,13 @@ local function applyLayout(layout)
   hs.layout.apply(transformedLayout)
 end
 
-local function getCurrentScreensId()
-  currentScreens = {}
+local function getCurrentScreensCombinationKey()
+  local currentScreens = {}
   for _, screen in ipairs(hs.screen.allScreens()) do
     table.insert(currentScreens, screen:name())
   end
 
-  return getScreensId(currentScreens)
+  return getScreensCombinationKey(currentScreens)
 end
 
 local function reformatLayout()
@@ -180,11 +180,11 @@ local function reformatLayout()
     return
   end
 
-  currentScreensId = getCurrentScreensId()
+  currentScreensCombinationKey = getCurrentScreensCombinationKey()
 
   for _, layout in pairs(CUSTOM_LAYOUTS) do
-    if getScreensId(layout["screens"]) == currentScreensId then
-      log("Using layout: " .. currentScreensId)
+    if getScreensCombinationKey(layout["screens"]) == currentScreensCombinationKey then
+      log("Using layout: " .. currentScreensCombinationKey)
       applyLayout(layout)
       return
     end
@@ -194,7 +194,7 @@ local function reformatLayout()
 end
 
 local function bind_keys_for_windows_auto_formatting()
-  hs.hotkey.bind({"alt"}, "0", reformatLayout)
+  hs.hotkey.bind({ "alt" }, "0", reformatLayout)
 end
 
 bind_keys_for_windows_auto_formatting()
@@ -202,17 +202,17 @@ bind_keys_for_windows_auto_formatting()
 -- ************************************************************
 -- screen watcher to set layouts automatically
 -- ************************************************************
-local lastRecordedScreensId = getCurrentScreensId()
+local lastRecordedScreensCombinationKey = getCurrentScreensCombinationKey()
 
 local function screenChangedCallback()
-  local currentScreensId = getCurrentScreensId()
-  if lastRecordedScreensId ~= currentScreensId then
-    log("Reformatting layouts. current id = " .. currentScreensId .. "; last recorded id = " .. lastRecordedScreensId)
+  local currentScreensCombinationKey = getCurrentScreensCombinationKey()
+  if lastRecordedScreensCombinationKey ~= currentScreensCombinationKey then
+    log("Reformatting layouts. current id = " .. currentScreensCombinationKey .. "; last recorded id = " .. lastRecordedScreensCombinationKey)
     hs.execute("sleep 2")
 
     reformatLayout()
 
-    lastRecordedScreensId = currentScreensId
+    lastRecordedScreensCombinationKey = currentScreensCombinationKey
   end
 end
 
@@ -227,7 +227,7 @@ register_screen_change_detector()
 -- ************************************************************
 -- Screens layout arrangement
 -- ************************************************************
-local homeScreens={MAC_SCREEN,Dell_U2718Q}
+local homeScreens = { MAC_SCREEN, Dell_U2718Q }
 
 local function getResolution(screenName)
   local screenX = hs.screen.find(screenName)
@@ -236,7 +236,7 @@ local function getResolution(screenName)
 
   log("screen " .. screenName .. "resolution: " .. x .. " x " .. y)
 
-  return {x, y}
+  return { x, y }
 end
 
 --       ┌────────┐
@@ -244,7 +244,7 @@ end
 -- │ mac ├────────┘
 -- └─────┘
 local function setScreensArrangementA()
-  if getCurrentScreensId() == getScreensId(homeScreens) then
+  if getCurrentScreensCombinationKey() == getScreensCombinationKey(homeScreens) then
     log("At home!")
 
     local macResolution = getResolution(MAC_SCREEN_LUA)
@@ -252,7 +252,7 @@ local function setScreensArrangementA()
     local gap = 360
 
     local x = macResolution[1]
-    local y = (dellResolution[2] + gap - macResolution[2] ) * -1
+    local y = (dellResolution[2] + gap - macResolution[2]) * -1
 
     log("Setting origin: " .. x .. " x " .. y)
 
@@ -268,7 +268,7 @@ end
 --   │ mac │
 --   └─────┘
 local function setScreensArrangementB()
-  if getCurrentScreensId() == getScreensId(homeScreens) then
+  if getCurrentScreensCombinationKey() == getScreensCombinationKey(homeScreens) then
     log("At home!")
 
     local macResolution = getResolution(MAC_SCREEN_LUA)
@@ -286,8 +286,8 @@ local function setScreensArrangementB()
 end
 
 local function bindKeysToSetScreensArrangement()
-  hs.hotkey.bind({"alt"}, "-", function() setScreensArrangementA() end)
-  hs.hotkey.bind({"alt"}, "=", function() setScreensArrangementB() end)
+  hs.hotkey.bind({ "alt" }, "-", function() setScreensArrangementA() end)
+  hs.hotkey.bind({ "alt" }, "=", function() setScreensArrangementB() end)
 end
 
 bindKeysToSetScreensArrangement()
