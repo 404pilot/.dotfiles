@@ -11,6 +11,11 @@ packer.startup({
     use("LinArcX/telescope-env.nvim")
     use({"glepnir/dashboard-nvim", requires = {"nvim-tree/nvim-web-devicons"} })
     use("ahmedkhalf/project.nvim")
+    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    --------------------- LSP --------------------
+    use("williamboman/nvim-lsp-installer")
+    -- Lspconfig
+    use({ "neovim/nvim-lspconfig" })
 
     -- 你的插件列表...
     -- tokyonight

@@ -1,3 +1,6 @@
 source ~/.dotfiles/zsh/antigen.zsh
 
 source ~/.dotfiles/zsh/entrypoint
+
+source ~/.torusrc
+source ~/.office_setup
