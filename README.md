@@ -31,7 +31,7 @@ dotfiles
    
    - iterm2
    
-   - shuttle
+   - [shuttle](https://github.com/fitztrev/shuttle)
 
 5. Configure ssh keys for work at `~/.ssh/id_rsa_work`
 
