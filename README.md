@@ -37,32 +37,31 @@ dotfiles
 
 ### Other Applications
 
-```
-# dev
-docker
-postman
-iHosts
-
-# Essential
-notion
-clipy
-typora
-hapticKey https://github.com/niw/HapticKey/issues
-Velja
-
-# Misc
-amphetamine
-hidden bar
-pomo timer
-Irvue
-Itsycal
-numi
-clocker
-noizio
-imageOptim
-Lightweight PDF
-
-# in case, disk storage is not enough
-omniDIskSweeper
-tencent lemon lite
-```
+* dev
+  * docker
+  * postman
+  * iHosts
+* Essential
+  * [notion](https://www.notion.so/)
+  * [clipy](https://github.com/Clipy/Clipy)
+  * typora
+  * [Velja](https://sindresorhus.com/velja)
+* drive
+  * dropbox
+  * onedrive
+  * google drive
+* Misc
+  * [amphetamine](https://apps.apple.com/us/app/amphetamine/id937984704?mt=12)
+  * [hidden bar](https://apps.apple.com/us/app/hidden-bar/id1452453066?mt=12)
+  * [pomo timer](https://apps.apple.com/us/app/pomo-timer/id1447569061?mt=12)
+  * [Irvue](https://apps.apple.com/us/app/irvue/id1039633667?mt=12)
+  * [Itsycal](https://www.mowglii.com/itsycal/)
+  * [numi](https://numi.app/)
+  * [clocker](https://apps.apple.com/us/app/clocker/id1056643111?mt=12)
+  * noizio
+  * [Arc](https://arc.net/)
+  * imageOptim
+  * Lightweight PDF
+* disk storage manager
+  * omniDIskSweeper
+  * tencent lemon lite
