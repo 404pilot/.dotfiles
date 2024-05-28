@@ -28,6 +28,7 @@ dotfiles
    - hammerspoon
      
      - allow notifications under `System Preferences / Notifications / Hammerspoon`
+     - Remember to update name in custom application shortcut mapping
    
    - iterm2
    
