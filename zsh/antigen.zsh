@@ -1,5 +1,7 @@
-# homebrew install zsh
-source /usr/local/share/antigen/antigen.zsh
+# from homebrew: https://formulae.brew.sh/formula/antigen
+# To activate antigen, add the following to your ~/.zshrc:
+#    source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
+source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh

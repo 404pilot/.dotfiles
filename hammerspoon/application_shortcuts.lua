@@ -46,7 +46,8 @@ SHORTCUT_MAPPING = {
       -- ['5']   =   "Microsoft Remote Desktop",
       ['6']   =   "Microsoft Outlook",
   },
-  ["Rocket"] = {
+  -- Go to 'General - About' to update 'Name'
+  ["Donut"] = {
       c       = "Google Chrome",
       f       = "Microsoft Edge",
       e       = "iTerm",
