@@ -55,8 +55,8 @@ bind_keys_for_windows_management()
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
 
 local MAC_SCREEN        = "Built-in Retina Display"
-local Dell_P2721Q_LEFT  = "DELL P2721Q (1)"
-local Dell_P2721Q_RIGHT = "DELL P2721Q (2)"
+local Dell_P2721Q_LEFT  = "DELL P2721Q (2)"
+local Dell_P2721Q_RIGHT = "DELL P2721Q (1)"
 local Dell_U2718Q       = "DELL U2718Q"
 
 local CUSTOM_LAYOUTS    = {

@@ -29,7 +29,7 @@ fi
 
 ######################################################
 ## install necessary apps
-apps=(git ccat vim zsh antigen autojump tmux blueutil sleepwatcher direnv)
+apps=(git ccat vim zsh antigen autojump tmux blueutil sleepwatcher direnv nvm)
 
 if [[ "$choice_install_apps" == "install_apps" ]]; then
   for app in "${apps[@]}"
