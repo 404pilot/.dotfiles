@@ -97,13 +97,17 @@ rm ~/.editorconfig || true \
 ## tmux
 echo "#### Config tmux"
 
-# make sure terminal: $TERM=xterm-256color
 rm ~/.tmux.conf || true \
   && ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+
+# make sure terminal: $TERM=xterm-256color
+export TERM=xterm-256color
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   echo "git clone tpm plugins..."
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  echo "installing plugins..."
+  ~/.tmux/plugins/tpm/bin/install_plugins
 fi
 
 ######################################################
