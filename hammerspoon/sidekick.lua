@@ -92,6 +92,7 @@ function ssidChangedCallback()
     local newSSID = hs.wifi.currentNetwork()
     local device = hs.audiodevice.defaultOutputDevice()
 
+    -- Need to go to `Location Services` to enable Hammerspoon to access wifi information
     log("new wifi: " .. (newSSID or "nil") .. "; previous SSID: " .. (lastSSID or "nil"))
 
     if newSSID ~= lastSSID then
