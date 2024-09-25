@@ -11,7 +11,7 @@ charset = utf-8
 indent_style = space
 indent_size = 4
 
-[*.{erb,rb,json,yml,lua,js,ts,yaml,java,tf,sh,xml}]
+[*.{erb,rb,json,yml,lua,js,ts,yaml,java,tf,sh,xml,ps1,psm1}]
 indent_size = 2
 
 [*.tmp.yea]
