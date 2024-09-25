@@ -1,2 +1,2 @@
 // settings.blocklistPattern = /.*mail.google.com.*|.*inbox.google.com.*|.*sts.rackspace.com.*|.*leetcode.com.*|localhost|.*.appstream2.*.aws.amazon.com|.*rackspace.auth.securid.com.*|.*hackerrank.com.*|.*codesignal.com.*|.*hired.com.*|.*excalidraw.com.*|.*karat.io.*|.*byteboard.dev.*|.*coderpad.io.*|.*codility.com.*/i;
-api.unmapAllExcept([], /^https:\/\/(calendar|contacts|docs|drive|keep).google.com/);
+api.unmapAllExcept([], /^https:\/\/(calendar|contacts|docs|drive|keep|mail).google.com/);
