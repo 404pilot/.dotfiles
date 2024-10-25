@@ -8,4 +8,4 @@ query=$(pbpaste)
 # encode text
 
 # search
-open "https://aka.ms/AAhkwkl?type=code&text=%22${query}%22"
+open "https://aka.ms/AAhkwkl?type=code&text=\"${query}\""
