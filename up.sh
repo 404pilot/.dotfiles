@@ -80,13 +80,6 @@ rm ~/.vimrc || true \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ######################################################
-## ideavim
-echo "#### Config ideavim"
-
-rm ~/.ideavimrc || true \
-  && ln -s ~/.dotfiles/ideavim/ideavimrc ~/.ideavimrc
-
-######################################################
 ## editorConfig
 echo "#### Config editorConfig"
 
@@ -147,15 +140,22 @@ rm ~/.shuttle.json || true \
   && ln -s ~/.dotfiles/shuttle/shuttle.json ~/.shuttle.json
 
 ######################################################
-## poetry
-# echo "#### Config poetry"
-#
-# POETRY_CONFIG_PATH="${HOME}/Library/Application Support/pypoetry"
-#
-# if [ -d "${POETRY_CONFIG_PATH}" ]; then
-#   rm "${POETRY_CONFIG_PATH}/config.toml" || true \
-#     && ln -s ~/.dotfiles/poetry/config.toml "${POETRY_CONFIG_PATH}/config.toml"
-# fi
+## ideavim (tag:java)
+echo "#### Config ideavim"
+
+rm ~/.ideavimrc || true \
+  && ln -s ~/.dotfiles/ideavim/ideavimrc ~/.ideavimrc
+
+######################################################
+## poetry (tag:python)
+echo "#### Config poetry"
+
+POETRY_CONFIG_PATH="${HOME}/Library/Application Support/pypoetry"
+
+if [ -d "${POETRY_CONFIG_PATH}" ]; then
+  rm "${POETRY_CONFIG_PATH}/config.toml" || true \
+    && ln -s ~/.dotfiles/poetry/config.toml "${POETRY_CONFIG_PATH}/config.toml"
+fi
 
 ######################################################
 ## git

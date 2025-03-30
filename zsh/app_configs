@@ -10,11 +10,14 @@
 ########################################################################
 # it is done by zsh plugin
 # init pyenv if it is installed
+# tag:python
 ########################################################################
-# if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init -)"
-# fi
-
+if command -v pyenv 1>/dev/null 2>&1; then
+  echo "Setting up pyenv for zsh"
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+fi
 
 ########################################################################
 # sdkman
@@ -24,6 +27,14 @@
 if [ -d ~/.sdkman ]; then
   source "$HOME/.sdkman/bin/sdkman-init.sh"
 fi
+
+########################################################################
+# nvm
+########################################################################
+# this is mentioned in homebrew
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 ########################################################################
 # homebrew
@@ -56,56 +67,46 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 eval "$(direnv hook zsh)"
 
 ########################################################################
-# nvm
-########################################################################
-# this is mentioned in homebrew
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-########################################################################
 # spaceship theme
 ########################################################################
 SPACESHIP_PROMPT_ORDER=(
+  ### tools
   time          # Time stamps section
   user          # Username section
   dir           # Current directory section
   host          # Hostname section
   git           # Git section (git_branch + git_status)
-#   hg            # Mercurial section (hg_branch  + hg_status)
-#   package       # Package version
-#   node          # Node.js section
-  ruby          # Ruby section
-#   elixir        # Elixir section
-#   xcode         # Xcode section
-#   swift         # Swift section
-#   golang        # Go section
-#   php           # PHP section
-#   rust          # Rust section
-#   haskell       # Haskell Stack section
-#   julia         # Julia section
-#   docker        # Docker section
-  aws           # Amazon Web Services section
-#   gcloud        # Google Cloud Platform section
-#   venv          # virtualenv section
-#   conda         # conda virtualenv section
-#   pyenv         # Pyenv section
-#   dotnet        # .NET section
-#   ember         # Ember.js section
-#   kubectl       # Kubectl context section
+  # battery       # Battery level and status
+  # exec_time     # Execution time
+
+  ### languages
+  node
+  ruby
+  python
+  venv
+
+  ### dev tools
+  # docker        # Docker section
+  # aws           # Amazon Web Services section
+  # azure
+  package
   terraform     # Terraform workspace section
-#   exec_time     # Execution time
-  line_sep      # Line break
-#   battery       # Battery level and status
-  vi_mode       # Vi-mode indicator
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
+
+  # exec_time      # Execution time
+  async          # Async jobs indicator
+  # Order matters. This will add a new line and the promot character when all the above sections are done
+  line_sep       # Line break
+  # battery        # Battery level and status
+  jobs           # Background jobs indicator
+  exit_code      # Exit code section
+  sudo           # Sudo indicator
+  char           # Prompt character
 )
 
-export SPACESHIP_GIT_STATUS_SHOW=false
-export SPACESHIP_VENV_PREFIX="${SPACESHIP_PROMPT_DEFAULT_PREFIX}venv:("
-export SPACESHIP_VENV_SUFFIX=") "
+SPACESHIP_GIT_STATUS_SHOW=false
+SPACESHIP_VENV_ASYNC=true
+SPACESHIP_VENV_PREFIX="${SPACESHIP_PROMPT_DEFAULT_PREFIX}venv:("
+SPACESHIP_VENV_SUFFIX=") "
 
 ########################################################################
 # p10k.zsh theme

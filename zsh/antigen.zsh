@@ -20,22 +20,31 @@ antigen bundle ssh-agent
 # antigen bundle dotenv
 
 ## disable ones that are not currently used
-# antigen bundle darvid/zsh-poetry
-# antigen bundle pipenv
+
+# tag:python
+antigen bundle darvid/zsh-poetry
+antigen bundle pipenv
+antigen bundle pyenv
+
+# tag: java
 # antigen bundle jenv
-# antigen bundle pyenv
 # antigen bundle sdk
 # antigen bundle matthieusb/zsh-sdkman
+
+# tag: ruby
+antigen bundle rbenv
+
+# tag: javascript
+antigen bundle nvm
+antigen bundle npm
+antigen bundle node
+
+# tools
+antigen bundle terraform
 # antigen bundle aws
 # antigen bundle gradle
 # antigen bundle docker
 # antigen bundle docker-compose
-antigen bundle rbenv
-antigen bundle terraform
-
-antigen bundle nvm
-antigen bundle npm
-antigen bundle node
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions

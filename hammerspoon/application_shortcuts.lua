@@ -57,11 +57,11 @@ SHORTCUT_MAPPING = {
       a       = "Arc",
       ["`"]   = "Finder",
       ["1"]   = "Visual Studio Code",
-      ["2"]   = "MarkText",
+      ["2"]   = "Typora",
       ["3"]   = "Notion",
       -- ['4']   = "Microsoft Teams classic",
       -- ['4']   =   "Microsoft Teams (work or school)",
-      ['4']   =   "Microsoft Teams",
+      ['4']   = "Microsoft Teams",
       ['6']   = "Microsoft Outlook",
   },
 }

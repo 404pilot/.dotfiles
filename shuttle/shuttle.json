@@ -14,7 +14,8 @@
   "show_ssh_config_hosts": false,
   "ssh_config_ignore_hosts": [],
   "ssh_config_ignore_keywords": [],
-  "hosts": [{
+  "hosts": [
+    {
       "ssh": [
         {
           "cmd": "ssh a-build1.iad3.pc.rackspace.com",
@@ -23,20 +24,17 @@
       ]
     },
     {
-      "useful commands": [{
-          "cmd": "cd /opt/glassfish4/glassfish",
-          "name": "glassfish location",
-          "inTerminal": "current"
-        },
+      "useful commands": [
         {
-          "cmd": "ll /home/",
-          "name": "list all users",
+          "cmd": "cd ~/vagrant && vagrant gloal-status",
+          "name": "show vagrant status",
           "inTerminal": "current"
         }
       ]
     },
     {
-      "directories": [{
+      "directories": [
+        {
           "cmd": "cd ~/work/ACT_API/",
           "name": "ACT"
         },
