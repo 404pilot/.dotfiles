@@ -1,63 +1,64 @@
 [user]
-    name = 404pilot
-    email = 404pilot@users.noreply.github.com
+  name = 404pilot
+  email = 404pilot@users.noreply.github.com
 
 [includeIf "gitdir:~/Work/private/"]
-    path = ~/Work/private/gitconfig-work
+  path = ~/Work/private/gitconfig-work
 
 [includeIf "gitdir:~/Work/public/"]
-    path = ~/Work/public/gitconfig-work
+  path = ~/Work/public/gitconfig-work
 
 [includeIf "gitdir:~/Work/ms/"]
-    path = ~/Work/ms/gitconfig-work
+  path = ~/Work/ms/gitconfig-work
 
 [color]
-    ui = true
+  ui = true
 
 [alias]
-    co = checkout
-    st = status
-    br = branch -a
-    cmm = commit -m
-    ll = log --oneline -n 10
-    lll = log --pretty=format:"%h%x09%an%x09%ad%x09%s" -n 10
-    bye = reset --hard HEAD
-    wormhole = reset --hard HEAD~1
-    wip = reset --soft HEAD~1
-    sh = stash
-    mg = merge --no-ff
-    fo = fetch origin
-    pf = pull --ff-only
-    # show recently used branches
-    recent = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
+  co = checkout
+  st = status
+  br = branch -a
+  cmm = commit -m
+  ll = log --oneline -n 10
+  lll = log --pretty=format:"%h%x09%an%x09%ad%x09%s" -n 10
+  bye = reset --hard HEAD
+  wormhole = reset --hard HEAD~1
+  wip = reset --soft HEAD~1
+  sh = stash
+  mg = merge --no-ff
+  fo = fetch origin
+  pf = pull --ff-only
+  # show recently used branches
+  recent = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
 
 [log]
-    date = relative
+  date = relative
 
 [push]
-    # default = simple
-    default = current
+  # default = simple
+  default = current
 
 [core]
-    editor = vi
+  editor = vi
 
 [pull]
-    default = current
-	ff = only
+  default = current
+  ff = only
 
 [pager]
-    branch = false
-    stash = false
-    log = false
+  branch = false
+  stash = false
+  log = false
 
 [filter "lfs"]
-    process = git-lfs filter-process
-    required = true
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
 
 [credential]
 	helper =
 	helper = /usr/local/share/gcm-core/git-credential-manager
+  
 [credential "https://dev.azure.com"]
 	useHttpPath = true

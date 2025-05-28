@@ -6,7 +6,7 @@ log_file="$HOME/.dotfiles/.log/sleepwatcher_$(date +%F).log"
 echo "#############################################################################" >> $log_file
 echo "[$(date)] sleepwatcher sleep" >> $log_file
 
-/usr/local/bin/blueutil -p 0 && echo "Bluetooth is turned off." >> $log_file
+/opt/homebrew/bin/blueutil -p 0 && echo "Bluetooth is turned off." >> $log_file
 # networksetup setairportpower en0 off
 
 echo "#############################################################################" >> $log_file

@@ -9,7 +9,7 @@ echo "[$(date)] sleepwatcher wakeup" >> $log_file
 # networksetup setairportpower en0 on
 # /usr/local/bin/blueutil -p 1 && /usr/local/bin/blueutil --connect "MX Ergo" && echo "bluetooth is turned on" >> $log_file
 
-/usr/local/bin/blueutil -p 1 \
+/opt/homebrew/bin/blueutil -p 1 \
   && echo "bluetooth is turned on" >> $log_file
 
 echo "#############################################################################" >> $log_file

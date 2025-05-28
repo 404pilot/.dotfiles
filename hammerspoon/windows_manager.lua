@@ -63,12 +63,12 @@ local CUSTOM_LAYOUTS    = {
   officeLayout = {
     screens = { Dell_P2721Q_LEFT, Dell_P2721Q_RIGHT },
     appConfigs = {
-      { "Google Chrome",                 Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
       { "Microsoft Edge",                Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
       { "Microsoft Remote Desktop Beta", Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
       { "Code",                          Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
       { "klogg log viewer",              Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
 
+      { "Google Chrome",                 Dell_P2721Q_RIGHT,  MAXIMIZED_COORDINATE },
       { "Finder",                        Dell_P2721Q_RIGHT, CENTER_COORDINATE },
       { "Activity Monitor",              Dell_P2721Q_RIGHT, CENTER_COORDINATE },
       { "MarkText",                      Dell_P2721Q_RIGHT, CENTER_COORDINATE },
@@ -151,10 +151,11 @@ local function applyLayout(layout)
         -- if hs.application.name(apps[i]) == appConfig[1] then
         if apps[i].name(apps[i]) == appConfig[1] then
           -- for example, "Built-in Retina Display" needs to be converted to "Built%-in Retina Display"
-          local escapedScreenName = appConfig[2]:gsub("([%(%)%-])", "%%%1") -- escape '(', ')' and '-'
-          log('app: ' .. appConfig[1] .. '-> escapedScreenName is ' .. escapedScreenName)
+          local screenNameForSearch = appConfig[2]:gsub("([%(%)%-])", "%%%1") -- escape '(', ')' and '-'
+          local targetScreen = hs.screen.find(screenNameForSearch)
+          log('app: ' .. appConfig[1] .. '-> screen: ' .. targetScreen:name())
 
-          table.insert(transformedLayout, { apps[i], nil, hs.screen.find(escapedScreenName), appConfig[3], nil, nil })
+          table.insert(transformedLayout, { apps[i], nil, targetScreen, appConfig[3], nil, nil })
           break;
         end
       end

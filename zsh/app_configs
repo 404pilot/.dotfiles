@@ -89,7 +89,7 @@ SPACESHIP_PROMPT_ORDER=(
   # docker        # Docker section
   # aws           # Amazon Web Services section
   # azure
-  package
+  # package
   terraform     # Terraform workspace section
 
   # exec_time      # Execution time
