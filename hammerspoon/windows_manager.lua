@@ -57,7 +57,30 @@ bind_keys_for_windows_management()
 local MAC_SCREEN        = "Built-in Retina Display"
 local Dell_P2721Q_LEFT  = "DELL P2721Q (2)"
 local Dell_P2721Q_RIGHT = "DELL P2721Q (1)"
-local Dell_U2718Q       = "DELL U2718Q"
+local Dell_U3219Q       = "DELL U3219Q"
+
+local function createSingleScreenLayout(screenName)
+  return {
+    screens = { screenName },
+    appConfigs = {
+      { "iTerm2",            screenName, CENTER_COORDINATE },
+      { "Notion",            screenName, CENTER_COORDINATE },
+      { "Trello",            screenName, CENTER_COORDINATE },
+      { "Typora",            screenName, CENTER_COORDINATE },
+      { "Finder",            screenName, CENTER_COORDINATE },
+      { "Activity Monitor",  screenName, CENTER_COORDINATE },
+      { "MarkText",          screenName, CENTER_COORDINATE },
+      { "Microsoft Teams",   screenName, MAXIMIZED_COORDINATE },
+      { "Code",              screenName, MAXIMIZED_COORDINATE },
+      { "Preview",           screenName, MAXIMIZED_COORDINATE },
+      { "Google Chrome",     screenName, MAXIMIZED_COORDINATE },
+      { "IntelliJ IDEA",     screenName, MAXIMIZED_COORDINATE },
+      { "Microsoft Outlook", screenName, MAXIMIZED_COORDINATE },
+      { "PyCharm",           screenName, MAXIMIZED_COORDINATE },
+      { "klogg log viewer",  screenName, MAXIMIZED_COORDINATE },
+    }
+  }
+end
 
 local CUSTOM_LAYOUTS    = {
   officeLayout = {
@@ -68,7 +91,7 @@ local CUSTOM_LAYOUTS    = {
       { "Code",                          Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
       { "klogg log viewer",              Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
 
-      { "Google Chrome",                 Dell_P2721Q_RIGHT,  MAXIMIZED_COORDINATE },
+      { "Google Chrome",                 Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
       { "Finder",                        Dell_P2721Q_RIGHT, CENTER_COORDINATE },
       { "Activity Monitor",              Dell_P2721Q_RIGHT, CENTER_COORDINATE },
       { "MarkText",                      Dell_P2721Q_RIGHT, CENTER_COORDINATE },
@@ -83,13 +106,13 @@ local CUSTOM_LAYOUTS    = {
     }
   },
   homeLayout = {
-    screens = { MAC_SCREEN, Dell_U2718Q },
+    screens = { MAC_SCREEN, Dell_U3219Q },
     appConfigs = {
-      { "Google Chrome",            Dell_U2718Q, MAXIMIZED_COORDINATE },
-      { "Microsoft Edge",           Dell_U2718Q, MAXIMIZED_COORDINATE },
-      { "Microsoft Remote Desktop", Dell_U2718Q, MAXIMIZED_COORDINATE },
-      { "Code",                     Dell_U2718Q, MAXIMIZED_COORDINATE },
-      { "klogg log viewer",         Dell_U2718Q, MAXIMIZED_COORDINATE },
+      { "Google Chrome",            Dell_U3219Q, MAXIMIZED_COORDINATE },
+      { "Microsoft Edge",           Dell_U3219Q, MAXIMIZED_COORDINATE },
+      { "Microsoft Remote Desktop", Dell_U3219Q, MAXIMIZED_COORDINATE },
+      { "Code",                     Dell_U3219Q, MAXIMIZED_COORDINATE },
+      { "klogg log viewer",         Dell_U3219Q, MAXIMIZED_COORDINATE },
 
       { "Finder",                   MAC_SCREEN,  CENTER_COORDINATE },
       { "Activity Monitor",         MAC_SCREEN,  CENTER_COORDINATE },
@@ -103,26 +126,8 @@ local CUSTOM_LAYOUTS    = {
       { "Microsoft Teams",          MAC_SCREEN,  MAXIMIZED_COORDINATE },
     }
   },
-  defaultLayout = {
-    screens = "default",
-    appConfigs = {
-      { "iTerm2",            MAC_SCREEN, CENTER_COORDINATE },
-      { "Notion",            MAC_SCREEN, CENTER_COORDINATE },
-      { "Trello",            MAC_SCREEN, CENTER_COORDINATE },
-      { "Typora",            MAC_SCREEN, CENTER_COORDINATE },
-      { "Finder",            MAC_SCREEN, CENTER_COORDINATE },
-      { "Activity Monitor",  MAC_SCREEN, CENTER_COORDINATE },
-      { "MarkText",          MAC_SCREEN, CENTER_COORDINATE },
-      { "Microsoft Teams",   MAC_SCREEN, MAXIMIZED_COORDINATE },
-      { "Code",              MAC_SCREEN, MAXIMIZED_COORDINATE },
-      { "Preview",           MAC_SCREEN, MAXIMIZED_COORDINATE },
-      { "Google Chrome",     MAC_SCREEN, MAXIMIZED_COORDINATE },
-      { "IntelliJ IDEA",     MAC_SCREEN, MAXIMIZED_COORDINATE },
-      { "Microsoft Outlook", MAC_SCREEN, MAXIMIZED_COORDINATE },
-      { "PyCharm",           MAC_SCREEN, MAXIMIZED_COORDINATE },
-      { "klogg log viewer",  MAC_SCREEN, MAXIMIZED_COORDINATE },
-    }
-  }
+  macScreenLayout = createSingleScreenLayout(MAC_SCREEN),
+  dellU3219QLayout = createSingleScreenLayout(Dell_U3219Q)
 }
 
 -- For each layout, there is a screens combination key to be used to idenitfy which layout will be used
@@ -175,12 +180,6 @@ local function getCurrentScreensCombinationKey()
 end
 
 local function reformatLayout()
-  if #hs.screen.allScreens() == 1 then
-    log("Using layout: default")
-    applyLayout(CUSTOM_LAYOUTS['defaultLayout'])
-    return
-  end
-
   currentScreensCombinationKey = getCurrentScreensCombinationKey()
 
   for _, layout in pairs(CUSTOM_LAYOUTS) do
@@ -228,7 +227,7 @@ register_screen_change_detector()
 -- ************************************************************
 -- Screens layout arrangement
 -- ************************************************************
-local homeScreens = { MAC_SCREEN, Dell_U2718Q }
+local homeScreens = { MAC_SCREEN, Dell_U3219Q }
 
 local function getResolution(screenName)
   local screenX = hs.screen.find(screenName)
@@ -248,8 +247,8 @@ local function setScreensArrangementA()
   if getCurrentScreensCombinationKey() == getScreensCombinationKey(homeScreens) then
     log("At home!")
 
-    local macResolution = getResolution(MAC_SCREEN_LUA)
-    local dellResolution = getResolution(Dell_U2718Q)
+    local macResolution = getResolution(MAC_SCREEN)
+    local dellResolution = getResolution(Dell_U3219Q)
     local gap = 360
 
     local x = macResolution[1]
@@ -257,7 +256,7 @@ local function setScreensArrangementA()
 
     log("Setting origin: " .. x .. " x " .. y)
 
-    hs.screen.find(Dell_U2718Q):setOrigin(x, y)
+    hs.screen.find(Dell_U3219Q):setOrigin(x, y)
 
     hs.notify.show("Hammerspoon", "Updating display arragement", "ArrangementA")
   end
@@ -272,15 +271,15 @@ local function setScreensArrangementB()
   if getCurrentScreensCombinationKey() == getScreensCombinationKey(homeScreens) then
     log("At home!")
 
-    local macResolution = getResolution(MAC_SCREEN_LUA)
-    local dellResolution = getResolution(Dell_U2718Q)
+    local macResolution = getResolution(MAC_SCREEN)
+    local dellResolution = getResolution(Dell_U3219Q)
 
     local x = (dellResolution[1] - macResolution[1]) / 2 * -1
     local y = dellResolution[2] * -1
 
     log("Setting origin: " .. x .. " x " .. y)
 
-    hs.screen.find(Dell_U2718Q):setOrigin(x, y)
+    hs.screen.find(Dell_U3219Q):setOrigin(x, y)
 
     hs.notify.show("Hammerspoon", "Updating display arragement", "ArrangementB")
   end
