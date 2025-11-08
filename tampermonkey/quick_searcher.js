@@ -16,7 +16,10 @@
     const urlObj = new URL(currentUrl);
     const pathSegments = urlObj.pathname.split("/").filter(Boolean);
     const query = encodeURIComponent(selectedText);
-    return `${urlObj.origin}/${pathSegments[0]}/_search?type=code&text="${query}"`;
+    const searchPath = pathSegments[0].endsWith("/_search")
+      ? pathSegments[0]
+      : `${pathSegments[0]}/_search`;
+    return `${urlObj.origin}/${searchPath}?type=code&text="${query}"`;
   }
 
   let icon = document.createElement("img");
