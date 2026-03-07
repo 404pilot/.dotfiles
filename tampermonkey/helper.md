@@ -5,4 +5,4 @@ var script = document.createElement('script');script.src = "https://code.jquery.
 ```
 
 ## Common Issues
-* chrome sometimes couldn't focuse on an input after redirects. It is actually caused by chrome plugin `surfingkeys`. Just need to disable the plugin for the specific url endpoints in surfingkeys settings
+* chrome sometimes couldn't focus on an input after redirects. It is actually caused by chrome plugin `surfingkeys`. Just need to disable the plugin for the specific url endpoints in surfingkeys settings

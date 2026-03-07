@@ -1,3 +1,6 @@
+# ---------------------------------------------------------------------------
+# Core shell utilities
+# ---------------------------------------------------------------------------
 alias grep='grep --color=auto -i'
 alias ll='ls -alFh'
 alias la='ls -A'
@@ -6,7 +9,9 @@ alias kill9='kill -9'
 alias pgrep='ps aux | grep --color=auto -i'
 alias lsPorts='sudo lsof -i -P -n'
 
-## maven
+# ---------------------------------------------------------------------------
+# Maven
+# ---------------------------------------------------------------------------
 alias mcc='mvn clean compile'
 alias mct='mvn clean test'
 alias mcit='mvn clean integration-test'
@@ -14,57 +19,54 @@ alias mld='mvn clean process-resources liquibase:dropAll'
 alias mlu='mvn clean process-resources liquibase:update'
 alias mcj='mvn clean jetty:run'
 
-## neovim
+# ---------------------------------------------------------------------------
+# Neovim (disabled)
+# ---------------------------------------------------------------------------
 # alias vim='nvim'
 # alias vi='nvim'
 # alias v='nvim'
 
-log(){
-    echo ">>>>> $1"
-    echo
-}
-
-## marktext
-alias marktext="/Applications/Mark\ Text.app/Contents/MacOS/Mark\ Text"
-
-## aws
+# ---------------------------------------------------------------------------
+# App shortcuts
+# ---------------------------------------------------------------------------
 alias aws="PAGER=cat aws"
-
-## application Shortcuts
 alias typora="open -a typora"
 
-## poetry
-alias ppp="poetry run task"
-
+# ---------------------------------------------------------------------------
+# Build tool wrappers — prefer local wrapper scripts over system installs
+# ---------------------------------------------------------------------------
 gradle() {
     if [[ -f ./gradlew ]]; then
-        echo ">>>>>> Using ./gradlew wrapper instead of system gradle <<<<<<"
+        echo "[gradle] using wrapper: ./gradlew"
         ./gradlew $@
     elif [[ -f /usr/local/bin/gradle ]]; then
-        echo ">>>>> Using system gradle: $(which gradle) <<<<<"
+        echo "[gradle] using system: $(which gradle)"
         $(which gradle) $@
     else
-        echo ">>>>> No gradle found <<<<<"
+        echo "[gradle] not found"
     fi
 }
 
 mvn() {
     if [[ -f ./mvnw ]]; then
-        echo ">>>>>> Using ./mvnw wrapper instead of system maven <<<<<<"
+        echo "[mvn] using wrapper: ./mvnw"
         ./mvnw $@
     elif [[ -f /usr/local/bin/maven ]]; then
-        echo ">>>>> Using system maven: $(which mvn) <<<<<"
+        echo "[mvn] using system: $(which mvn)"
         $(which mvn) $@
     else
-        echo ">>>>> No maven found <<<<<"
+        echo "[mvn] not found"
     fi
 }
 
+# ---------------------------------------------------------------------------
+# Shell utilities
+# ---------------------------------------------------------------------------
 cat() {
     if type ccat >/dev/null 2>&1; then
         ccat $@ ;
     else
-        cat $@ ;
+        command cat $@ ;
     fi
 }
 
@@ -77,28 +79,4 @@ backup() { cp "$1"{,.bak};}
 # alias ..='cd ..'
 # alias ...='cd ../..'
 
-soundsgood() {
-    sudo killall coreaudiod
-    # alias soundsgood='sudo kextunload /System/Library/Extensions/AppleHDA.kext;sudo kextload /System/Library/Extensions/AppleHDA.kext'
-}
 
-# determine operating system
-myos=`uname -s`
-
-case "$myos" in
-	# Mac OS X specific aliases
-	Darwin)
-		# alias fnote='find ~/pHome/pNote -type f -name "*.md" | xargs grep -i'
-		# alias sublime='open -a "Sublime Text"'
-		alias click='open .'
-		;;
-	# Linux
-	Linux)
-		alias click='nautilus .'
-		# alias fnote='find ~/pNote -type f -name "*.md" | xargs grep -i'
-		alias gstory="git branch --remote --no-merged master | sed 's/origin\//origin\/    /g' | grep 'B-\|D-'"
-		# command
-		# alias amq='/opt/apache-activemq-5.9.0/bin/activemq'
-		;;
-	*) ;;
-esac

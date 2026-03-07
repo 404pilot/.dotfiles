@@ -2,36 +2,33 @@
 # set -x
 set -euo pipefail
 
-choice_install_apps="skip_by_default"
-choice_install_fonts="skip_by_default"
-choice_update_mac_defaults="skip_by_default"
+install_apps=false
+install_fonts=false
+update_mac_defaults=false
 
-while getopts ":a:f:m:" opt; do
-  case $opt in
-    a) choice_install_apps="$OPTARG"
-    ;;
-    f) choice_install_fonts="$OPTARG"
-    ;;
-    m) choice_update_mac_defaults="$OPTARG"
-    ;;
-    \?) echo "Invalid option -$OPTARG" >&2
-    exit 1
-    ;;
+for arg in "$@"; do
+  case $arg in
+    --apps)         install_apps=true ;;
+    --fonts)        install_fonts=true ;;
+    --mac-defaults) update_mac_defaults=true ;;
+    *) echo "Unknown option: $arg" >&2; exit 1 ;;
   esac
 done
 
-######################################################
-## clone dotfiles
+# ---------------------------------------------------------------------------
+# Clone dotfiles
+# ---------------------------------------------------------------------------
 if [ ! -d ~/.dotfiles ]; then
   echo "#### pull .dotfiles"
   (cd && GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_personal -o IdentitiesOnly=yes' git clone git@github.com:404pilot/.dotfiles.git)
 fi
 
-######################################################
-## install necessary apps
+# ---------------------------------------------------------------------------
+# Install necessary apps
+# ---------------------------------------------------------------------------
 apps=(git ccat vim zsh antigen autojump tmux blueutil sleepwatcher direnv nvm)
 
-if [[ "$choice_install_apps" == "install_apps" ]]; then
+if [[ "$install_apps" == true ]]; then
   for app in "${apps[@]}"
   do
     echo "#### install $app"
@@ -39,22 +36,25 @@ if [[ "$choice_install_apps" == "install_apps" ]]; then
   done
 fi
 
-######################################################
-## install fonts
-if [[ "$choice_install_fonts" == "install_fonts" ]]; then
+# ---------------------------------------------------------------------------
+# Install fonts
+# ---------------------------------------------------------------------------
+if [[ "$install_fonts" == true ]]; then
   brew tap homebrew/cask-fonts || true && brew install --cask font-fira-code-nerd-font
 fi
 
-######################################################
-## iterm2
+# ---------------------------------------------------------------------------
+# iTerm2
+# ---------------------------------------------------------------------------
 echo "### Config iterm2"
 # Specify the preferences directory
 defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.dotfiles/iterm2"
 # Tell iTerm2 to use the custom preferences in the directory
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 
-######################################################
-## bash & bash_completion & jenv & rbenv
+# ---------------------------------------------------------------------------
+# bash & bash_completion & jenv & rbenv (disabled)
+# ---------------------------------------------------------------------------
 # echo "#### Config bash and other configs (bash_completion, jenv, rbenv)"
 
 # cp ~/.dotfiles/bash/bash_profile ~/.bash_profile
@@ -63,15 +63,17 @@ defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 # echo "source ~/.dotfiles/bash/bash_bridge" > ~/.bashrc
 # echo "source ~/.dotfiles/bash/bash_other_app_configs" >> ~/.bashrc
 
-######################################################
-## zsh & jenv & sdkman
+# ---------------------------------------------------------------------------
+# zsh & jenv & sdkman
+# ---------------------------------------------------------------------------
 echo "#### Config zsh and other configs (bash_completion, jenv, sdkman ...)"
 
 rm ~/.zshrc || true \
   && ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 
-######################################################
-## vim
+# ---------------------------------------------------------------------------
+# vim
+# ---------------------------------------------------------------------------
 echo "#### Config vim"
 
 rm ~/.vimrc || true \
@@ -79,15 +81,17 @@ rm ~/.vimrc || true \
   && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-######################################################
-## editorConfig
+# ---------------------------------------------------------------------------
+# editorConfig
+# ---------------------------------------------------------------------------
 echo "#### Config editorConfig"
 
 rm ~/.editorconfig || true \
   && ln -s ~/.dotfiles/editorConfig/editorconfig ~/.editorconfig
 
-######################################################
-## tmux
+# ---------------------------------------------------------------------------
+# tmux
+# ---------------------------------------------------------------------------
 echo "#### Config tmux"
 
 rm ~/.tmux.conf || true \
@@ -103,21 +107,24 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
   ~/.tmux/plugins/tpm/bin/install_plugins
 fi
 
-######################################################
-## ssh
+# ---------------------------------------------------------------------------
+# ssh
+# ---------------------------------------------------------------------------
 echo "#### Config ssh"
 
 rm ~/.ssh/config || true \
   && ln -s ~/.dotfiles/ssh/config ~/.ssh/config
 
-######################################################
-## Karabiner
-##
-## by default, click 'Open config folder' from karabiner will delete the symbolink file and generate the latest configuration json file
-##   which it is a way to configure stuff in GUI first and then get the corresponding configuration file
-##
-## Tips: find the bundle id by using the osascript "osascript -e 'id of app "Microsoft Remote Desktop"'"
-##   or `mdls -name kMDItemCFBundleIdentifier /Applications/Microsoft\ Remote\ Desktop\ Beta.app`
+# ---------------------------------------------------------------------------
+# Karabiner
+#
+# By default, clicking 'Open config folder' in Karabiner deletes the symlink
+# and regenerates the JSON — useful for GUI-first config then syncing back.
+#
+# Tips: find bundle ID via:
+#   osascript -e 'id of app "Microsoft Remote Desktop"'
+#   mdls -name kMDItemCFBundleIdentifier /Applications/Microsoft\ Remote\ Desktop\ Beta.app
+# ---------------------------------------------------------------------------
 echo "#### Config karabiner"
 
 rm ~/.config/karabiner/karabiner.json || true \
@@ -125,29 +132,33 @@ rm ~/.config/karabiner/karabiner.json || true \
 # rm ~/Library/Application\ Support/Karabiner/private.xml || true \
 #   && ln -s ~/.dotfiles/karabiner/private.xml ~/Library/Application\ Support/Karabiner/private.xml
 
-######################################################
-## hammerspoon
+# ---------------------------------------------------------------------------
+# Hammerspoon
+# ---------------------------------------------------------------------------
 echo "#### Config hammerspoon"
 
 rm ~/.hammerspoon/init.lua || mkdir ~/.hammerspoon  || true \
   && ln -s ~/.dotfiles/hammerspoon/init.lua ~/.hammerspoon/init.lua
 
-######################################################
-## shuttle
+# ---------------------------------------------------------------------------
+# Shuttle
+# ---------------------------------------------------------------------------
 echo "#### Config shuttle"
 
 rm ~/.shuttle.json || true \
   && ln -s ~/.dotfiles/shuttle/shuttle.json ~/.shuttle.json
 
-######################################################
-## ideavim (tag:java)
+# ---------------------------------------------------------------------------
+# IdeaVim (tag:java)
+# ---------------------------------------------------------------------------
 echo "#### Config ideavim"
 
 rm ~/.ideavimrc || true \
   && ln -s ~/.dotfiles/ideavim/ideavimrc ~/.ideavimrc
 
-######################################################
-## poetry (tag:python)
+# ---------------------------------------------------------------------------
+# Poetry (tag:python)
+# ---------------------------------------------------------------------------
 echo "#### Config poetry"
 
 POETRY_CONFIG_PATH="${HOME}/Library/Application Support/pypoetry"
@@ -157,8 +168,9 @@ if [ -d "${POETRY_CONFIG_PATH}" ]; then
     && ln -s ~/.dotfiles/poetry/config.toml "${POETRY_CONFIG_PATH}/config.toml"
 fi
 
-######################################################
-## git
+# ---------------------------------------------------------------------------
+# git
+# ---------------------------------------------------------------------------
 echo "#### Config git"
 
 rm ~/.gitconfig || true \
@@ -179,9 +191,9 @@ set_up_git_config_for_work ~/Work/private
 set_up_git_config_for_work ~/Work/public
 set_up_git_config_for_work ~/Work/ms
 
-
-######################################################
-## sleepwatcher
+# ---------------------------------------------------------------------------
+# sleepwatcher
+# ---------------------------------------------------------------------------
 echo "#### Config sleepwatcher"
 rm ~/.sleep || true \
   && ln -s ~/.dotfiles/sleepwatcher/sleep ~/.sleep
@@ -191,14 +203,12 @@ rm ~/.wakeup || true \
 
 brew services restart sleepwatcher
 
-######################################################
-## macOS
+# ---------------------------------------------------------------------------
+# macOS defaults
 # see docs at https://macos-defaults.com/
-# defaults reads
-# defaults domains
-# lots of configurations exist at ~/Library/Preferences
+# ---------------------------------------------------------------------------
 echo "#### Config macOS defaults values"
-if [[ "$choice_update_mac_defaults" == "update_mac_defaults" ]]; then
+if [[ "$update_mac_defaults" == true ]]; then
   # backup current settings
   defaults read > /tmp/defaults_read_$(date -u +"%Y-%m-%dT%H:%M:%SZ").bak
 
@@ -225,6 +235,7 @@ if [[ "$choice_update_mac_defaults" == "update_mac_defaults" ]]; then
     && killall Finder
 fi
 
-######################################################
-## done
+# ---------------------------------------------------------------------------
+# Done
+# ---------------------------------------------------------------------------
 echo "#### Finish"

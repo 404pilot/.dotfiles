@@ -34,12 +34,16 @@
 [log]
   date = relative
 
+[fetch]
+  prune = true                # Auto-remove deleted remote branches locally
+
 [push]
   # default = simple
   default = current
 
 [core]
   editor = vi
+  fsmonitor = true            # Improve performance on large repos
 
 [pull]
   default = current
@@ -59,6 +63,9 @@
 [credential]
 	helper =
 	helper = /usr/local/share/gcm-core/git-credential-manager
-  
+
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+
+[credential "azrepos:org/onedrive"]
+	azureAuthority = https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47

@@ -1,309 +1,35 @@
-# Torus Configuration
-# alias TorusClient='export DYLD_FALLBACK_LIBRARY_PATH="/Library/Scripts/Torus/Mac/lib:/lib:/usr/local/lib:/usr/lib:";/usr/local/bin/pwsh -NoLogo -NoExit -File /Library/Scripts/Torus/TorusClient.ps1'
-# alias TorusClientSudo='export DYLD_FALLBACK_LIBRARY_PATH="/Library/Scripts/Torus/Mac/lib:/lib:/usr/local/lib:/usr/lib:";sudo /usr/local/bin/pwsh -NoLogo -NoExit -File /Library/Scripts/Torus/TorusClient.ps1'
-# alias torus='export DYLD_FALLBACK_LIBRARY_PATH="/Library/Scripts/Torus/Mac/lib:/lib:/usr/local/lib:/usr/lib:";/usr/local/bin/pwsh -NoLogo -NoExit -File /Library/Scripts/Torus/TorusClient.ps1'
-
+# ---------------------------------------------------------------------------
+# Tools
+# ---------------------------------------------------------------------------
 alias AzCopy="~/work/ms/AzCopy"
+export PATH="${PATH}:/Users/ningzou/.azureauth/0.9.2"
 
-log(){
-    echo "-------------------------------------------------------"
-    echo "----- $1"
-    echo "-------------------------------------------------------"
-}
+# ---------------------------------------------------------------------------
+# Scout — internal tool installed to ~/.local/bin
+# ---------------------------------------------------------------------------
+export PATH=${PATH}:${HOME}/.local/bin
 
-log 'Setting ODSP-WEB'
+# ---------------------------------------------------------------------------
+# Agency + Claude CLI — internal agentic tooling
+# ---------------------------------------------------------------------------
+# Prepend agency only if not already on PATH (avoids duplicates)
+if [[ ":${PATH}:" != *":/Users/ningzou/.config/agency/CurrentVersion:"* ]]; then
+    export PATH="/Users/ningzou/.config/agency/CurrentVersion:${PATH}"
+fi
+export PATH="/Users/ningzou/.claude-cli/currentVersion:$PATH"
+
+# ---------------------------------------------------------------------------
+# ODSP-Web — OneDrive/SharePoint web monorepo (Rush + pnpm)
+# ---------------------------------------------------------------------------
+# Shared pnpm store to avoid re-downloading packages across Rush projects
 export RUSH_PNPM_STORE_PATH=~/work/ms/rush_pnpm_store
-export ONEDRIVE_NPM_AUTH_TOKEN=$(printf "protocol=https\nhost=onedrive.visualstudio.com\npath=DefaultCollection/ODSP-Web/_git/_optimized/odsp-web" | git credential fill | sed -n "/^password=/s/password=//p" | tr -d \\n | base64)
 
+# Fetches a base64-encoded NPM auth token from the system git credential store
 refreshODSPWebToken(){
     export ONEDRIVE_NPM_AUTH_TOKEN=$(printf "protocol=https\nhost=onedrive.visualstudio.com\npath=DefaultCollection/ODSP-Web/_git/_optimized/odsp-web" | git credential fill | sed -n "/^password=/s/password=//p" | tr -d \\n | base64)
 }
 
-gAnyChange(){
-    log 'any local changes???'
-
-    if [[ `git status --porcelain` ]]; then
-        echo ">>>>> Local changes exist!!! You can stash them all!!!"
-
-        return 1
-    fi
-}
-
-# gsync(){
-#     gAnyChange; if [[ "$?" -ne 0 ]]; then return 1; fi
-
-#     # default
-#     branch='development'
-
-#     while [[ "$#" -gt 0 ]]; do
-#         case "$1" in
-#             -b|--branch)
-#                 branch="$2"
-#                 shift
-#             ;;
-#             -*)
-#                 echo "unknown option: $1"
-#                 return 1
-#             ;;
-#         esac
-
-#         shift
-#     done
-
-#     git fetch upstream
-#     git checkout $branch
-
-#     log "syncing"
-
-#     git reset --hard upstream/$branch
-# }
-
-gCleanUpPr(){
-    log 'cleaning up local PR branches'
-
-    git branch \
-    | grep pr \
-    | xargs -n 1 git branch -D
-}
-
-gCleanUp(){
-    # might want try to gather all info first: git checkout master && git pull upstream master
-    # default
-    remoteCleanUp=false
-
-    while [[ "$#" -gt 0 ]]; do
-        case "$1" in
-            --remote)
-                remoteCleanUp="$2"
-                shift
-            ;;
-            --target_branch)
-                target_branch="$2"
-                shift
-            ;;
-            -*)
-                echo "unknown option: $1"
-                return 1
-            ;;
-        esac
-
-        shift
-    done
-
-    log 'cleaning up local merged branches'
-
-    git branch --merged ${target_branch} \
-    | grep -v "\(${target_branch}\|development\|staing\)" \
-    | xargs -n 1 git branch -d
-
-    gCleanUpPr; if [[ "$?" -ne 0 ]]; then return 1; fi
-
-    if [[ "${remoteCleanUp}" == true ]]
-    then
-        log 'cleaning up >>REMOTE<< merged branches'
-
-        git branch --remote --merged ${target_branch} \
-        | grep -v ${target_branch} | grep -v development | grep -v staging | grep -v upstream \
-        | sed 's/origin\//:/' | xargs -n 1 git push origin
-    fi
-}
-
-localpr(){
-    gAnyChange; if [[ "$?" -ne 0 ]]; then return 1; fi
-
-    prNum=$1
-
-    # git checkout development
-    git checkout master
-    git branch -D pr"${prNum}"
-    # git fetch upstream pull/"$prNum"/head:pr"$prNum"
-    git fetch origin pull/"$prNum"/head:pr"$prNum"
-    git checkout pr"${prNum}"
-}
-
-jumpTo(){
-    # default values
-    self_address='127.0.0.1'
-    self_port='8888'
-    target_port='443'
-
-    while [[ "$#" -gt 0 ]]; do
-        case "$1" in
-            -sa|--self_address)
-                self_address="$2"
-                shift
-            ;;
-            -sp|self_port)
-                self_port="$2"
-                shift
-            ;;
-            -tp|--target_port)
-                target_port="$2"
-                shift
-            ;;
-            -ta|--target_address)
-                target_address="$2"
-                shift
-            ;;
-            -h|--help)
-                echo "Use it to ssh to a target through jump server"
-                return 0
-            ;;
-            -*)
-                echo "unknown option: $1"
-                return 1
-            ;;
-        esac
-
-        shift
-    done
-
-    if [[ -z "$target_address" ]]
-    then
-        echo "target_address is needed"
-        return 1
-    fi
-
-    command="ssh jump-server -L ${self_address}:${self_port}:${target_address}:${target_port}"
-
-    echo "========================================================================================"
-    echo "self:      ${self_address}:${self_port}"
-    echo "target:    ${target_address}:${target_port}"
-    echo "command:   ${command}"
-    echo "========================================================================================"
-    echo
-
-    eval ${command}
-}
-
-loadConfigStore(){
-    launchctl load ~/Library/LaunchAgents/environment.plist
-    launchctl load ~/Library/LaunchAgents/environment.plist
-}
-
-restartContainers(){
-    # docker restart vdo-postgres vdo-rabbitmq vdo-redis lcm-postgres
-    docker restart vdo-postgres vdo-rabbitmq vdo-redis
-}
-
-reloadVdoRabbitmq(){
-    docker rm -f vdo-rabbitmq
-
-    docker run \
-    -d \
-    --name vdo-rabbitmq \
-    -e RABBITMQ_DEFAULT_VHOST=v1.api.rvi.rackspace.com \
-    -p 15672:15672 \
-    -p 5672:5672 \
-    -p 4369:4369 \
-    -p 5671:5671 \
-    -p 15671:15671 \
-    -p 25672:25672 \
-    rabbitmq:3-management
-}
-
-reloadVdoPostgres(){
-    docker rm -f vdo-postgres
-
-    docker run \
-    -d \
-    --name vdo-postgres \
-    -e POSTGRES_PASSWORD=123456 \
-    -e POSTGRES_USER=postgres \
-    -e POSTGRES_DB=raxVPC \
-    -p 5432:5432 \
-    postgres
-}
-
-cleanDocker() {
-    docker system prune -a --volumes
-}
-
-reloadVdoGossPostgres(){
-    docker rm -f vdo-goss-postgres
-
-    docker run \
-    -d \
-    --name vdo-goss-postgres \
-    -e POSTGRES_PASSWORD=123456 \
-    -e POSTGRES_USER=postgres \
-    -e POSTGRES_DB=goss \
-    -p 5433:5432 \
-    postgres
-}
-
-reloadVdoRedis(){
-    docker rm -f vdo-redis
-
-    docker run -p 6379:6379 --name vdo-redis -d redis
-}
-
-#######################################
-# reload dev env after restarting OS
-#######################################
-reloadDevEnv(){
-    # default values
-    resetData=false
-    reloadConfigStore=true
-
-    while [[ "$#" -gt 0 ]]; do
-        case "$1" in
-            -rd|--reset_data)
-                resetData="$2"
-                shift
-            ;;
-            -rc|reload_config)
-                reloadConfigStore="$2"
-                shift
-            ;;
-
-            -*)
-                echo "unknown option: $1"
-                return 1
-            ;;
-        esac
-
-        shift
-    done
-
-    if [[ "${reloadConfigStore}" == true ]]
-    then
-        log "loading config store"
-
-        loadConfigStore
-    fi
-
-    if [[ "${resetData}" == true ]]
-    then
-        log 'resetting containers'
-
-        reloadVdoRabbitmq
-        reloadVdoPostgres
-        reloadVdoGossPostgres
-        reloadVdoRedis
-    else
-        log 'restarting containers'
-
-        restartContainers
-    fi
-}
-
-fAppProcess(){
-    # fAppProcess rvi-api virtapp raxvpc
-    app_name=$1
-
-    jps -v | grep info.app.name=$app_name
-}
-
-updateAws(){
-    AWS_CREDENTIALS_FILE="${HOME}/.aws/credentials"
-    AWS_CREDENTIALS_FILE_BAK="${HOME}/.aws/credentials.bak"
-
-    log "cliboard -> aws crednentials"
-
-    clipboard="$(pbpaste)"
-
-    cp $AWS_CREDENTIALS_FILE_BAK $AWS_CREDENTIALS_FILE
-
-    echo $clipboard >> $AWS_CREDENTIALS_FILE
-}
+# Auto-populate token on shell start if not already set
+if [[ -z "$ONEDRIVE_NPM_AUTH_TOKEN" ]]; then
+    refreshODSPWebToken
+fi

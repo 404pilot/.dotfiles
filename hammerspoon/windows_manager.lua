@@ -1,8 +1,8 @@
 require("helper")
 
--- ************************************************************
--- Windows Management
--- ************************************************************
+-- ---------------------------------------------------------------------------
+-- Windows management — move/resize focused window
+-- ---------------------------------------------------------------------------
 
 hs.window.animationDuration  = 0
 
@@ -46,12 +46,12 @@ end
 
 bind_keys_for_windows_management()
 
--- ************************************************************
--- auto layout
--- ************************************************************
--- get monitor name by
+-- ---------------------------------------------------------------------------
+-- Auto layout — assign apps to screens based on connected display set
+-- ---------------------------------------------------------------------------
+-- get monitor name by:
 --   for index,value in pairs(hs.screen.allScreens()) do print(value:name() .. " - " .. value:id()) end
--- get application name by
+-- get application name by:
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
 
 local MAC_SCREEN        = "Built-in Retina Display"
@@ -199,9 +199,9 @@ end
 
 bind_keys_for_windows_auto_formatting()
 
--- ************************************************************
--- screen watcher to set layouts automatically
--- ************************************************************
+-- ---------------------------------------------------------------------------
+-- Screen watcher — auto-apply layout when display set changes
+-- ---------------------------------------------------------------------------
 local lastRecordedScreensCombinationKey = getCurrentScreensCombinationKey()
 
 local function screenChangedCallback()
@@ -224,9 +224,9 @@ end
 
 register_screen_change_detector()
 
--- ************************************************************
--- Screens layout arrangement
--- ************************************************************
+-- ---------------------------------------------------------------------------
+-- Screen arrangement — set physical monitor positions (origin coordinates)
+-- ---------------------------------------------------------------------------
 local homeScreens = { MAC_SCREEN, Dell_U3219Q }
 
 local function getResolution(screenName)

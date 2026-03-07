@@ -12,13 +12,13 @@ dotfiles
    $ ssh-keygen -C "xxx+personal@gmail.com"
    
    # verify it uses the right user
-   $ ssh -i ~/.ssh/id_rsa_peronsal -T git@github.com
+   $ ssh -i ~/.ssh/id_rsa_personal -T git@github.com
    ```
 
 3. Install `dotfiles`
    
    ```shell
-   $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/404pilot/.dotfiles/master/up.sh)" -s -a install_apps -f install_fonts -m update_mac_defaults
+   $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/404pilot/.dotfiles/master/bootstrap.sh)" -s --apps --fonts --mac-defaults
    ```
 
 4. Manually install apps

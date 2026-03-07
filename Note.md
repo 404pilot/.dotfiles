@@ -10,7 +10,7 @@ dotfiles
    $ ssh-keygen -C "xxx+personal@gmail.com"
    
    # verify it uses the right user
-   $ ssh -i ~/.ssh/id_rsa_peronsal -T git@github.com
+   $ ssh -i ~/.ssh/id_rsa_personal -T git@github.com
    ```
 
 3. Install `dotfiles`
@@ -222,7 +222,7 @@ ls -alF ~/.jenv/versions
 * `sdkman` installs java at: `~/.sdkman/candidates/java/`
 * `jenv` creates symbolic links at: `~/.jenv/versions`
 * macos system default location: `/System/Library/Frameworks/JavaVM.framework/Versions/`
-* java in System Perferences location: `/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/`
+* java in System Preferences location: `/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/`
 
 ### Jenv & Maven
 

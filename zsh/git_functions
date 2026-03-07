@@ -1,4 +1,6 @@
-## git
+# ---------------------------------------------------------------------------
+# Aliases
+# ---------------------------------------------------------------------------
 alias gbye='git add --all; git reset --hard HEAD'
 alias gs='git status'
 alias gb='git branch'
@@ -9,6 +11,9 @@ alias ga='git add'
 alias gall='git add --all'
 alias gp='git pull'
 
+# ---------------------------------------------------------------------------
+# Helper utilities
+# ---------------------------------------------------------------------------
 get_alias() {
     local git_name=$(git config user.name)
     local name=${git_name// /}
@@ -54,6 +59,9 @@ get_current_branch() {
     echo $current_branch
 }
 
+# ---------------------------------------------------------------------------
+# Branch operations
+# ---------------------------------------------------------------------------
 gcm() {
     run_command "git checkout $(get_master_branch)"
 }
@@ -117,7 +125,7 @@ g_clean_local_branches() {
     echo "branch_prefix: ${branch_prefix_regex}"
 
     if [[ $perform_deletion -eq 1 ]]; then
-        echo "Perfom branches deletion"
+        echo "Perform branches deletion"
         git branch | grep "^ *${branch_prefix_regex}*" | xargs git branch -D
     else
         git branch | grep "^ *${branch_prefix_regex}*"

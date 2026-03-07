@@ -3,11 +3,11 @@ require("helper")
 local scripts_dir="$HOME/.dotfiles/hammerspoon/scripts"
 
 
--- TOOD run od buddy?
+-- TODO run od buddy?
 
--- ************************************************************
--- Scripts
--- ************************************************************
+-- ---------------------------------------------------------------------------
+-- Scripts — hotkey-triggered shell scripts and system actions
+-- ---------------------------------------------------------------------------
 local function runScript(name)
   hs.execute(scripts_dir .. "/" .. name .. " >> $HOME/.dotfiles/.log/$(date +%F).log 2>&1")
 end
@@ -28,7 +28,7 @@ local function runPlaceholder()
 end
 
 -- website will trigger tampermonkey scripts to call some hammerspoon scripts
-local function intiProcessToLoadAwsCredentials()
+local function initProcessToLoadAwsCredentials()
   -- hs.execute("open https://rax.io/vdo-dev-aws")
   hs.execute("open https://rax.io/pvc-dev-aws")
 end
@@ -43,7 +43,7 @@ local function restartRemoteDesktop()
   hs.execute("open '/Applications/Microsoft Remote Desktop.app'")
 end
 
-local function openLastestLogFile()
+local function openLatestLogFile()
   runScript("open_latest_log_file.sh")
 end
 
@@ -55,9 +55,9 @@ hs.hotkey.bind({"alt"}, "9", openLastestLogFile)
 hs.hotkey.bind({"ctrl,alt"}, "5", putOsToSleepMode)
 hs.hotkey.bind({"ctrl,alt"}, "8", restartRemoteDesktop)
 
--- ************************************************************
--- URL handlers
--- ************************************************************
+-- ---------------------------------------------------------------------------
+-- URL handlers (disabled — kept for reference)
+-- ---------------------------------------------------------------------------
 -- ➜  Chrome  defaults read com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox
 -- 2020-02-05 09:19:29.451 defaults[87394:6359726]
 -- The domain/default pair of (com.google.Chrome, ExternalProtocolDialogShowAlwaysOpenCheckbox) does not exist
@@ -72,9 +72,9 @@ hs.hotkey.bind({"ctrl,alt"}, "8", restartRemoteDesktop)
 -- hs.urlevent.bind("update_aws", setAwsCredentials)
 
 
--- ************************************************************
--- wifi watcher to mute audio when it is not a home environment
--- ************************************************************
+-- ---------------------------------------------------------------------------
+-- WiFi watcher — mute audio when not on home network
+-- ---------------------------------------------------------------------------
 local homeSSIDs = {"404fi", "404fi_5G"}
 local lastSSID = hs.wifi.currentNetwork()
 
