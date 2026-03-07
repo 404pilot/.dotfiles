@@ -1,19 +1,19 @@
+" =============================================================================
+" General
+" =============================================================================
 set number
 set hlsearch
+syntax on
+set clipboard=unnamed  " yank to system clipboard
 
-"yank stuff to clipboard as well
-set clipboard=unnamed
-
-"put deleted stuff in black hole
+" =============================================================================
+" Register Behavior
+" =============================================================================
+" Send d/c/x to black hole register (don't overwrite clipboard on delete)
 nnoremap d "_d
 nnoremap dd "_dd
 nnoremap D "_D
 vnoremap d "_d
-" re-map the original action with leader key prefixed
-" nnoremap <leader>d ""d
-" nnoremap <leader>dd ""dd
-" nnoremap <leader>D ""D
-" vnoremap <leader>d ""d
 
 nnoremap c "_c
 nnoremap C "_C
@@ -21,54 +21,41 @@ vnoremap c "_c
 
 nnoremap x "_x
 nnoremap X "_X
-"nnoremap <leader>x ""x
-"nnoremap <leader>X ""X
-syntax on
 
-" http://liadbiz.github.io/vim-custimization/
+" =============================================================================
+" Plugins (vim-plug)
+" =============================================================================
+" Auto-install vim-plug if missing
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
 
-" For iTerm2 on OS X
-" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-" let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" Auto-install missing plugins on startup
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
-" For tmux running in iTerm2 on OS X
-" let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-" let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-" let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-
-" Make sure you use single quotes
 
 Plug 'Lokaltog/vim-easymotion'
 Plug 'justinmk/vim-sneak'
 
-" Initialize plugin system
 call plug#end()
 
-" Reload .vimrc and :PlugInstall to install plugins.
-
-" ---------------------------------------------------------------------------
-" ------ EasyMotion | https://github.com/easymotion/vim-easymotion
-" ---------------------------------------------------------------------------
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" =============================================================================
+" EasyMotion  https://github.com/easymotion/vim-easymotion
+" =============================================================================
+let g:EasyMotion_do_mapping = 0  " disable default mappings
 let g:EasyMotion_smartcase = 1
 
-" nmap \ <Plug>(easymotion-prefix)
 map  <Leader>f <Plug>(easymotion-bd-f2)
 nmap <Leader>f <Plug>(easymotion-overwin-f2)
 
-" search by 1 character (remap s)
-" nmap s <Plug>(easymotion-s2)
-" search by n characters (remap /)
-map  / <Plug>(easymotion-sn)
+map  / <Plug>(easymotion-sn)   " search by n chars (replaces /)
 omap / <Plug>(easymotion-tn)
 
-" ---------------------------------------------------------------------------
-" ------ Sneak | https://github.com/justinmk/vim-sneak
-" ---------------------------------------------------------------------------
+" =============================================================================
+" Sneak  https://github.com/justinmk/vim-sneak
+" =============================================================================
 let g:sneak#label = 1

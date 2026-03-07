@@ -77,9 +77,9 @@ rm ~/.zshrc || true \
 echo "#### Config vim"
 
 rm ~/.vimrc || true \
-  && ln -s ~/.dotfiles/vim/vimrc ~/.vimrc \
-  && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  && ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
+
+# vim-plug and plugins auto-install on first vim launch (configured in vimrc)
 
 # ---------------------------------------------------------------------------
 # editorConfig
