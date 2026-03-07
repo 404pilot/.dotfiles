@@ -180,7 +180,7 @@ local function getCurrentScreensCombinationKey()
 end
 
 local function reformatLayout()
-  currentScreensCombinationKey = getCurrentScreensCombinationKey()
+  local currentScreensCombinationKey = getCurrentScreensCombinationKey()
 
   for _, layout in pairs(CUSTOM_LAYOUTS) do
     if getScreensCombinationKey(layout["screens"]) == currentScreensCombinationKey then

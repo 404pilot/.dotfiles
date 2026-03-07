@@ -1,12 +1,9 @@
--- ************************************************************
--- Application Shortcuts (use name in applications folder)
--- ************************************************************
--- list all running applications: (it might be changed in Big Sur. Look for application name in Application folder)
--- Use `hs.application.enableSpotlightForNameSearches(true)` in Big Sur unless I can find something better in the future
--- I believe the issue is some applications are not put in Application folder like IntelliJ Idea
+-- ---------------------------------------------------------------------------
+-- Application shortcuts — alt+key to launch/focus app, keyed by machine name
+-- ---------------------------------------------------------------------------
+-- App name = name shown in /Applications or via:
 --   for key,value in pairs(hs.application.runningApplications()) do print(key,value) end
--- Or just use the name from 'Applications' folder
-SHORTCUT_MAPPING = {
+local SHORTCUT_MAPPING = {
   ["Default"] = {
       c       = "Google Chrome",
       e       = "iTerm",
@@ -77,9 +74,8 @@ local function getMapping(laptop_id, mapping)
 end
 
 local function bind_keys_for_application_shortcuts()
-  laptop_id = hs.host.localizedName() -- name can be found in preferences/sharing
-  laptop_shortcut = getMapping(laptop_id, SHORTCUT_MAPPING)
-  -- laptop_shortcut = SHORTCUT_MAPPING[laptop_id]
+  local laptop_id = hs.host.localizedName() -- name can be found in System Settings > Sharing
+  local laptop_shortcut = getMapping(laptop_id, SHORTCUT_MAPPING)
 
   hs.application.enableSpotlightForNameSearches(true)
   for shortcut, app in pairs(laptop_shortcut) do

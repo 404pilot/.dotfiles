@@ -3,7 +3,6 @@ require("helper")
 local scripts_dir="$HOME/.dotfiles/hammerspoon/scripts"
 
 
--- TODO run od buddy?
 
 -- ---------------------------------------------------------------------------
 -- Scripts — hotkey-triggered shell scripts and system actions
@@ -51,7 +50,7 @@ end
 -- hs.hotkey.bind({"alt"}, "9", setAwsCredentials)
 hs.hotkey.bind({"alt"}, "7", runPlaceholder)
 hs.hotkey.bind({"alt"}, "8", searchInAdo)
-hs.hotkey.bind({"alt"}, "9", openLastestLogFile)
+hs.hotkey.bind({"alt"}, "9", openLatestLogFile)
 hs.hotkey.bind({"ctrl,alt"}, "5", putOsToSleepMode)
 hs.hotkey.bind({"ctrl,alt"}, "8", restartRemoteDesktop)
 
@@ -125,42 +124,3 @@ end
 
 wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback):start()
 
-
--- function keyStrokes(str)
---   return function()
---       hs.eventtap.keyStrokes(str)
---   end
--- end
--- hs.hotkey.bind({"ctrl", "alt", "cmd"}, "L", keyStrokes("console.log("))
-
--- function chrome_active_tab_with_name(name)
---   return function()
---       hs.osascript.javascript([[
---           // below is javascript code
---           var chrome = Application('Google Chrome');
---           chrome.activate();
---           var wins = chrome.windows;
-
---           // loop tabs to find a web page with a title of <name>
---           function main() {
---               for (var i = 0; i < wins.length; i++) {
---                   var win = wins.at(i);
---                   var tabs = win.tabs;
---                   for (var j = 0; j < tabs.length; j++) {
---                   var tab = tabs.at(j);
---                   tab.title(); j;
---                   if (tab.title().indexOf(']] .. name .. [[') > -1) {
---                           win.activeTabIndex = j + 1;
---                           return;
---                       }
---                   }
---               }
---           }
---           main();
---           // end of javascript
---       ]])
---   end
--- end
-
--- --- Use
--- hs.hotkey.bind({"alt"}, "H", chrome_active_tab_with_name("HipChat"))
