@@ -1,82 +1,74 @@
-# from homebrew: https://formulae.brew.sh/formula/antigen
-# To activate antigen, add the following to your ~/.zshrc:
-#    source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
+# ref: https://github.com/zsh-users/antigen
 source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
 
-# Load the oh-my-zsh's library.
+# ---------------------------------------------------------------------------
+# oh-my-zsh base library
+# ---------------------------------------------------------------------------
 antigen use oh-my-zsh
 
-# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
-# https://project-awesome.org/unixorn/awesome-zsh-plugins
-# antigen bundle git
-antigen bundle autojump # have to run `brew install autojump` first
-antigen bundle extract
+# ---------------------------------------------------------------------------
+# core shell
+# ---------------------------------------------------------------------------
+antigen bundle autojump    # needs: brew install autojump
+antigen bundle extract     # universal archive extraction
 
-# only add main one; or use AddKeysToAgent in ssh config
 zstyle :omz:plugins:ssh-agent identities id_rsa_personal
 antigen bundle ssh-agent
 
-# antigen bundle vi-mode
-# antigen bundle dotenv
+# ---------------------------------------------------------------------------
+# vi mode
+# ref: https://github.com/jeffreytse/zsh-vi-mode
+# note: configured in app_configs (zvm_config / zvm_after_init)
+# ---------------------------------------------------------------------------
+antigen bundle jeffreytse/zsh-vi-mode
 
-## disable ones that are not currently used
-
-# tag:python
-antigen bundle darvid/zsh-poetry
-antigen bundle pipenv
+# ---------------------------------------------------------------------------
+# python
+# ---------------------------------------------------------------------------
 antigen bundle pyenv
+antigen bundle pipenv
+antigen bundle darvid/zsh-poetry
 
-# tag: java
-# antigen bundle jenv
-# antigen bundle sdk
-# antigen bundle matthieusb/zsh-sdkman
-
-# tag: ruby
+# ---------------------------------------------------------------------------
+# ruby
+# ---------------------------------------------------------------------------
 antigen bundle rbenv
 
-# tag: javascript
+# ---------------------------------------------------------------------------
+# javascript
+# ---------------------------------------------------------------------------
 antigen bundle nvm
 antigen bundle npm
 antigen bundle node
 
-# tools
+# ---------------------------------------------------------------------------
+# infrastructure
+# ---------------------------------------------------------------------------
 antigen bundle terraform
 # antigen bundle aws
-# antigen bundle gradle
 # antigen bundle docker
 # antigen bundle docker-compose
 
+# ---------------------------------------------------------------------------
+# shell enhancements
+# ---------------------------------------------------------------------------
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
-# antigen bundle zsh-users/zsh-docker
 
-# Load the theme.
-# https://github.com/ohmyzsh/ohmyzsh/tree/master/themes
-# https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes
-# antigen theme robbyrussell
-# antigen theme romkatv/powerlevel10k
+# ---------------------------------------------------------------------------
+# theme — spaceship prompt
+# ref: https://github.com/spaceship-prompt/spaceship-prompt
+# configured in app_configs
+# ---------------------------------------------------------------------------
 antigen theme denysdovhan/spaceship-prompt
 
-#################################################################
-##################### Custom configurations #####################
-#################################################################
-
-# Uncomment the following line to enable command auto-correction.
+# ---------------------------------------------------------------------------
+# oh-my-zsh settings (must be set before antigen apply)
+# ---------------------------------------------------------------------------
 ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
 HIST_STAMPS="yyyy-mm-dd"
-#################################################################
-#################################################################
 
-# Tell Antigen that you're done.
+echo "[antigen] applying plugins..."
 antigen apply

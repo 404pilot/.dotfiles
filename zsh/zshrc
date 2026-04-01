@@ -1,2 +1,8 @@
 source ~/.dotfiles/zsh/entrypoint
 source ~/.dotfiles/zsh/antigen.zsh
+
+# BEGIN claude-cli MANAGED BLOCK
+if [[ ":${PATH}:" != *":$HOME/.claude-cli/CurrentVersion:"* ]]; then
+    export PATH="$HOME/.claude-cli/CurrentVersion:${PATH}"
+fi
+# END claude-cli MANAGED BLOCK

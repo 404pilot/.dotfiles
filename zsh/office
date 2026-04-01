@@ -1,32 +1,37 @@
 # ---------------------------------------------------------------------------
-# Tools
+# PATH additions
+# ---------------------------------------------------------------------------
+export PATH="${PATH}:$HOME/.azureauth/0.9.2"
+export PATH="${PATH}:${HOME}/.local/bin"            # Scout — internal tool
+
+# Prepend agency only if not already on PATH (avoids duplicates on re-source)
+if [[ ":${PATH}:" != *":$HOME/.config/agency/CurrentVersion:"* ]]; then
+    export PATH="$HOME/.config/agency/CurrentVersion:${PATH}"
+fi
+
+# ---------------------------------------------------------------------------
+# app shortcuts
 # ---------------------------------------------------------------------------
 alias AzCopy="~/work/ms/AzCopy"
-export PATH="${PATH}:/Users/ningzou/.azureauth/0.9.2"
-
-# ---------------------------------------------------------------------------
-# Scout — internal tool installed to ~/.local/bin
-# ---------------------------------------------------------------------------
-export PATH=${PATH}:${HOME}/.local/bin
-
-# ---------------------------------------------------------------------------
-# Agency + Claude CLI — internal agentic tooling
-# ---------------------------------------------------------------------------
-# Prepend agency only if not already on PATH (avoids duplicates)
-if [[ ":${PATH}:" != *":/Users/ningzou/.config/agency/CurrentVersion:"* ]]; then
-    export PATH="/Users/ningzou/.config/agency/CurrentVersion:${PATH}"
-fi
-export PATH="/Users/ningzou/.claude-cli/currentVersion:$PATH"
 
 # ---------------------------------------------------------------------------
 # ODSP-Web — OneDrive/SharePoint web monorepo (Rush + pnpm)
 # ---------------------------------------------------------------------------
+
 # Shared pnpm store to avoid re-downloading packages across Rush projects
 export RUSH_PNPM_STORE_PATH=~/work/ms/rush_pnpm_store
 
-# Fetches a base64-encoded NPM auth token from the system git credential store
-refreshODSPWebToken(){
-    export ONEDRIVE_NPM_AUTH_TOKEN=$(printf "protocol=https\nhost=onedrive.visualstudio.com\npath=DefaultCollection/ODSP-Web/_git/_optimized/odsp-web" | git credential fill | sed -n "/^password=/s/password=//p" | tr -d \\n | base64)
+# Fetch a base64-encoded NPM auth token from the system git credential store
+refreshODSPWebToken() {
+    echo "[odsp] refreshing NPM auth token"
+    export ONEDRIVE_NPM_AUTH_TOKEN=$(
+        printf "protocol=https\nhost=onedrive.visualstudio.com\npath=DefaultCollection/ODSP-Web/_git/_optimized/odsp-web" \
+        | git credential fill \
+        | sed -n "/^password=/s/password=//p" \
+        | tr -d \\n \
+        | base64
+    )
+    echo "[odsp] token updated"
 }
 
 # Auto-populate token on shell start if not already set

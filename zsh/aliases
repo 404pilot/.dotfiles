@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------
-# Core shell utilities
+# core shell
 # ---------------------------------------------------------------------------
 alias grep='grep --color=auto -i'
 alias ll='ls -alFh'
@@ -9,39 +9,20 @@ alias kill9='kill -9'
 alias pgrep='ps aux | grep --color=auto -i'
 alias lsPorts='sudo lsof -i -P -n'
 
-# ---------------------------------------------------------------------------
-# Maven
-# ---------------------------------------------------------------------------
-alias mcc='mvn clean compile'
-alias mct='mvn clean test'
-alias mcit='mvn clean integration-test'
-alias mld='mvn clean process-resources liquibase:dropAll'
-alias mlu='mvn clean process-resources liquibase:update'
-alias mcj='mvn clean jetty:run'
+mcd()    { mkdir -p "$1" && cd "$1"; }
+cls()    { cd "$1" && ls; }
+backup() { cp "$1"{,.bak}; }
 
 # ---------------------------------------------------------------------------
-# Neovim (disabled)
-# ---------------------------------------------------------------------------
-# alias vim='nvim'
-# alias vi='nvim'
-# alias v='nvim'
-
-# ---------------------------------------------------------------------------
-# App shortcuts
-# ---------------------------------------------------------------------------
-alias aws="PAGER=cat aws"
-alias typora="open -a typora"
-
-# ---------------------------------------------------------------------------
-# Build tool wrappers — prefer local wrapper scripts over system installs
+# build tool wrappers — prefer local wrapper scripts over system installs
 # ---------------------------------------------------------------------------
 gradle() {
     if [[ -f ./gradlew ]]; then
         echo "[gradle] using wrapper: ./gradlew"
         ./gradlew $@
-    elif [[ -f /usr/local/bin/gradle ]]; then
+    elif command -v gradle 1>/dev/null 2>&1; then
         echo "[gradle] using system: $(which gradle)"
-        $(which gradle) $@
+        command gradle $@
     else
         echo "[gradle] not found"
     fi
@@ -51,32 +32,42 @@ mvn() {
     if [[ -f ./mvnw ]]; then
         echo "[mvn] using wrapper: ./mvnw"
         ./mvnw $@
-    elif [[ -f /usr/local/bin/maven ]]; then
+    elif command -v mvn 1>/dev/null 2>&1; then
         echo "[mvn] using system: $(which mvn)"
-        $(which mvn) $@
+        command mvn $@
     else
         echo "[mvn] not found"
     fi
 }
 
 # ---------------------------------------------------------------------------
-# Shell utilities
+# maven shortcuts
 # ---------------------------------------------------------------------------
+alias mcc='mvn clean compile'
+alias mct='mvn clean test'
+alias mcit='mvn clean integration-test'
+alias mld='mvn clean process-resources liquibase:dropAll'
+alias mlu='mvn clean process-resources liquibase:update'
+alias mcj='mvn clean jetty:run'
+
+# ---------------------------------------------------------------------------
+# app shortcuts
+# ---------------------------------------------------------------------------
+alias aws="PAGER=cat aws"
+alias typora="open -a typora"
+
+# cat with syntax highlighting (falls back to system cat)
 cat() {
     if type ccat >/dev/null 2>&1; then
-        ccat $@ ;
+        ccat $@
     else
-        command cat $@ ;
+        command cat $@
     fi
 }
 
-mcd() { mkdir -p "$1"; cd "$1";}
-
-cls() { cd "$1"; ls;}
-
-backup() { cp "$1"{,.bak};}
-
-# alias ..='cd ..'
-# alias ...='cd ../..'
-
-
+# ---------------------------------------------------------------------------
+# neovim (disabled)
+# ---------------------------------------------------------------------------
+# alias vim='nvim'
+# alias vi='nvim'
+# alias v='nvim'

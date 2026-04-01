@@ -1,11 +1,12 @@
-## add alias
-source ~/.dotfiles/zsh/aliases
+# ---------------------------------------------------------------------------
+# Logging helper — available to all sourced modules
+# ---------------------------------------------------------------------------
+_log() { echo "[zsh] $1"; }
 
-## add git-related functions
-source ~/.dotfiles/zsh/git_functions
-
-# other app
-source ~/.dotfiles/zsh/app_configs
-
-## office
-source ~/.dotfiles/zsh/office
+# ---------------------------------------------------------------------------
+# Modules
+# ---------------------------------------------------------------------------
+_log "aliases"        && source ~/.dotfiles/zsh/aliases
+_log "git"            && source ~/.dotfiles/zsh/git_functions
+_log "apps"           && source ~/.dotfiles/zsh/app_configs
+_log "office"         && source ~/.dotfiles/zsh/office

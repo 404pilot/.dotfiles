@@ -1,17 +1,17 @@
-# Remember, there are some ZSH plugins that manage some programs' configuration (jenv, pyenv, poetry, etc...)
+# Note: some tools are also managed by antigen plugins (pyenv, nvm, rbenv, etc.)
+#       this file handles their shell-level initialization.
 
 # ---------------------------------------------------------------------------
-# jEnv — managed by zsh plugin (disabled)
+# homebrew
 # ---------------------------------------------------------------------------
-# if which jenv > /dev/null ; then
-#   eval "$(jenv init -)"
-# fi
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # ---------------------------------------------------------------------------
-# pyenv — managed by zsh plugin
+# pyenv
+# ref: https://github.com/pyenv/pyenv
 # ---------------------------------------------------------------------------
 if command -v pyenv 1>/dev/null 2>&1; then
-  echo "Setting up pyenv for zsh"
+  echo "[pyenv] initializing"
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init --path)"
@@ -19,32 +19,38 @@ fi
 
 # ---------------------------------------------------------------------------
 # sdkman
+# ref: https://sdkman.io
 # ---------------------------------------------------------------------------
 if [ -d ~/.sdkman ]; then
+  echo "[sdkman] initializing"
   source "$HOME/.sdkman/bin/sdkman-init.sh"
 fi
 
 # ---------------------------------------------------------------------------
 # nvm — loaded from homebrew
+# ref: https://github.com/nvm-sh/nvm
 # ---------------------------------------------------------------------------
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+if [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ]; then
+  echo "[nvm] initializing"
+  source "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+  [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \
+    source "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
+fi
 
 # ---------------------------------------------------------------------------
-# homebrew
+# direnv
+# ref: https://direnv.net
 # ---------------------------------------------------------------------------
-# export PATH="/usr/local/sbin:$PATH"
-export HOMEBREW_NO_AUTO_UPDATE=1
+eval "$(direnv hook zsh)"
 
 # ---------------------------------------------------------------------------
-# zsh paste fix — prevents slow paste caused by url-quote-magic
+# paste fix — prevents slow paste caused by url-quote-magic
 # ---------------------------------------------------------------------------
 pasteinit() {
   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+  zle -N self-insert url-quote-magic
 }
-
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
 }
@@ -52,48 +58,30 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # ---------------------------------------------------------------------------
-# direnv
-# ---------------------------------------------------------------------------
-# pipenv plugin is disabled since poetry is in use; maybe put poetry plugin before pipenv
-# eval "$(pipenv --completion)"
-
-eval "$(direnv hook zsh)"
-
-# ---------------------------------------------------------------------------
-# spaceship theme
+# spaceship prompt
+# ref: https://spaceship-prompt.sh
 # ---------------------------------------------------------------------------
 SPACESHIP_PROMPT_ORDER=(
-  ### tools
-  time          # Time stamps section
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  # battery       # Battery level and status
-  # exec_time     # Execution time
+  time           # timestamp
+  user           # username
+  dir            # current directory
+  host           # hostname
+  git            # git branch + status
 
-  ### languages
   node
   ruby
   python
   venv
 
-  ### dev tools
-  # docker        # Docker section
-  # aws           # Amazon Web Services section
   azure
-  # package
-  terraform     # Terraform workspace section
+  terraform
 
-  # exec_time      # Execution time
-  async          # Async jobs indicator
-  # Order matters. This will add a new line and the prompt character when all the above sections are done
-  line_sep       # Line break
-  # battery        # Battery level and status
-  jobs           # Background jobs indicator
-  exit_code      # Exit code section
-  sudo           # Sudo indicator
-  char           # Prompt character
+  async          # async jobs indicator
+  line_sep       # line break
+  jobs           # background jobs indicator
+  exit_code      # exit code of last command
+  sudo           # sudo indicator
+  char           # prompt character
 )
 
 SPACESHIP_GIT_STATUS_SHOW=false
@@ -102,11 +90,21 @@ SPACESHIP_VENV_PREFIX="${SPACESHIP_PROMPT_DEFAULT_PREFIX}venv:("
 SPACESHIP_VENV_SUFFIX=") "
 
 # ---------------------------------------------------------------------------
-# p10k theme (disabled)
+# vi mode (jeffreytse/zsh-vi-mode)
+# ref: https://github.com/jeffreytse/zsh-vi-mode
+#
+# note: zvm_config() must be defined before the plugin loads.
+#       entrypoint sources this file before antigen.zsh, so order is correct.
 # ---------------------------------------------------------------------------
-# # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+zvm_config() {
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT       # start each line in insert mode
+  ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK  # block cursor in normal mode
+  ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM   # beam cursor in insert mode
+}
 
-# ## custom by me
-# typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true
-# typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_WITH_PYENV=true
+# fzf keybindings (ctrl+r, ctrl+t, alt+c) must be re-applied after vi-mode
+# init because the plugin overwrites all keybindings on startup.
+zvm_after_init() {
+  echo "[fzf] binding keys"
+  eval "$(fzf --zsh)"
+}

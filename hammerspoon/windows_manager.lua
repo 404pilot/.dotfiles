@@ -217,8 +217,8 @@ local function screenChangedCallback()
 end
 
 local function register_screen_change_detector()
-  -- http://www.hammerspoon.org/go/#variablelife
-  -- use a global variable to keep watchers out of being GCed
+  -- global intentionally — prevents watcher from being garbage collected
+  -- ref: http://www.hammerspoon.org/go/#variablelife
   screenWatcher = hs.screen.watcher.new(screenChangedCallback):start()
 end
 
