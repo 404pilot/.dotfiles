@@ -85,26 +85,9 @@ SPACESHIP_PROMPT_ORDER=(
 )
 
 SPACESHIP_GIT_STATUS_SHOW=false
+SPACESHIP_PROMPT_ASYNC=true
 SPACESHIP_VENV_ASYNC=true
 SPACESHIP_VENV_PREFIX="${SPACESHIP_PROMPT_DEFAULT_PREFIX}venv:("
 SPACESHIP_VENV_SUFFIX=") "
 
-# ---------------------------------------------------------------------------
-# vi mode (jeffreytse/zsh-vi-mode)
-# ref: https://github.com/jeffreytse/zsh-vi-mode
-#
-# note: zvm_config() must be defined before the plugin loads.
-#       entrypoint sources this file before antigen.zsh, so order is correct.
-# ---------------------------------------------------------------------------
-zvm_config() {
-  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT       # start each line in insert mode
-  ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK  # block cursor in normal mode
-  ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM   # beam cursor in insert mode
-}
-
-# fzf keybindings (ctrl+r, ctrl+t, alt+c) must be re-applied after vi-mode
-# init because the plugin overwrites all keybindings on startup.
-zvm_after_init() {
-  echo "[fzf] binding keys"
-  eval "$(fzf --zsh)"
-}
+# vi mode config lives in pre_antigen — must load before antigen

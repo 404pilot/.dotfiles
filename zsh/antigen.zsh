@@ -18,8 +18,19 @@ antigen bundle ssh-agent
 # ---------------------------------------------------------------------------
 # vi mode
 # ref: https://github.com/jeffreytse/zsh-vi-mode
-# note: configured in app_configs (zvm_config / zvm_after_init)
+# must define zvm_config/zvm_after_init BEFORE the bundle loads
 # ---------------------------------------------------------------------------
+zvm_config() {
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT       # start each line in insert mode
+  ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK  # block cursor in normal mode
+  ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM   # beam cursor in insert mode
+}
+
+zvm_after_init() {
+  echo "[fzf] binding keys"
+  eval "$(fzf --zsh)"
+}
+
 antigen bundle jeffreytse/zsh-vi-mode
 
 # ---------------------------------------------------------------------------

@@ -4,9 +4,7 @@
 _log() { echo "[zsh] $1"; }
 
 # ---------------------------------------------------------------------------
-# Modules
+# Modules — loaded before antigen (app initialization, PATH setup)
 # ---------------------------------------------------------------------------
-_log "aliases"        && source ~/.dotfiles/zsh/aliases
-_log "git"            && source ~/.dotfiles/zsh/git_functions
 _log "apps"           && source ~/.dotfiles/zsh/app_configs
 _log "office"         && source ~/.dotfiles/zsh/office

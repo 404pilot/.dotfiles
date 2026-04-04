@@ -1,15 +1,16 @@
 " =============================================================================
-" General
+" General — shared between vim and VSCodeVim
 " =============================================================================
 set number
 set hlsearch
+set ignorecase
+set smartcase
 syntax on
-set clipboard=unnamed  " yank to system clipboard
+set clipboard=unnamed          " yank to system clipboard
 
 " =============================================================================
-" Register Behavior
+" Register behavior — d/c/x go to black hole, not clipboard
 " =============================================================================
-" Send d/c/x to black hole register (don't overwrite clipboard on delete)
 nnoremap d "_d
 nnoremap dd "_dd
 nnoremap D "_D
@@ -23,39 +24,8 @@ nnoremap x "_x
 nnoremap X "_X
 
 " =============================================================================
-" Plugins (vim-plug)
+" Plugins — vim only (VSCodeVim has its own easymotion/sneak built-in)
 " =============================================================================
-" Auto-install vim-plug if missing
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if !exists('g:vscode')
+  source ~/.dotfiles/vim/vimrc.plugins
 endif
-
-" Auto-install missing plugins on startup
-autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync | source $MYVIMRC
-\| endif
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'Lokaltog/vim-easymotion'
-Plug 'justinmk/vim-sneak'
-
-call plug#end()
-
-" =============================================================================
-" EasyMotion  https://github.com/easymotion/vim-easymotion
-" =============================================================================
-let g:EasyMotion_do_mapping = 0  " disable default mappings
-let g:EasyMotion_smartcase = 1
-
-map  <Leader>f <Plug>(easymotion-bd-f2)
-nmap <Leader>f <Plug>(easymotion-overwin-f2)
-
-map  / <Plug>(easymotion-sn)   " search by n chars (replaces /)
-omap / <Plug>(easymotion-tn)
-
-" =============================================================================
-" Sneak  https://github.com/justinmk/vim-sneak
-" =============================================================================
-let g:sneak#label = 1

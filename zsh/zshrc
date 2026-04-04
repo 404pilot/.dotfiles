@@ -1,6 +1,10 @@
 source ~/.dotfiles/zsh/entrypoint
 source ~/.dotfiles/zsh/antigen.zsh
 
+# loaded after antigen so our aliases override oh-my-zsh defaults
+_log "aliases"        && source ~/.dotfiles/zsh/aliases
+_log "git"            && source ~/.dotfiles/zsh/git_functions
+
 # BEGIN claude-cli MANAGED BLOCK
 if [[ ":${PATH}:" != *":$HOME/.claude-cli/CurrentVersion:"* ]]; then
     export PATH="$HOME/.claude-cli/CurrentVersion:${PATH}"
