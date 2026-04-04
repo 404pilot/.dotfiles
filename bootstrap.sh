@@ -61,6 +61,14 @@ rm -rf ~/.config/nvim || true \
   && ln -s ~/.dotfiles/nvim ~/.config/nvim
 
 # ---------------------------------------------------------------------------
+# starship
+# ---------------------------------------------------------------------------
+log "configuring starship"
+mkdir -p ~/.config
+rm -f ~/.config/starship.toml || true \
+  && ln -s ~/.dotfiles/starship/starship.toml ~/.config/starship.toml
+
+# ---------------------------------------------------------------------------
 # editorConfig
 # ---------------------------------------------------------------------------
 log "configuring editorConfig"
@@ -110,13 +118,6 @@ rm ~/.hammerspoon/init.lua || mkdir ~/.hammerspoon || true \
   && ln -s ~/.dotfiles/hammerspoon/init.lua ~/.hammerspoon/init.lua
 
 # ---------------------------------------------------------------------------
-# ideavim (tag:java)
-# ---------------------------------------------------------------------------
-log "configuring ideavim"
-rm ~/.ideavimrc || true \
-  && ln -s ~/.dotfiles/ideavim/ideavimrc ~/.ideavimrc
-
-# ---------------------------------------------------------------------------
 # poetry (tag:python)
 # ---------------------------------------------------------------------------
 log "configuring poetry"
@@ -145,6 +146,20 @@ setup_git_config_for_work() {
 setup_git_config_for_work ~/Work/private
 setup_git_config_for_work ~/Work/public
 setup_git_config_for_work ~/Work/ms
+
+# ---------------------------------------------------------------------------
+# azure — isolated credentials per workspace
+# ---------------------------------------------------------------------------
+log "configuring azure (direnv)"
+setup_azure_envrc() {
+  local dir=$1 config_dir=$2
+  mkdir -p "$dir"
+  echo "export AZURE_CONFIG_DIR=\"\$HOME/$config_dir\"" > "$dir/.envrc"
+  direnv allow "$dir"
+}
+
+setup_azure_envrc ~/Work .azure-work
+setup_azure_envrc ~/404pilot .azure-404pilot
 
 # ---------------------------------------------------------------------------
 # sleepwatcher

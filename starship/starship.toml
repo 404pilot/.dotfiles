@@ -1,0 +1,37 @@
+# ref: https://starship.rs/config/
+
+# prompt order (matches previous spaceship setup)
+format = """
+$username\
+$directory\
+$hostname\
+$git_branch\
+$nodejs\
+$ruby\
+$python\
+$azure\
+$terraform\
+$line_break\
+$jobs\
+$status\
+$sudo\
+$character"""
+
+[time]
+disabled = true
+
+[directory]
+truncation_length = 3
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+
+[git_status]
+disabled = true
+
+[azure]
+disabled = false
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"

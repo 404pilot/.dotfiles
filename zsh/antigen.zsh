@@ -27,7 +27,7 @@ zvm_config() {
 }
 
 zvm_after_init() {
-  echo "[fzf] binding keys"
+  _log "fzf"
   eval "$(fzf --zsh)"
 }
 
@@ -68,18 +68,11 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 
 # ---------------------------------------------------------------------------
-# theme — spaceship prompt
-# ref: https://github.com/spaceship-prompt/spaceship-prompt
-# configured in app_configs
-# ---------------------------------------------------------------------------
-antigen theme denysdovhan/spaceship-prompt
-
-# ---------------------------------------------------------------------------
 # oh-my-zsh settings (must be set before antigen apply)
 # ---------------------------------------------------------------------------
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 
-echo "[antigen] applying plugins..."
+_log "antigen"
 antigen apply

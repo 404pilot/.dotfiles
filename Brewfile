@@ -13,6 +13,7 @@ brew "autojump"
 brew "direnv"
 brew "fzf"
 brew "ccat"
+brew "starship"
 
 # ---------------------------------------------------------------------------
 # editors
