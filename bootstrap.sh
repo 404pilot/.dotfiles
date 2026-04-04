@@ -152,14 +152,17 @@ setup_git_config_for_work ~/Work/ms
 # ---------------------------------------------------------------------------
 log "configuring azure (direnv)"
 setup_azure_envrc() {
-  local dir=$1 config_dir=$2
+  local dir=$1 config_dir=$2 label=$3
   mkdir -p "$dir"
-  echo "export AZURE_CONFIG_DIR=\"\$HOME/$config_dir\"" > "$dir/.envrc"
+  cat > "$dir/.envrc" <<ENVRC
+export AZURE_CONFIG_DIR="\$HOME/$config_dir"
+export AZURE_LABEL="$label"
+ENVRC
   direnv allow "$dir"
 }
 
-setup_azure_envrc ~/Work .azure-work
-setup_azure_envrc ~/404pilot .azure-404pilot
+setup_azure_envrc ~/Work .azure-work work
+setup_azure_envrc ~/404pilot .azure-404pilot personal
 
 # ---------------------------------------------------------------------------
 # sleepwatcher

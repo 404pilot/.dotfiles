@@ -10,6 +10,7 @@ $nodejs\
 $ruby\
 $python\
 $azure\
+${custom.azure_label}\
 $terraform\
 $line_break\
 $jobs\
@@ -31,6 +32,13 @@ disabled = true
 
 [azure]
 disabled = false
+format = "[$symbol]($style)"
+
+[custom.azure_label]
+when = '[ -n "$AZURE_LABEL" ]'
+command = 'echo $AZURE_LABEL'
+format = "[$output]($style) "
+style = "blue bold"
 
 [character]
 success_symbol = "[➜](bold green)"
