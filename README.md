@@ -18,7 +18,7 @@ dotfiles
 3. Install `dotfiles`
    
    ```shell
-   $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/404pilot/.dotfiles/master/bootstrap.sh)" -s --apps --fonts --mac-defaults
+   $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/404pilot/.dotfiles/master/bootstrap.sh)" -s --apps --mac-defaults
    ```
 
 4. Manually install apps
