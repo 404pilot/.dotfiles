@@ -54,6 +54,13 @@ rm ~/.vimrc || true \
 # vim-plug and plugins auto-install on first vim launch (configured in vimrc)
 
 # ---------------------------------------------------------------------------
+# neovim
+# ---------------------------------------------------------------------------
+log "configuring neovim"
+rm -rf ~/.config/nvim || true \
+  && ln -s ~/.dotfiles/nvim ~/.config/nvim
+
+# ---------------------------------------------------------------------------
 # editorConfig
 # ---------------------------------------------------------------------------
 log "configuring editorConfig"
@@ -161,7 +168,7 @@ if [[ "$update_mac_defaults" == true ]]; then
   # backup current settings
   defaults read > /tmp/defaults_read_$(date -u +"%Y-%m-%dT%H:%M:%SZ").bak
 
-  defaults write com.apple.screencapture location "$HOME/documents" && killall SystemUIServer
+  defaults write com.apple.screencapture location "$HOME/Documents" && killall SystemUIServer
   defaults write -g ApplePressAndHoldEnabled -bool false
   defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true" && killall Finder
   defaults write com.apple.finder "ShowPathbar" -bool true && killall Finder
