@@ -14,6 +14,21 @@ Leader key = `Space`
 | `<S-l> / <S-h>` | next / previous buffer |
 | `<C-h/j/k/l>` | move between splits |
 
+## File tree (neo-tree)
+
+| Key | Action |
+|-----|--------|
+| `<leader>e` | toggle file tree |
+| `o` / `<CR>` | open file |
+| `a` | new file |
+| `d` | delete |
+| `r` | rename |
+| `y` / `x` / `p` | copy / cut / paste |
+| `/` | fuzzy filter (live) |
+| `<Down>` / `<Up>` or `<C-n>` / `<C-p>` | navigate filter matches |
+| `<CR>` | open selected filter match |
+| `<Esc>` | cancel filter |
+
 ## Flash (fast jump)
 
 | Key | Action |

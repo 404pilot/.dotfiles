@@ -28,6 +28,8 @@
   mg = merge --no-ff
   fo = fetch origin
   pf = pull --ff-only
+  # shallow-fetch latest of a branch (default master) and hard-reset onto it, after confirmation
+  jumpToLatest = "!f() { b=\"${1:-master}\"; printf 'Discard ALL local changes and jump to origin/%s? [y/N] ' \"$b\"; read a; case \"$a\" in [yY]|[yY][eE][sS]) git fetch --depth 1 origin \"$b\" && git reset --hard \"origin/$b\" ;; *) echo 'Aborted.' ;; esac; }; f"
   # show recently used branches
   recent = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
 
@@ -44,6 +46,7 @@
 [core]
   editor = vi
   fsmonitor = true            # Improve performance on large repos
+  excludesFile = ~/.dotfiles/git/gitignore_global
 
 [pull]
   default = current
@@ -59,13 +62,10 @@
   required = true
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
-
-[credential]
-	helper =
-	helper = /usr/local/share/gcm-core/git-credential-manager
-
-[credential "https://dev.azure.com"]
-	useHttpPath = true
-
 [credential "azrepos:org/onedrive"]
 	azureAuthority = https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
