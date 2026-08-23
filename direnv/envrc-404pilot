@@ -1,0 +1,3 @@
+export AZURE_CONFIG_DIR="$HOME/.azure-404pilot"
+export AZURE_LABEL="personal"
+export COPILOT_HOME="$HOME/.copilot_404pilot"

@@ -148,21 +148,20 @@ setup_git_config_for_work ~/Work/public
 setup_git_config_for_work ~/Work/ms
 
 # ---------------------------------------------------------------------------
-# azure — isolated credentials per workspace
+# per-workspace env:
+# 1. azure credentials (AZURE_CONFIG_DIR)
+# 2. github copilot cli account (COPILOT_HOME)
+#
+# .dotfiles keeps its own .envrc in the repo, so it only needs allowing.
 # ---------------------------------------------------------------------------
-log "configuring azure (direnv)"
-setup_azure_envrc() {
-  local dir=$1 config_dir=$2 label=$3
-  mkdir -p "$dir"
-  cat > "$dir/.envrc" <<ENVRC
-export AZURE_CONFIG_DIR="\$HOME/$config_dir"
-export AZURE_LABEL="$label"
-ENVRC
-  direnv allow "$dir"
-}
+log "configuring per-workspace environments"
+mkdir -p ~/Work ~/404pilot
+cp ~/.dotfiles/direnv/envrc-work ~/Work/.envrc
+cp ~/.dotfiles/direnv/envrc-404pilot ~/404pilot/.envrc
 
-setup_azure_envrc ~/Work .azure-work work
-setup_azure_envrc ~/404pilot .azure-404pilot personal
+direnv allow ~/Work
+direnv allow ~/404pilot
+direnv allow ~/.dotfiles
 
 # ---------------------------------------------------------------------------
 # sleepwatcher
