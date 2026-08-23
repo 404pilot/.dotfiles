@@ -35,8 +35,8 @@ disabled = false
 format = "[$symbol]($style)"
 
 [custom.azure_label]
-when = '[ -n "$AZURE_LABEL" ]'
-command = 'echo $AZURE_LABEL'
+when = '[ -n "$STARSHIP_AZURE_DISPLAY_LABEL" ]'
+command = 'echo $STARSHIP_AZURE_DISPLAY_LABEL'
 format = "[$output]($style) "
 style = "blue bold"
 

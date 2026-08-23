@@ -1,2 +1,2 @@
 export AZURE_CONFIG_DIR="$HOME/.azure-work"
-export AZURE_LABEL="work"
+export STARSHIP_AZURE_DISPLAY_LABEL="work"
