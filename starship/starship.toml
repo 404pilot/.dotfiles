@@ -10,7 +10,7 @@ $nodejs\
 $ruby\
 $python\
 $azure\
-${custom.azure_label}\
+${env_var.STARSHIP_AZURE_DISPLAY_LABEL}\
 $terraform\
 $line_break\
 $jobs\
@@ -34,10 +34,8 @@ disabled = true
 disabled = false
 format = "[$symbol]($style)"
 
-[custom.azure_label]
-when = '[ -n "$STARSHIP_AZURE_DISPLAY_LABEL" ]'
-command = 'echo $STARSHIP_AZURE_DISPLAY_LABEL'
-format = "[$output]($style) "
+[env_var.STARSHIP_AZURE_DISPLAY_LABEL]
+format = "[$env_value]($style) "
 style = "blue bold"
 
 [character]
