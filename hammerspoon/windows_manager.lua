@@ -17,17 +17,18 @@ local function adjustFrame(coordinate)
   hs.window.focusedWindow():moveToUnit(coordinate)
 end
 
-local function toNextScreen()
-  local win = hs.window.focusedWindow()
-  local nextScreen = win:screen():next()
-  win:moveToScreen(nextScreen)
+local moveLoop = function(isEast)
+    local w = hs.window.focusedWindow()
+
+    local s = hs.screen.allScreens()
+    table.sort(s, function(a, b) return a:frame().x < b:frame().x end)
+
+    local target = isEast and (w:screen():toEast() or s[1]) or (w:screen():toWest() or s[#s])
+    w:moveToScreen(target)
 end
 
-local function toPreviousScreen()
-  local win = hs.window.focusedWindow()
-  local nextScreen = win:screen():previous()
-  win:moveToScreen(nextScreen)
-end
+local toLeftScreen = function() moveLoop(false) end
+local toRightScreen = function() moveLoop(true) end
 
 local function bind_keys_for_windows_management()
   hs.hotkey.bind({ "alt" }, "u", function() adjustFrame(CENTER_COORDINATE) end)
@@ -35,8 +36,8 @@ local function bind_keys_for_windows_management()
 
   hs.hotkey.bind({ "alt" }, "i", function() adjustFrame(TOP_HALF_COORDINATE) end)
   hs.hotkey.bind({ "alt" }, "k", function() adjustFrame(BOTTOM_HALF_COORDINATE) end)
-  hs.hotkey.bind({ "alt" }, "j", toNextScreen)
-  hs.hotkey.bind({ "alt" }, "l", toPreviousScreen)
+  hs.hotkey.bind({ "alt" }, "j", toLeftScreen)
+  hs.hotkey.bind({ "alt" }, "l", toRightScreen)
 
   hs.hotkey.bind({ "alt, shift" }, "j", function() adjustFrame(LEFT_HALF_COORDINATE) end)
   hs.hotkey.bind({ "alt, shift" }, "l", function() adjustFrame(RIGHT_HALF_COORDINATE) end)
@@ -101,6 +102,30 @@ local CUSTOM_LAYOUTS    = {
       { "Microsoft Word",                Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
       { "Microsoft Excel",               Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
       { "Notion",                        Dell_P2721Q_RIGHT, CENTER_COORDINATE },
+      { "Microsoft Teams",               Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
+      { "Arc",                           Dell_P2721Q_RIGHT, CENTER_COORDINATE },
+    }
+  },
+  officeLayout_X = {
+    screens = { MAC_SCREEN, Dell_P2721Q_LEFT, Dell_P2721Q_RIGHT },
+    appConfigs = {
+      { "Google Chrome",                 MAC_SCREEN, MAXIMIZED_COORDINATE },
+      { "Preview",                       MAC_SCREEN, MAXIMIZED_COORDINATE },
+      { "Notion",                        MAC_SCREEN, CENTER_COORDINATE },
+      { "Typora",                        MAC_SCREEN, CENTER_COORDINATE },
+
+      { "Microsoft Remote Desktop Beta", Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
+      { "Windows App Beta",              Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
+      { "Code",                          Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
+      { "klogg log viewer",              Dell_P2721Q_LEFT,  MAXIMIZED_COORDINATE },
+
+      { "Microsoft Edge",                Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
+      { "Finder",                        Dell_P2721Q_RIGHT, CENTER_COORDINATE },
+      { "Activity Monitor",              Dell_P2721Q_RIGHT, CENTER_COORDINATE },
+      { "iTerm2",                        Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
+      { "Microsoft Outlook",             Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
+      { "Microsoft Word",                Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
+      { "Microsoft Excel",               Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
       { "Microsoft Teams",               Dell_P2721Q_RIGHT, MAXIMIZED_COORDINATE },
       { "Arc",                           Dell_P2721Q_RIGHT, CENTER_COORDINATE },
     }
