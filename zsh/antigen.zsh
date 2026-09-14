@@ -12,7 +12,7 @@ antigen use oh-my-zsh
 antigen bundle autojump    # needs: brew install autojump
 antigen bundle extract     # universal archive extraction
 
-zstyle :omz:plugins:ssh-agent identities id_rsa_personal
+zstyle :omz:plugins:ssh-agent identities id_404pilot_githhub
 antigen bundle ssh-agent
 
 # ---------------------------------------------------------------------------
