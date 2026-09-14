@@ -5,7 +5,7 @@ Host github.com
     Port 443
     User git
     # IdentityFile and IdentitiesOnly are a pair
-    IdentityFile ~/.ssh/id_404pilot_githhub
+    IdentityFile ~/.ssh/id_404pilot_github
     IdentitiesOnly yes
 
 # modify gitconfig to use github.com-work in the upstream

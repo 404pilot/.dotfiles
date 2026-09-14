@@ -8,11 +8,11 @@ dotfiles
 2. Configure a personal ssh key and upload it to github
    
    ```shell
-   # the location will be ~/.ssh/id_404pilot_githhub
-   $ ssh-keygen -C "xxx+personal@gmail.com"
+   # the location will be ~/.ssh/id_404pilot_github
+   $ ssh-keygen -C "404pilot+github+{device}"
    
    # verify it uses the right user
-   $ ssh -i ~/.ssh/id_404pilot_githhub -T git@github.com
+   $ ssh -i ~/.ssh/id_404pilot_github -T git@github.com
    ```
 
 3. Install `dotfiles`

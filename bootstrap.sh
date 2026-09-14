@@ -20,7 +20,7 @@ log() { echo "[bootstrap] $1"; }
 # ---------------------------------------------------------------------------
 if [ ! -d ~/.dotfiles ]; then
   log "cloning dotfiles"
-  (cd && GIT_SSH_COMMAND='ssh -i ~/.ssh/id_404pilot_githhub -o IdentitiesOnly=yes' git clone git@github.com:404pilot/.dotfiles.git)
+  (cd && GIT_SSH_COMMAND='ssh -i ~/.ssh/id_404pilot_github -o IdentitiesOnly=yes' git clone git@github.com:404pilot/.dotfiles.git)
 fi
 
 # ---------------------------------------------------------------------------
